@@ -10,7 +10,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/pages/chat/widget/ca_input_toolbar.dart';
 import 'package:xmca/pages/chat/util/ca_av_util.dart';
 import 'package:xmca/helper/ca_color.dart';
 import 'package:xmca/pages/chat/util/ca_chat_input_enum.dart';
@@ -68,9 +67,11 @@ class ChatInput extends StatelessWidget {
 
   ///  输入栏上方工具条
   Widget _buildToolBar() {
-    if (chatInputMode.isSpeaking) return _buildSpeakingTipMaskView();
-    List<InputToolbarItem> items = [InputToolbarItem(icon: 'cs', title: '人工客服')];
-    return CAInputToolbar(items: items, humanCsTap: onHumanCs);
+    if (chatInputMode.isSpeaking) {
+      return _buildSpeakingTipMaskView();
+    } else {
+      return SizedBox(height: 10, width: double.infinity);
+    }
   }
 
   ///  录音提示遮罩层

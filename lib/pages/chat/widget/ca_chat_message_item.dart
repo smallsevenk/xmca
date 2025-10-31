@@ -130,11 +130,11 @@ class ChatMessageItemState extends State<ChatMessageItem> {
         ],
       );
     }
-    var showBottomView = (widget.item.pid ?? 0) > 0 || widget.isLast.call();
+    var isLast = widget.isLast.call();
 
     return Container(
       decoration: decoration,
-      padding: padding.copyWith(bottom: showBottomView ? 16.w : 24.w),
+      padding: padding.copyWith(bottom: isLast ? 16.w : 24.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -145,7 +145,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
               csHumanCustomerService?.call([]);
             },
           ),
-          if (showBottomView) ...[
+          if (isLast) ...[
             // 底部工具栏
             Gap(24.w),
             Divider(height: 1.w, color: CAColor.cEDEDED),
@@ -159,7 +159,6 @@ class ChatMessageItemState extends State<ChatMessageItem> {
 
   Widget _buildBottomToolBar() {
     var isLast = widget.isLast.call();
-    var showStatisticsView = (widget.item.pid ?? 0) > 0;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -188,61 +187,8 @@ class ChatMessageItemState extends State<ChatMessageItem> {
             ),
           ),
         ],
-        if (showStatisticsView) ...[
-          Spacer(),
-          _buildStatisticsView(0),
-          Gap(24.w),
-          _buildStatisticsView(1),
-        ],
       ],
     );
-  }
-
-  // 反馈/统计视图 tag 0未解决 1已解决
-  Widget _buildStatisticsView(int tag) {
-    int statisticsType = widget.item.statisticsType ?? 2;
-
-    return Container(
-      width: 120.w,
-      height: 64.w,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        border: Border.all(color: CAColor.cEDEDED, width: 1.w),
-        borderRadius: BorderRadius.circular(12.w),
-      ),
-      child: Text(
-        tag == 0 ? '未解决' : '已解决',
-        style: TextStyle(
-          color: statisticsType == tag ? CAColor.c1A1A1A : CAColor.c969DA7,
-          fontSize: 28.sp,
-        ),
-      ),
-    ).onTap(() async {
-      // 已反馈后无法再次反馈
-      if (statisticsType != 2) return;
-      widget.item.statisticsType = tag;
-      await MessageDataProvider.updateMessages([widget.item]);
-      widget.item.messageItemKey.currentState?.reload();
-      await ChatRoomService.instance.replyStatistics(
-        messageId: widget.item.srvMsgId ?? 0,
-        type: tag,
-      );
-      // 未解决，唤起人工客服
-      if (tag == 0) {
-        var refContent =
-            (await MessageDataProvider.getMessageByRefMsgId(widget.item.refId!))?.text ?? '';
-        if (refContent.isEmpty) {
-          refContent = await ChatRoomService.instance.getParentMessage(
-            messageId: widget.item.srvMsgId ?? 0,
-          );
-        }
-        var args = {'lastQuestion': refContent, 'lastAnswer': widget.item.text};
-        csHumanCustomerService?.call(args);
-      } else {
-        // 已解决，感谢反馈
-        showToast('感谢您的反馈');
-      }
-    });
   }
 
   Widget _buildSuggestView() {
