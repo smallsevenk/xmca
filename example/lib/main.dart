@@ -23,7 +23,7 @@ void main() async {
 }
 
 appInit() async {
-  XGlobal.init();
+  await XGlobal.init();
   XLoading.init();
   if (fromOtherApp) {
     xlog('Main ==> 来自第三方App: ${XAppDeviceInfo.instance.packageName}');
