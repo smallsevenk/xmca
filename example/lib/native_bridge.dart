@@ -20,7 +20,6 @@ class NativeBridge {
   NativeBridge._internal() {
     // 初始化配置
     _channel = MethodChannel('com.sharexm.flutter/native');
-    setMethodCall();
   }
 
   // 调用原生方法
@@ -62,9 +61,6 @@ class NativeBridge {
       }
     });
   }
-
-  // 初始化并绑定回调
-  void initBridge;
 
   // 点击回退
   Future<void> returnToNative() async {

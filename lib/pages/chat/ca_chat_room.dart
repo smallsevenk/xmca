@@ -78,17 +78,6 @@ class _ChatRoomPageState extends State<ChatRoomPage>
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(750, 1624),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return _buildChatRoomContent(context);
-      },
-    );
-  }
-
-  Widget _buildChatRoomContent(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: CAColor.cF4F5FA,

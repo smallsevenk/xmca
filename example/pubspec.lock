@@ -355,11 +355,11 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.8"
-      resolved-ref: f40f7fcd59afc57a8697712a0d45743483b849f0
+      ref: "0.1.1"
+      resolved-ref: "55b81235c6bb103e0e8435538403abf67b15ef78"
       url: "https://github.com/smallsevenk/FlutterAliyunNui.git"
     source: git
-    version: "0.0.8"
+    version: "0.1.1"
   flutter_bloc:
     dependency: transitive
     description:

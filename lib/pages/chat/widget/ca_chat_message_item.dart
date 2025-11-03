@@ -5,9 +5,7 @@ import 'package:xkit/x_kit.dart';
 import 'package:xmca/helper/ca_color.dart';
 import 'package:xmca/helper/ca_global.dart';
 import 'package:xmca/pages/chat/markdown/ca_markdown.dart';
-import 'package:xmca/pages/chat/data/ca_chat_message_data.dart';
 import 'package:xmca/pages/comm/widgets/ca_image.dart';
-import 'package:xmca/repo/api/service/ca_chat_room_service.dart';
 import 'package:xmca/repo/resp/ca_message_resp.dart';
 
 class ChatMessageItem extends StatefulWidget {

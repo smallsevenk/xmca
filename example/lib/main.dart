@@ -1,8 +1,20 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:xmca/xmca.dart';
 import 'package:xmca_example/native_bridge.dart';
 
 bool get fromOtherApp => 'com.xmai.xmca'.fromOtherApp;
+
+String initialRoute = '';
+
+Widget get homePage {
+  return initialRoute.isEmpty
+      ? HomePage()
+      : initialRoute == '/xmcs'
+      ? HomePage()
+      : Xmca.csChatRoomPage;
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,15 +43,19 @@ appInit() async {
   );
   if (fromOtherApp) {
     xlog('Main ==> 来自第三方App: ${XAppDeviceInfo.instance.packageName}');
+    initialRoute = ui.PlatformDispatcher.instance.defaultRouteName;
     // 设置原生调用的回调
-    NativeBridge.instance.initBridge;
+    NativeBridge.instance.setMethodCall();
   } else {
     xlog('Main ==> 来自xmcaExample App');
     Xmca.config(
       params: {
-        "openToken": "sdds2sdfd",
-        "appKey": "GAB3gDFLZNJB6__-mnMtUt==",
-        "serviceId": "sasad2q323wsddsdsdsddssdsddsds",
+        "openToken": "sds",
+        "appKey": "GrA3gEpJZNJB6__-mnMtUg==",
+        "companyId": "1",
+        "communityTopId": "1",
+        "communityId": "1",
+        "baseUrl": "sss",
       },
     );
   }
@@ -75,6 +91,9 @@ class _CsAppState extends State<CsApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+      designSize: const Size(750, 1624),
+      minTextAdapt: true,
+      splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
           color: Colors.white,
@@ -113,7 +132,7 @@ class _CsAppState extends State<CsApp> {
               // 关闭所有焦点键盘
               FocusManager.instance.primaryFocus?.unfocus();
             },
-            child: fromOtherApp ? Xmca.csChatRoomPage : const HomePage(),
+            child: homePage,
           ),
         );
       },
