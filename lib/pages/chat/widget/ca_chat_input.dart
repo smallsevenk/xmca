@@ -10,6 +10,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:xkit/x_kit.dart';
+import 'package:xmca/pages/chat/widget/ca_input_toolbar.dart';
 import 'package:xmca/pages/chat/util/ca_av_util.dart';
 import 'package:xmca/helper/ca_color.dart';
 import 'package:xmca/pages/chat/util/ca_chat_input_enum.dart';
@@ -155,14 +156,10 @@ class ChatInput extends StatelessWidget {
             }
           },
           onPanEnd: (details) {
-            if (chatInputMode.isSpeaking) {
-              onStopRecognition?.call();
-            }
+            onStopRecognition?.call();
           },
           onPanCancel: () {
-            if (chatInputMode.isSpeaking) {
-              onStopRecognition?.call();
-            }
+            onStopRecognition?.call();
           },
           child: tool,
         ),

@@ -1112,10 +1112,10 @@ packages:
     dependency: transitive
     description:
       name: video_player_platform_interface
-      sha256: "9e372520573311055cb353b9a0da1c9d72b094b7ba01b8ecc66f28473553793b"
+      sha256: "57c5d73173f76d801129d0531c2774052c5a7c11ccb962f1830630decd9f24ec"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "6.5.0"
+    version: "6.6.0"
   video_player_web:
     dependency: transitive
     description:
@@ -1208,10 +1208,10 @@ packages:
     dependency: transitive
     description:
       name: webview_flutter_wkwebview
-      sha256: fea63576b3b7e02b2df8b78ba92b48ed66caec2bb041e9a0b1cbd586d5d80bfd
+      sha256: "5de608fdea144d4370c21d4c80f0528135529e0180aa129790064c345e457a43"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.23.1"
+    version: "3.23.2"
   win32:
     dependency: transitive
     description:
@@ -1241,7 +1241,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "49097fa41f5d2b71ebe939697dae79ae55d5e4f7"
+      resolved-ref: "3558c42f3bf572749cf6c9fb78f4dfb21c1c61fd"
       url: "https://github.com/smallsevenk/xkit.git"
     source: git
     version: "0.0.1"

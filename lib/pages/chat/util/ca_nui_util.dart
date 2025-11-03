@@ -25,7 +25,7 @@ class NuiUtil {
   static String _recognizedText = '';
   // 是否为不可见内容
   static bool _isInvisibleContent = false;
-  // static int _recognitionSessionId = 0;
+  static int _recognitionSessionId = 0;
 
   /// 语音合成流式启动
   static Future<bool> startStreamInputTts({
@@ -191,30 +191,48 @@ class NuiUtil {
     required ValueNotifier<ChatInputMode> chatInputMode,
     required ValueNotifier<bool> cancelSend,
   }) async {
+    final int sessionId = ++_recognitionSessionId;
     try {
-      // final int sessionId = ++_recognitionSessionId;
+      // 标记为未取消
       cancelSend.value = false;
       // 如果当前 AI 正在说话则停止
       if (isPlaying.value) {
         isPlaying.value = false;
         await cancelStreamInputTts();
       }
+
+      // 在关键异步点之后检查是否被取消
+      if (sessionId != _recognitionSessionId) return;
+
+      // 权限检查（可能有耗时）
       if (!await XPermissionUtil.checkMicAndSpeeh(context: context)) {
+        // 权限未通过或用户取消 -> 结束本次启动
         return;
       }
 
+      if (sessionId != _recognitionSessionId) return;
+
+      // 初始化或启动识别（可能有耗时）
       if (!ALNui.recognizeOnReady) {
         await _initRecognize();
       } else {
         final token = await getAliToken();
+        if (sessionId != _recognitionSessionId) return;
         await ALNui.startRecognize(token);
       }
+
+      if (sessionId != _recognitionSessionId) {
+        // 启动过程中被取消，尝试停止已启动的识别
+        try {
+          await ALNui.stopRecognize();
+        } catch (_) {}
+        return;
+      }
+
       if (ALNui.recognizeOnReady) {
         // 语音识别准备就绪
         chatInputMode.value = ChatInputMode.speaking;
       }
-      // 只处理最新的语音识别请求
-      // if (sessionId != _recognitionSessionId) return;
     } catch (e, s) {
       xlog('startVoiceRecognition error: $e\n$s');
     }
@@ -225,6 +243,8 @@ class NuiUtil {
     required ValueNotifier<ChatInputMode> chatInputMode,
     required ValueNotifier<List<double>> amplitudes,
   }) async {
+    // 让当前会话失效，后续 startVoiceRecognition 内部检查会返回
+    _recognitionSessionId++;
     chatInputMode.value = ChatInputMode.speak;
     amplitudes.value = CAVoiceWave.defaultAmplitudes;
     try {

@@ -164,7 +164,7 @@ class _ImagePreviewPageState extends State<_ImagePreviewPage> {
       if (XPlatform.isAndroid()) {
         check = await XPermissionUtil.checkStorage(context: () => context);
       } else if (XPlatform.isIOS()) {
-        check = await XPermissionUtil.checkphotos(context: () => context);
+        check = await XPermissionUtil.checkPhotos(context: () => context);
       }
       if (!check) {
         return;

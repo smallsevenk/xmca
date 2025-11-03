@@ -73,7 +73,12 @@ class _ChatRoomPageState extends State<ChatRoomPage>
     CAAvUtil.syncChatMessagesOnCallFinished(() {
       context.read<ChatRoomCubit>().onSyncCallEndMessageCallback(_room.roomId, _room);
     });
-    XPermissionUtil.checkMicAndSpeeh(context: () => context);
+
+    if (XPlatform.isIOS()) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        XPermissionUtil.checkMicAndSpeeh(context: () => context);
+      });
+    }
   }
 
   @override
