@@ -22,25 +22,9 @@ void main() async {
   runApp(CsApp());
 }
 
-loadingSet() {
-  EasyLoading.instance
-    ..loadingStyle = EasyLoadingStyle.custom
-    ..backgroundColor = Colors.white
-    ..textColor = Color(0xFF1A1A1A)
-    ..indicatorColor = Color(0xFF1A1A1A)
-    ..radius = 8.0
-    ..contentPadding = EdgeInsets.symmetric(horizontal: 24, vertical: 16)
-    ..userInteractions = false;
-}
-
 appInit() async {
-  loadingSet();
-  await Xmca.init(
-    loading: XLoading(),
-    showToast: (content, {animationTime, stackTrace}) {
-      showToast(content, animationTime: animationTime, stackTrace: stackTrace);
-    },
-  );
+  XGlobal.init();
+  XLoading.init();
   if (fromOtherApp) {
     xlog('Main ==> 来自第三方App: ${XAppDeviceInfo.instance.packageName}');
     initialRoute = ui.PlatformDispatcher.instance.defaultRouteName;
