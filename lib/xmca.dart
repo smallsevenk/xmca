@@ -28,7 +28,7 @@ class Xmca {
     csHumanCustomerService = humanCustomerService;
   }
 
-  static get csChatRoomPage {
+  static get chatRoomPage {
     return BlocProvider(create: (context) => ChatRoomCubit(), child: ChatRoomPage());
   }
 }

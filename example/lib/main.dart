@@ -13,7 +13,7 @@ Widget get homePage {
       ? HomePage()
       : initialRoute == '/xmcs'
       ? HomePage()
-      : Xmca.csChatRoomPage;
+      : Xmca.chatRoomPage;
 }
 
 void main() async {
@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return Xmca.csChatRoomPage;
+                    return Xmca.chatRoomPage;
                   },
                 ),
               );
