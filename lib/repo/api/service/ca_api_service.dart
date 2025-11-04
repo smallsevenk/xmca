@@ -18,8 +18,8 @@ class Service extends XApiService {
   // 私有构造函数
   Service._internal() {
     // 初始化配置
-    xdio.options.baseUrl = 'http://172.16.19.220:9991/v2';
-    // xdio.options.baseUrl = 'https://aiservice.sharexm.com';
+    // xdio.options.baseUrl = 'http://172.16.19.220:9991/v2';
+    xdio.options.baseUrl = 'https://aiservicetest.sharexm.com';
 
     // 添加拦截器（如果需要）
     xdio.interceptors.add(XResponseInterceptor());

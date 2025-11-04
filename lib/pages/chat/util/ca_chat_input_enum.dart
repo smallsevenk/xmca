@@ -30,4 +30,5 @@ extension ChatInputModelExtension on ValueNotifier<ChatInputMode> {
   get isFuncShowing => value == ChatInputMode.functionShow;
   get isFuncHide => value == ChatInputMode.functionHide;
   get isTextSendOrFunctionShow => isTextSend || isFuncShowing;
+  get isVoice => isSpeak || isSpeaking;
 }

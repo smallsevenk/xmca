@@ -97,7 +97,7 @@ class ChatInput extends StatelessWidget {
 
   // 输入工具栏
   Widget _buildInputTool() {
-    bool isVoiceMode = chatInputMode.isSpeak || chatInputMode.isSpeaking;
+    bool isVoiceMode = chatInputMode.isVoice;
     Widget tool = Row(
       children: [
         if (!chatInputMode.isSpeaking) ..._buildLeadingWidgets(isVoiceMode),
@@ -155,10 +155,15 @@ class ChatInput extends StatelessWidget {
             }
           },
           onPanEnd: (details) {
-            onStopRecognition?.call();
+            // 这里的 if 是避免误触导致切换到speak状态
+            if (chatInputMode.isSpeaking) {
+              onStopRecognition?.call();
+            }
           },
           onPanCancel: () {
-            onStopRecognition?.call();
+            if (chatInputMode.isVoice) {
+              onStopRecognition?.call();
+            }
           },
           child: tool,
         ),
