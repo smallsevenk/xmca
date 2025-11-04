@@ -7,22 +7,45 @@
  * 功能描述:  
  */
 
-import 'package:xkit/api/interceptor/x_request_interceptor.dart';
+import 'dart:convert';
+import 'package:xkit/api/x_api_sign.dart';
 import 'package:xmca/helper/ca_user_manager.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:xmca/xmca.dart';
+import 'package:flutter/services.dart';
 
-class CARequestInterceptor extends XRequestInterceptor {
+class CARequestInterceptor extends InterceptorsWrapper {
   String? pemCache;
-  // 获取授权信息
+
   @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    // 在请求发起前修改头部
+    options.headers["Authorization"] = authorization;
+
+    // 三方透传参数
+    options.headers["App-Param"] = jsonEncode(appParam);
+
+    //  签名
+    var publicKeyPem = await pem;
+    var sign = await XApiSign.sign(
+      url: options.uri.toString(),
+      method: options.method,
+      bodyParams: options.data,
+      publicKeyPem: publicKeyPem,
+    );
+    options.headers["X-Content-Security"] = sign;
+
+    // 一定要加上这句话，否则进入不了下一步
+    return handler.next(options);
+  }
+
+  // 获取授权信息
+
   String get authorization => UserManager.instance.userInfo.token ?? '';
 
-  @override
   Map get appParam => UserManager.instance.threeLoginData ?? {};
 
-  @override
   Future<String> get pem async {
-    pemCache ??= await rootBundle.loadString('packages/xmcs/assets/secret/public.pem');
+    pemCache ??= await rootBundle.loadString('packages/xmca/assets/secret/public.pem');
     return pemCache!;
   }
 }
