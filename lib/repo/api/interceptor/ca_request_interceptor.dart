@@ -12,6 +12,7 @@ import 'package:xmca/helper/ca_user_manager.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class CARequestInterceptor extends XRequestInterceptor {
+  String? pemCache;
   // 获取授权信息
   @override
   String get authorization => UserManager.instance.userInfo.token ?? '';
@@ -20,6 +21,8 @@ class CARequestInterceptor extends XRequestInterceptor {
   Map get appParam => UserManager.instance.threeLoginData ?? {};
 
   @override
-  Future<String> get pem async =>
-      await rootBundle.loadString('packages/xmca/assets/secret/public.pem');
+  Future<String> get pem async {
+    pemCache ??= await rootBundle.loadString('packages/xmcs/assets/secret/public.pem');
+    return pemCache!;
+  }
 }
