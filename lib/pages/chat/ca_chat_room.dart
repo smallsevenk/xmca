@@ -16,7 +16,6 @@ import 'package:xmca/helper/ca_global.dart';
 import 'package:xmca/pages/chat/widget/ca_chat_app_bar.dart';
 import 'package:xmca/pages/chat/widget/ca_chat_input.dart';
 import 'package:xmca/pages/chat/widget/ca_scroll_buttom.dart';
-import 'package:xmca/pages/chat/util/ca_av_util.dart';
 import 'package:xmca/pages/chat/util/ca_chat_input_enum.dart';
 import 'package:xmca/pages/chat/widget/ca_chat_message_item.dart';
 import 'package:xmca/pages/chat/widget/ca_chat_message_menu.dart';
@@ -70,9 +69,9 @@ class _ChatRoomPageState extends State<ChatRoomPage>
     _listenController();
     context.read<ChatRoomCubit>().initRoomInfo(null);
     // 获取字幕聊天数据
-    CAAvUtil.syncChatMessagesOnCallFinished(() {
-      context.read<ChatRoomCubit>().onSyncCallEndMessageCallback(_room.roomId, _room);
-    });
+    // CAAvUtil.syncChatMessagesOnCallFinished(() {
+    //   context.read<ChatRoomCubit>().onSyncCallEndMessageCallback(_room.roomId, _room);
+    // });
 
     if (XPlatform.isIOS()) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -211,7 +210,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
         }
       },
       onCallAgentType: (isVoice) {
-        CAAvUtil.startAvCall(_room, isVoice);
+        // CAAvUtil.startAvCall(_room, isVoice);
       },
     );
   }

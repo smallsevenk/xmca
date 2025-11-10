@@ -10,7 +10,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/pages/chat/util/ca_av_util.dart';
 import 'package:xmca/helper/ca_color.dart';
 import 'package:xmca/pages/chat/util/ca_chat_input_enum.dart';
 import 'package:xmca/pages/chat/widget/ca_voice_wave.dart';
@@ -306,11 +305,11 @@ class ChatInput extends StatelessWidget {
         ),
         children: [
           _buildFunctionButton('语音通话', 'call_voice', () {
-            CAAvUtil.getMediaPermissions(context: () => context);
+            // CAAvUtil.getMediaPermissions(context: () => context);
             onCallAgentType?.call(true);
           }),
           _buildFunctionButton('视频通话', 'call_video', () {
-            CAAvUtil.getMediaPermissions(context: () => context);
+            // CAAvUtil.getMediaPermissions(context: () => context);
             onCallAgentType?.call(false);
           }),
         ],

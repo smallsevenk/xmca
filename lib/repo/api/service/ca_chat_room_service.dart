@@ -10,7 +10,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:xkit/api/x_base_resp.dart';
-import 'package:aliyun_av_plugin/bean/rtc_config.dart';
+// import 'package:aliyun_av_plugin/bean/rtc_config.dart';
 import 'package:xmca/repo/api/service/ca_api_service.dart';
 import 'package:xmca/repo/resp/ca_message_resp.dart';
 import 'package:xmca/repo/resp/ca_room_resp.dart';
@@ -116,18 +116,18 @@ class ChatRoomService {
   }
 
   /// 获取ARTCTOKEN信息
-  Future<RtcConfig?> getArtcTokenInfo(String? id) async {
-    const path = '/public/getAliArtcToken';
-    var params = {"roomId": id};
-    final resp = await _api.doGet(
-      path,
-      mock: false, // 是否使用 Mock 数据
-      showLoading: false, // 是否显示加载动画
-      params: params,
-      (resp) => RtcConfig.fromMap(resp.data),
-    );
-    return resp;
-  }
+  // Future<RtcConfig?> getArtcTokenInfo(String? id) async {
+  //   const path = '/public/getAliArtcToken';
+  //   var params = {"roomId": id};
+  //   final resp = await _api.doGet(
+  //     path,
+  //     mock: false, // 是否使用 Mock 数据
+  //     showLoading: false, // 是否显示加载动画
+  //     params: params,
+  //     (resp) => RtcConfig.fromMap(resp.data),
+  //   );
+  //   return resp;
+  // }
 
   /// 获取推荐问题
   Future<List<String>> getSuggestionAnswer(int id, int? messageId) async {
