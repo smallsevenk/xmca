@@ -1240,8 +1240,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: d181a56b5b041c49b235bfa6138f88149411cd57
+      ref: "43fbe8aa29dacce30f6d360b58c40a69f04b97d3"
+      resolved-ref: "43fbe8aa29dacce30f6d360b58c40a69f04b97d3"
       url: "https://github.com/smallsevenk/xkit.git"
     source: git
     version: "0.0.1"
