@@ -73,7 +73,7 @@ class CAATagBuilder extends MarkdownElementBuilder {
   _showVideoPlayer({required BuildContext context, required String url, String? title}) {
     stopPlay?.call();
     if (XPlatform.isAndroid()) {
-      loseFocus(context);
+      xKeyboradHide(context: context);
     }
     Uri uri = Uri.parse(url);
     Navigator.push(

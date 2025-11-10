@@ -97,7 +97,7 @@ class _DocPreviewPageState extends State<DocPreviewUtil> {
       );
     } else if (['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].contains(ext)) {
       if (XPlatform.isAndroid()) {
-        loseFocus(context);
+        xKeyboradHide(context: context);
       }
       // 使用微软Office在线预览
       final onlineUrl = Uri.encodeComponent(widget.docUrl);

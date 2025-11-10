@@ -137,7 +137,7 @@ class _CsMarkdownState extends State<CAMarkdown> {
   // 打开内置浏览器
   _lanuchUrl(String url) {
     if (XPlatform.isAndroid()) {
-      loseFocus(context);
+      xKeyboradHide(context: context);
     }
     Navigator.push(
       context,
