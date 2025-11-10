@@ -33,14 +33,13 @@ target 'Runner' do
   unless ENV['SIMULATOR_DEVICE_NAME']
     pod 'AliyunIOSNuiSDK', :git => '/Users/andy/zwork/code/AliyunIOSNuiSDK'
   end
-  pod 'AliVCSDK_ARTC', '7.3.0'
+  # pod 'AliVCSDK_ARTC', '7.3.0'
 
-  # AI实时互动通话场景SDK
-  pod 'ARTCAICallKit/Chatbot', '2.7.0'
-  pod 'AUIAICall/Chatbot',  :path => "/Users/andy/zwork/three/AUIAICall"
-  pod 'AUIFoundation', :path => "/Users/andy/zwork/three/AUIAICall/AUIBaseKits/AUIFoundation/", :modular_headers => true
-  # pod 'Firebase/Crashlytics'
-  # pod 'Firebase/Analytics'  # 可选，用于增强崩溃上下文
+  # # AI实时互动通话场景SDK
+  # pod 'ARTCAICallKit/Chatbot', '2.7.0'
+  # pod 'AUIAICall/Chatbot',  :path => "/Users/andy/zwork/three/AUIAICall"
+  # pod 'AUIFoundation', :path => "/Users/andy/zwork/three/AUIAICall/AUIBaseKits/AUIFoundation/", :modular_headers => true
+
 
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))

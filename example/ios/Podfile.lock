@@ -1,35 +1,8 @@
 PODS:
-  - AliVCInteractionMessage (1.8.0):
-    - AliVCInteractionMessage/Default (= 1.8.0)
-  - AliVCInteractionMessage/Default (1.8.0)
-  - AliVCSDK_ARTC (7.3.0):
-    - AliVCSDK_ARTC/Default (= 7.3.0)
-  - AliVCSDK_ARTC/Default (7.3.0)
-  - aliyun_av_plugin (0.0.1):
-    - AUIAICall/Chatbot
-    - Flutter
   - AliyunIOSNuiSDK (0.0.2)
-  - ARTCAICallKit/AEC (2.7.0)
-  - ARTCAICallKit/Chat (2.7.0):
-    - AliVCInteractionMessage
-  - ARTCAICallKit/Chatbot (2.7.0):
-    - ARTCAICallKit/AEC
-    - ARTCAICallKit/Chat
   - audioplayers_darwin (0.0.1):
     - Flutter
     - FlutterMacOS
-  - AUIAICall/Chatbot (2.6.0):
-    - ARTCAICallKit/Chatbot
-    - AUIFoundation
-    - lottie-ios (= 4.4.1)
-    - MJRefresh
-    - SDWebImage
-    - SwiftyMarkdown
-  - AUIFoundation (6.11.0):
-    - AUIFoundation/All (= 6.11.0)
-    - Masonry
-  - AUIFoundation/All (6.11.0):
-    - Masonry
   - connectivity_plus (0.0.1):
     - Flutter
   - device_info_plus (0.0.1):
@@ -56,9 +29,6 @@ PODS:
   - libwebp/sharpyuv (1.5.0)
   - libwebp/webp (1.5.0):
     - libwebp/sharpyuv
-  - lottie-ios (4.4.1)
-  - Masonry (1.1.0)
-  - MJRefresh (3.7.9)
   - package_info_plus (0.4.5):
     - Flutter
   - path_provider_foundation (0.0.1):
@@ -66,16 +36,12 @@ PODS:
     - FlutterMacOS
   - permission_handler_apple (9.3.0):
     - Flutter
-  - SDWebImage (5.21.1):
-    - SDWebImage/Core (= 5.21.1)
-  - SDWebImage/Core (5.21.1)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
   - sqflite_darwin (0.0.4):
     - Flutter
     - FlutterMacOS
-  - SwiftyMarkdown (1.2.4)
   - video_player_avfoundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -89,13 +55,8 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - AliVCSDK_ARTC (= 7.3.0)
-  - aliyun_av_plugin (from `.symlinks/plugins/aliyun_av_plugin/ios`)
   - AliyunIOSNuiSDK (from `/Users/andy/zwork/code/AliyunIOSNuiSDK`)
-  - ARTCAICallKit/Chatbot (= 2.7.0)
   - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/darwin`)
-  - AUIAICall/Chatbot (from `/Users/andy/zwork/three/AUIAICall`)
-  - AUIFoundation (from `/Users/andy/zwork/three/AUIAICall/AUIBaseKits/AUIFoundation/`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
@@ -115,27 +76,13 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AliVCInteractionMessage
-    - AliVCSDK_ARTC
-    - ARTCAICallKit
     - libwebp
-    - lottie-ios
-    - Masonry
-    - MJRefresh
-    - SDWebImage
-    - SwiftyMarkdown
 
 EXTERNAL SOURCES:
-  aliyun_av_plugin:
-    :path: ".symlinks/plugins/aliyun_av_plugin/ios"
   AliyunIOSNuiSDK:
     :git: "/Users/andy/zwork/code/AliyunIOSNuiSDK"
   audioplayers_darwin:
     :path: ".symlinks/plugins/audioplayers_darwin/darwin"
-  AUIAICall:
-    :path: "/Users/andy/zwork/three/AUIAICall"
-  AUIFoundation:
-    :path: "/Users/andy/zwork/three/AUIAICall/AUIBaseKits/AUIFoundation/"
   connectivity_plus:
     :path: ".symlinks/plugins/connectivity_plus/ios"
   device_info_plus:
@@ -175,14 +122,8 @@ CHECKOUT OPTIONS:
     :git: "/Users/andy/zwork/code/AliyunIOSNuiSDK"
 
 SPEC CHECKSUMS:
-  AliVCInteractionMessage: 84edc775865ab54a43e085d5b7660e345e8f80d0
-  AliVCSDK_ARTC: fbbeef4a1e42c421ecae0dff2420eedc77512d10
-  aliyun_av_plugin: 7de4438614c1f03469c723b4f481ded0bb5b0b6d
   AliyunIOSNuiSDK: 6ad1ae35e8e45c2236becbdb00ea573c7065ee77
-  ARTCAICallKit: ae110a9f4aa4660e8b5ccdf6846553b975b595ba
   audioplayers_darwin: 4f9ca89d92d3d21cec7ec580e78ca888e5fb68bd
-  AUIAICall: 3c40e09b69b8e8d75bfab861bb4a86a5272db6b6
-  AUIFoundation: 52ca58ffc03377ff0907dab6995cdf618dff5202
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
   device_info_plus: 21fcca2080fbcd348be798aa36c3e5ed849eefbe
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
@@ -191,21 +132,16 @@ SPEC CHECKSUMS:
   image_gallery_saver_plus: e597bf65a7846979417a3eae0763b71b6dfec6c3
   integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
-  lottie-ios: e047b1d2e6239b787cc5e9755b988869cf190494
-  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: bb55f6dbba17d0dccd6737fe6f7f34fbd0376880
   permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
-  SDWebImage: f29024626962457f3470184232766516dee8dfea
   shared_preferences_foundation: 7036424c3d8ec98dfe75ff1667cb0cd531ec82bb
   sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
-  SwiftyMarkdown: 7cdec87c6ab5cd9ea0e22ced288e889960649ba5
   video_player_avfoundation: dd410b52df6d2466a42d28550e33e4146928280a
   video_thumbnail: b637e0ad5f588ca9945f6e2c927f73a69a661140
   wakelock_plus: e29112ab3ef0b318e58cfa5c32326458be66b556
   webview_flutter_wkwebview: 8ebf4fded22593026f7dbff1fbff31ea98573c8d
 
-PODFILE CHECKSUM: c5061938da1e7500565b5c3603589e9d8403a1aa
+PODFILE CHECKSUM: e864059b1a084ff6697a60c209e56c9f636cb756
 
 COCOAPODS: 1.16.2
