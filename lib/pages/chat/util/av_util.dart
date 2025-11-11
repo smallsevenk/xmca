@@ -5,9 +5,9 @@
 // import 'package:aliyun_av_plugin/bean/rtc_config.dart';
 // import 'package:flutter/material.dart';
 // import 'package:xkit/x_kit.dart';
-// import 'package:xmca/helper/ca_user_manager.dart';
-// import 'package:xmca/repo/api/service/ca_chat_room_service.dart';
-// import 'package:xmca/repo/resp/ca_room_resp.dart';
+// import 'package:xmca/helper/user_manager.dart';
+// import 'package:xmca/repo/api/service/chat_room_service.dart';
+// import 'package:xmca/repo/resp/room_resp.dart';
 
 // class CAAvUtil {
 //   /// 在通话结束后同步聊天消息

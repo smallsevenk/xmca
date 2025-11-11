@@ -1,5 +1,5 @@
 /*
- * 文件名称: ca_chat_room_cubit.dart
+ * 文件名称: chat_room_cubit.dart
  * 创建时间: 2025/10/31 09:57:09
  * 作者名称: Andy.Zhao
  * 联系方式: smallsevenk@vip.qq.com
@@ -11,16 +11,16 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:xkit/api/x_base_resp.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/helper/ca_global.dart';
-import 'package:xmca/helper/ca_user_manager.dart';
-import 'package:xmca/pages/chat/util/ca_nui_util.dart';
-import 'package:xmca/pages/chat/data/ca_chat_message_data.dart';
-import 'package:xmca/pages/chat/data/ca_chat_room_data.dart';
-import 'package:xmca/repo/api/service/ca_chat_room_service.dart';
-import 'package:xmca/repo/api/service/ca_user_service.dart';
-import 'package:xmca/repo/resp/ca_message_resp.dart';
-import 'package:xmca/repo/resp/ca_room_resp.dart';
-import 'package:xmca/repo/resp/ca_voice_resp.dart';
+import 'package:xmca/helper/global.dart';
+import 'package:xmca/helper/user_manager.dart';
+import 'package:xmca/pages/chat/util/nui_util.dart';
+import 'package:xmca/pages/chat/data/chat_message_data.dart';
+import 'package:xmca/pages/chat/data/chat_room_data.dart';
+import 'package:xmca/repo/api/service/chat_room_service.dart';
+import 'package:xmca/repo/api/service/user_service.dart';
+import 'package:xmca/repo/resp/message_resp.dart';
+import 'package:xmca/repo/resp/room_resp.dart';
+import 'package:xmca/repo/resp/voice_resp.dart';
 
 @immutable
 abstract class ChatRoomState {

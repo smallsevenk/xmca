@@ -11,9 +11,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:xkit/api/x_base_resp.dart';
 // import 'package:aliyun_av_plugin/bean/rtc_config.dart';
-import 'package:xmca/repo/api/service/ca_api_service.dart';
-import 'package:xmca/repo/resp/ca_message_resp.dart';
-import 'package:xmca/repo/resp/ca_room_resp.dart';
+import 'package:xmca/repo/api/service/api_service.dart';
+import 'package:xmca/repo/resp/message_resp.dart';
+import 'package:xmca/repo/resp/room_resp.dart';
 import 'package:xkit/x_kit.dart';
 
 class ChatRoomService {

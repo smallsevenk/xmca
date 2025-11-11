@@ -11,11 +11,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_aliyun_nui/flutter_aliyun_nui.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/helper/ca_global.dart';
-import 'package:xmca/pages/chat/util/ca_chat_input_enum.dart';
-import 'package:xmca/pages/chat/widget/ca_voice_wave.dart';
-import 'package:xmca/repo/api/service/ca_common_service.dart';
-import 'package:xmca/repo/resp/ca_voice_resp.dart';
+import 'package:xmca/helper/global.dart';
+import 'package:xmca/pages/chat/util/chat_input_enum.dart';
+import 'package:xmca/pages/chat/widget/voice_wave.dart';
+import 'package:xmca/repo/api/service/common_service.dart';
+import 'package:xmca/repo/resp/voice_resp.dart';
 
 // 是否打开自动播放持久话 spkey
 const String autoPlayKey = 'CAAutoPlay';

@@ -5,7 +5,7 @@ import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/pages/comm/widgets/ca_image.dart';
+import 'package:xmca/pages/comm/widgets/image.dart';
 
 class CAImagePreview {
   /// 全屏图片预览

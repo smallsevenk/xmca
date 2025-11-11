@@ -9,10 +9,10 @@
 
 import 'package:sqflite/sqlite_api.dart';
 import 'package:xkit/helper/x_logger.dart';
-import 'package:xmca/helper/ca_db_manager.dart';
-import 'package:xmca/pages/chat/data/ca_chat_room_data.dart';
-import 'package:xmca/repo/resp/ca_message_resp.dart';
-import 'package:xmca/repo/resp/ca_room_resp.dart';
+import 'package:xmca/helper/db_manager.dart';
+import 'package:xmca/pages/chat/data/chat_room_data.dart';
+import 'package:xmca/repo/resp/message_resp.dart';
+import 'package:xmca/repo/resp/room_resp.dart';
 
 class CAMessagePart {
   final String key;

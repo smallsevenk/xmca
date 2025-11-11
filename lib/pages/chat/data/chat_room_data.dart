@@ -1,5 +1,5 @@
 /*
- * 文件名称: ca_chat_room_data.dart
+ * 文件名称: chat_room_data.dart
  * 创建时间: 2025/10/20 10:58:00
  * 作者名称: Andy.Zhao
  * 联系方式: smallsevenk@vip.qq.com
@@ -9,8 +9,8 @@
 
 import 'package:sqflite/sqlite_api.dart';
 import 'package:xkit/helper/x_logger.dart';
-import 'package:xmca/helper/ca_db_manager.dart';
-import 'package:xmca/repo/resp/ca_room_resp.dart';
+import 'package:xmca/helper/db_manager.dart';
+import 'package:xmca/repo/resp/room_resp.dart';
 
 class CARoomPart {
   final String key;

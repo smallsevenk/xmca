@@ -8,7 +8,7 @@
  */
 
 import 'package:xkit/extension/x_map_ext.dart';
-import 'package:xmca/repo/resp/ca_role_resp.dart';
+import 'package:xmca/repo/resp/role_resp.dart';
 
 class ChatRoomResp {
   int roomId = 0; //房间id

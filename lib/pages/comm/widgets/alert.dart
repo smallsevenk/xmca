@@ -9,7 +9,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/helper/ca_color.dart';
+import 'package:xmca/helper/color.dart';
 
 class CAAlert {
   static final _defaultTitleStyle = TextStyle(fontSize: 36.sp, color: CAColor.cWhite);

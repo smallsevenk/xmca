@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/helper/ca_color.dart';
-import 'package:xmca/pages/chat/widget/ca_web_view.dart';
-import 'package:xmca/pages/comm/widgets/ca_image.dart';
-import 'package:xmca/repo/api/service/ca_api_service.dart';
+import 'package:xmca/helper/color.dart';
+import 'package:xmca/pages/chat/widget/web_view.dart';
+import 'package:xmca/pages/comm/widgets/image.dart';
+import 'package:xmca/repo/api/service/api_service.dart';
 
 class DocPreviewUtil extends StatefulWidget {
   final String docUrl;

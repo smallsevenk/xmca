@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/helper/ca_color.dart';
-import 'package:xmca/pages/chat/markdown/ca_markdown.dart';
-import 'package:xmca/pages/chat/util/ca_image_preview.dart';
-import 'package:xmca/pages/comm/widgets/ca_image.dart';
+import 'package:xmca/helper/color.dart';
+import 'package:xmca/pages/chat/markdown/markdown.dart';
+import 'package:xmca/pages/chat/util/image_preview.dart';
+import 'package:xmca/pages/comm/widgets/image.dart';
 
 class CAMDImageBuilder extends StatelessWidget {
   final MarkdownImageConfig config;

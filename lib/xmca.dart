@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:xmca/cubit/ca_chat_room_cubit.dart';
-import 'package:xmca/helper/ca_global.dart';
-import 'package:xmca/helper/ca_user_manager.dart';
-import 'package:xmca/pages/chat/ca_chat_room.dart';
+import 'package:xmca/cubit/chat_room_cubit.dart';
+import 'package:xmca/helper/global.dart';
+import 'package:xmca/helper/user_manager.dart';
+import 'package:xmca/pages/chat/chat_room.dart';
 export 'package:xkit/x_kit.dart';
 
 class Xmca {

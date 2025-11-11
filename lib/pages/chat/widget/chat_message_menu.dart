@@ -10,9 +10,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/helper/ca_color.dart';
-import 'package:xmca/pages/comm/widgets/ca_image.dart';
-import 'package:xmca/repo/resp/ca_message_resp.dart';
+import 'package:xmca/helper/color.dart';
+import 'package:xmca/pages/comm/widgets/image.dart';
+import 'package:xmca/repo/resp/message_resp.dart';
 
 class MessageMenuAction {
   final String icon;

@@ -10,10 +10,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/helper/ca_color.dart';
-import 'package:xmca/pages/chat/util/ca_chat_input_enum.dart';
-import 'package:xmca/pages/chat/widget/ca_voice_wave.dart';
-import 'package:xmca/pages/comm/widgets/ca_image.dart';
+import 'package:xmca/helper/color.dart';
+import 'package:xmca/pages/chat/util/chat_input_enum.dart';
+import 'package:xmca/pages/chat/widget/voice_wave.dart';
+import 'package:xmca/pages/comm/widgets/image.dart';
 
 class ChatInput extends StatelessWidget {
   final ValueNotifier<ChatInputMode> chatInputMode;

@@ -6,9 +6,9 @@ import 'package:flutter_markdown/flutter_markdown.dart' show MarkdownElementBuil
 import 'package:markdown/markdown.dart' show Element;
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/pages/chat/util/ca_video_player.dart';
-import 'package:xmca/pages/chat/widget/ca_web_view.dart';
-import 'package:xmca/pages/comm/widgets/ca_image.dart';
+import 'package:xmca/pages/chat/util/video_player.dart';
+import 'package:xmca/pages/chat/widget/web_view.dart';
+import 'package:xmca/pages/comm/widgets/image.dart';
 
 const String videoThumbnailCacheKey = 'video_thumbnail_cache_key';
 

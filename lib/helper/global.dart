@@ -1,5 +1,5 @@
 import 'package:xkit/helper/x_sp.dart';
-import 'package:xmca/pages/chat/util/ca_nui_util.dart';
+import 'package:xmca/pages/chat/util/nui_util.dart';
 
 Function()? csBackToNative;
 Function(dynamic args)? csHumanCustomerService;

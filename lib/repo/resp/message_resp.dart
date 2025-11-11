@@ -11,8 +11,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:xkit/extension/x_datetime_ext.dart';
 import 'package:xkit/extension/x_map_ext.dart';
-import 'package:xmca/helper/ca_user_manager.dart';
-import 'package:xmca/pages/chat/widget/ca_chat_message_item.dart';
+import 'package:xmca/helper/user_manager.dart';
+import 'package:xmca/pages/chat/widget/chat_message_item.dart';
 
 /// 聊天消息
 class DBMessage {

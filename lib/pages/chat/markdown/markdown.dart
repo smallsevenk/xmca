@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/helper/ca_color.dart';
-import 'package:xmca/pages/chat/markdown/ca_md_a_builder.dart';
-import 'package:xmca/pages/chat/markdown/ca_md_img_builder.dart';
-import 'package:xmca/pages/chat/markdown/ca_md_table_builder.dart';
-import 'package:xmca/pages/chat/util/ca_audio_util.dart';
-import 'package:xmca/pages/chat/util/ca_doc_preview_util.dart';
-import 'package:xmca/pages/chat/util/ca_image_preview.dart';
-import 'package:xmca/pages/chat/widget/ca_web_view.dart';
+import 'package:xmca/helper/color.dart';
+import 'package:xmca/pages/chat/markdown/md_a_builder.dart';
+import 'package:xmca/pages/chat/markdown/md_img_builder.dart';
+import 'package:xmca/pages/chat/markdown/md_table_builder.dart';
+import 'package:xmca/pages/chat/util/audio_util.dart';
+import 'package:xmca/pages/chat/util/doc_preview_util.dart';
+import 'package:xmca/pages/chat/util/image_preview.dart';
+import 'package:xmca/pages/chat/widget/web_view.dart';
 
 class CAMarkdown extends StatefulWidget {
   final String data;

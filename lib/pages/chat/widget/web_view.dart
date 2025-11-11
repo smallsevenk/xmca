@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/helper/ca_color.dart';
-import 'package:xmca/pages/comm/widgets/ca_image.dart';
+import 'package:xmca/helper/color.dart';
+import 'package:xmca/pages/comm/widgets/image.dart';
 
 /// 封装的可复用 WebView 页面组件，支持传入标题和初始 URL
 class WebviewPage extends StatefulWidget {

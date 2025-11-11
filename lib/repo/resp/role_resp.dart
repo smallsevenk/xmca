@@ -7,7 +7,7 @@
  * 功能描述:  
  */
 
-import 'package:xmca/repo/resp/ca_voice_resp.dart';
+import 'package:xmca/repo/resp/voice_resp.dart';
 
 class CARoleListResp {
   List<CARoleResp>? list;

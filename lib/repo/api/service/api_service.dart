@@ -1,5 +1,5 @@
 /*
- * 文件名称: ca_api_service.dart
+ * 文件名称: api_service.dart
  * 创建时间: 2025/11/04 15:48:51
  * 作者名称: Andy.Zhao
  * 联系方式: smallsevenk@vip.qq.com
@@ -8,7 +8,7 @@
  */
 
 import 'package:xkit/api/x_api_service.dart';
-import 'package:xmca/repo/api/interceptor/ca_request_interceptor.dart';
+import 'package:xmca/repo/api/interceptor/request_interceptor.dart';
 
 class Service extends XApiService {
   // 私有静态实例

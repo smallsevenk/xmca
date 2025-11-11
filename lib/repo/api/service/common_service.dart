@@ -7,8 +7,8 @@
  * 功能描述:  
  */
 
-import 'package:xmca/repo/api/service/ca_api_service.dart';
-import 'package:xmca/repo/resp/ca_aliyun_resp.dart';
+import 'package:xmca/repo/api/service/api_service.dart';
+import 'package:xmca/repo/resp/aliyun_resp.dart';
 
 class CACommonService {
   // 私有静态实例

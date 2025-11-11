@@ -7,10 +7,10 @@
 * 功能描述:  
 */
 
-import 'package:xmca/repo/api/service/ca_api_service.dart';
+import 'package:xmca/repo/api/service/api_service.dart';
 import 'package:xkit/api/x_base_resp.dart';
-import 'package:xmca/repo/resp/ca_user_resp.dart';
-import 'package:xmca/helper/ca_user_manager.dart';
+import 'package:xmca/repo/resp/user_resp.dart';
+import 'package:xmca/helper/user_manager.dart';
 
 class UserService {
   // 私有静态实例

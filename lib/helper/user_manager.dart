@@ -10,7 +10,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:xkit/helper/x_sp.dart';
-import 'package:xmca/repo/resp/ca_user_resp.dart';
+import 'package:xmca/repo/resp/user_resp.dart';
 
 class UserManager {
   static const String userInfokey = 'xmcaUserInfo';
