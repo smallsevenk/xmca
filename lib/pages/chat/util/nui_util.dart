@@ -169,7 +169,7 @@ class NuiUtil {
       var now = DateTime.now().millisecondsSinceEpoch;
       bool isExpired = expire < now;
       if (expire == 0 || token.isEmpty || isExpired) {
-        final resp = await CACommonService().getAliToken();
+        final resp = await CommonService().getAliToken();
         if (resp != null) {
           await XSpUtil.prefs.setString(aliyunTtsToken, resp.token ?? '');
           await XSpUtil.prefs.setInt(aliyunTtsTokenExpire, resp.expire ?? 0);
@@ -246,7 +246,7 @@ class NuiUtil {
     // 让当前会话失效，后续 startVoiceRecognition 内部检查会返回
     _recognitionSessionId++;
     chatInputMode.value = ChatInputMode.speak;
-    amplitudes.value = CAVoiceWave.defaultAmplitudes;
+    amplitudes.value = VoiceWave.defaultAmplitudes;
     try {
       await ALNui.stopRecognize();
     } catch (e, s) {
@@ -319,9 +319,9 @@ class NuiUtil {
   }) {
     var showRms = rms + 160;
     if (showRms < 110) {
-      amplitudes.value = CAVoiceWave.defaultAmplitudes;
+      amplitudes.value = VoiceWave.defaultAmplitudes;
       return;
     }
-    amplitudes.value = CAVoiceWave.generateAmplitudes(rms);
+    amplitudes.value = VoiceWave.generateAmplitudes(rms);
   }
 }

@@ -11,30 +11,30 @@ import 'package:flutter/material.dart';
 import 'package:xkit/x_kit.dart';
 import 'package:xmca/helper/color.dart';
 
-class CAAlert {
-  static final _defaultTitleStyle = TextStyle(fontSize: 36.sp, color: CAColor.cWhite);
+class Alert {
+  static final _defaultTitleStyle = TextStyle(fontSize: 36.sp, color: CColor.cWhite);
 
   static final _defaultCancelStyle = TextStyle(
     fontSize: 34.sp,
-    color: CAColor.c4F7EFF,
+    color: CColor.c4F7EFF,
     height: 51.sp / 28.sp,
     fontWeight: FontWeight.w500,
   );
 
   static final _defaultContentStyle = TextStyle(
     fontSize: 34.sp,
-    color: CAColor.c1A1A1A,
+    color: CColor.c1A1A1A,
     height: 51.sp / 28.sp,
     fontWeight: FontWeight.w500,
   );
 
   static final _defaultConfirmStyle = TextStyle(
-    color: CAColor.cFF6335,
+    color: CColor.cFF6335,
     fontSize: 34.sp,
     fontWeight: FontWeight.w600,
   );
 
-  static final List<Color> _defaultConfirmBackgroundColors = [CAColor.cFFEB98, CAColor.cCAAB62];
+  static final List<Color> _defaultConfirmBackgroundColors = [CColor.cFFEB98, CColor.cCAAB62];
 
   static void show({
     String? title,
@@ -119,7 +119,7 @@ class _AlertContent extends StatelessWidget {
           width: 640.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.w),
-            color: CAColor.cWhite,
+            color: CColor.cWhite,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -132,7 +132,7 @@ class _AlertContent extends StatelessWidget {
                   child: Text(content, style: contentStyle, textAlign: TextAlign.center),
                 ),
 
-              Divider(height: 1.w, color: CAColor.cE5E5E5),
+              Divider(height: 1.w, color: CColor.cE5E5E5),
               _buildActionButtons(context),
             ],
           ),
@@ -146,7 +146,7 @@ class _AlertContent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (showCancel) _buildCancelButton(context),
-        if (showCancel) Container(width: 1.w, height: 88.w, color: CAColor.cE5E5E5),
+        if (showCancel) Container(width: 1.w, height: 88.w, color: CColor.cE5E5E5),
         _buildConfirmButton(context),
       ],
     );

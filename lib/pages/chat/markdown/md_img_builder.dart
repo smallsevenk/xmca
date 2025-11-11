@@ -7,10 +7,10 @@ import 'package:xmca/pages/chat/markdown/markdown.dart';
 import 'package:xmca/pages/chat/util/image_preview.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';
 
-class CAMDImageBuilder extends StatelessWidget {
+class MDImageBuilder extends StatelessWidget {
   final MarkdownImageConfig config;
-  final CAMarkdown widget;
-  const CAMDImageBuilder({super.key, required this.widget, required this.config});
+  final XMarkdown widget;
+  const MDImageBuilder({super.key, required this.widget, required this.config});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CAMDImageBuilder extends StatelessWidget {
         GestureDetector(
           onTap: () {
             widget.stopPlay?.call();
-            CAImagePreview.show(
+            ImagePreview.show(
               context: context,
               imageUrls: urls,
               initialIndex: i,
@@ -42,15 +42,15 @@ class CAMDImageBuilder extends StatelessWidget {
                 height: 280.w,
                 fit: BoxFit.cover,
                 placeholder: (context, url) => Container(
-                  color: CAColor.cF4F5FA,
+                  color: CColor.cF4F5FA,
                   alignment: Alignment.center,
-                  child: CAImage('', path: 'assets/chat/cs_img_loading.gif', width: 64.w),
+                  child: XImage('', path: 'assets/chat/cs_img_loading.gif', width: 64.w),
                 ),
                 errorWidget: (context, url, error) =>
                     Container(
-                      color: CAColor.cF4F5FA,
+                      color: CColor.cF4F5FA,
                       alignment: Alignment.center,
-                      child: CAImage('cs_img_error'),
+                      child: XImage('cs_img_error'),
                     ).onTap(() {
                       showToast('无效图片资源,无法预览');
                     }),

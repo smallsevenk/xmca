@@ -67,8 +67,8 @@ class _WebviewPageState extends State<WebviewPage> {
                 return LinearProgressIndicator(
                   value: progress / 100,
                   minHeight: 3,
-                  backgroundColor: CAColor.c232323,
-                  valueColor: AlwaysStoppedAnimation<Color>(CAColor.cEACD76),
+                  backgroundColor: CColor.c232323,
+                  valueColor: AlwaysStoppedAnimation<Color>(CColor.cEACD76),
                 );
               }
               return SizedBox.shrink(); // 隐藏进度条
@@ -98,14 +98,14 @@ class _WebviewPageState extends State<WebviewPage> {
                       width: 60.w,
                       height: 60.w,
                       margin: EdgeInsets.only(left: 25.w, top: 10.w),
-                      child: CAImage('back', width: 60.w, color: CAColor.c1A1A1A),
+                      child: XImage('back', width: 60.w, color: CColor.c1A1A1A),
                     ),
                   ),
                   Center(
                     child: Text(
                       widget.title,
                       style: TextStyle(
-                        color: CAColor.c1A1A1A,
+                        color: CColor.c1A1A1A,
                         fontSize: 36.sp,
                         fontWeight: FontWeight.bold,
                       ),
@@ -121,7 +121,7 @@ class _WebviewPageState extends State<WebviewPage> {
                       },
                       child: Container(
                         alignment: Alignment.center,
-                        child: Icon(Icons.refresh, color: CAColor.c1A1A1A, size: 48.w),
+                        child: Icon(Icons.refresh, color: CColor.c1A1A1A, size: 48.w),
                       ),
                     ),
                   ),

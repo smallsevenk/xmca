@@ -17,7 +17,7 @@ const int _waveCount = 44;
 /// 最小衰减值
 const double _minDecay = 0.4;
 
-class CAVoiceWave extends StatelessWidget {
+class VoiceWave extends StatelessWidget {
   final List<double> amplitudes;
   final double waveWidth;
   final double waveHeight;
@@ -29,7 +29,7 @@ class CAVoiceWave extends StatelessWidget {
   final bool stopped;
   final double borderRadius;
 
-  const CAVoiceWave({
+  const VoiceWave({
     super.key,
     required this.amplitudes,
     this.waveWidth = 3.0,

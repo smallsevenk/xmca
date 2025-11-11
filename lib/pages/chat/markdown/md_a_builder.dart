@@ -12,9 +12,9 @@ import 'package:xmca/pages/comm/widgets/image.dart';
 
 const String videoThumbnailCacheKey = 'video_thumbnail_cache_key';
 
-class CAATagBuilder extends MarkdownElementBuilder {
+class ATagBuilder extends MarkdownElementBuilder {
   final VoidCallback? stopPlay;
-  CAATagBuilder({this.stopPlay});
+  ATagBuilder({this.stopPlay});
 
   @override
   Widget? visitElementAfterWithContext(
@@ -53,7 +53,7 @@ class CAATagBuilder extends MarkdownElementBuilder {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(5),
-                      child: CAImage('cs_video_placeholder', width: 220, height: 140),
+                      child: XImage('cs_video_placeholder', width: 220, height: 140),
                     ),
                     Icon(Icons.play_circle_fill, size: 48, color: Colors.white),
                   ],
@@ -80,7 +80,7 @@ class CAATagBuilder extends MarkdownElementBuilder {
       context,
       MaterialPageRoute(
         builder: (_) => XPlatform.isAndroid()
-            // ? CAVideoPlayerWebview(videoUrl: url)
+            // ? VideoPlayerWebview(videoUrl: url)
             ? WebviewPage(
                 title: title ?? uri.pathSegments.last,
                 initialUrl: url,

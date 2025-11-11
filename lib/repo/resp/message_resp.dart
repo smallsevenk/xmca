@@ -345,7 +345,7 @@ enum MessageType {
   }
 }
 
-class CAAIMessage {
+class AIMessage {
   String? id;
   int? userMessageId;
   int? aiMessageId;
@@ -353,10 +353,10 @@ class CAAIMessage {
   String? object;
   int? created;
   String? model;
-  List<CAChoices>? choices;
+  List<Choices>? choices;
   String? type;
 
-  CAAIMessage({
+  AIMessage({
     this.id,
     this.userMessageId,
     this.aiMessageId,
@@ -368,7 +368,7 @@ class CAAIMessage {
     this.type,
   });
 
-  CAAIMessage.fromJson(Map<String, dynamic> json) {
+  AIMessage.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userMessageId = json['userMessageId'];
     aiMessageId = json['aiMessageId'];
@@ -377,9 +377,9 @@ class CAAIMessage {
     created = json['created'];
     model = json['model'];
     if (json['choices'] != null) {
-      choices = <CAChoices>[];
+      choices = <Choices>[];
       json['choices'].forEach((v) {
-        choices!.add(CAChoices.fromJson(v));
+        choices!.add(Choices.fromJson(v));
       });
     }
     type = json['type'];
@@ -409,15 +409,15 @@ class CAAIMessage {
   }
 }
 
-class CAChoices {
+class Choices {
   int? index;
-  CADelta? delta;
+  Delta? delta;
 
-  CAChoices({this.index, this.delta});
+  Choices({this.index, this.delta});
 
-  CAChoices.fromJson(Map<String, dynamic> json) {
+  Choices.fromJson(Map<String, dynamic> json) {
     index = json['index'];
-    delta = json['delta'] != null ? CADelta.fromJson(json['delta']) : null;
+    delta = json['delta'] != null ? Delta.fromJson(json['delta']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -430,13 +430,13 @@ class CAChoices {
   }
 }
 
-class CADelta {
+class Delta {
   String? content;
   String? role;
 
-  CADelta({this.content, this.role});
+  Delta({this.content, this.role});
 
-  CADelta.fromJson(Map<String, dynamic> json) {
+  Delta.fromJson(Map<String, dynamic> json) {
     content = json['content'];
     role = json['role'];
   }
@@ -449,22 +449,22 @@ class CADelta {
   }
 }
 
-class CASRVMessageList {
-  List<CASRVMessage>? list;
+class SRVMessageList {
+  List<SRVMessage>? list;
 
-  CASRVMessageList({this.list});
+  SRVMessageList({this.list});
 
-  CASRVMessageList.fromJson(Map<String, dynamic> json) {
+  SRVMessageList.fromJson(Map<String, dynamic> json) {
     if (json['list'] != null) {
-      list = <CASRVMessage>[];
+      list = <SRVMessage>[];
       json['list'].forEach((v) {
-        list!.add(CASRVMessage.fromJson(v));
+        list!.add(SRVMessage.fromJson(v));
       });
     }
   }
 }
 
-class CASRVMessage {
+class SRVMessage {
   int? messageId;
   String? role;
   String? message;
@@ -472,9 +472,9 @@ class CASRVMessage {
   int? statisticsType;
   int? pid;
 
-  CASRVMessage({this.messageId, this.role, this.message, this.messageHash, this.statisticsType});
+  SRVMessage({this.messageId, this.role, this.message, this.messageHash, this.statisticsType});
 
-  CASRVMessage.fromJson(Map<String, dynamic> json) {
+  SRVMessage.fromJson(Map<String, dynamic> json) {
     messageId = json['messageId'];
     role = json['role'];
     message = json['message'];

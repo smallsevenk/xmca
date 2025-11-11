@@ -21,7 +21,7 @@ class MessageMenuAction {
   MessageMenuAction(this.icon, this.text, this.onTap);
 }
 
-class CAMessageItemMenu {
+class MessageItemMenu {
   /// 计算弹窗参数并展示菜单
   static OverlayEntry showMenuWithActions({
     required BuildContext context,
@@ -92,7 +92,7 @@ class CAMessageItemMenu {
             onTap: () {
               overlayEntry.remove();
             },
-            child: Container(color: CAColor.cBlack.withValues(alpha: .4)),
+            child: Container(color: CColor.cBlack.withValues(alpha: .4)),
           ),
           Positioned(
             left: left,
@@ -141,12 +141,12 @@ class CAMessageItemMenu {
           child: Row(
             children: [
               Gap(24.w),
-              CAImage('menu_$icon', width: 40.w),
+              XImage('menu_$icon', width: 40.w),
               Gap(12.w),
               Text(
                 text,
                 style: TextStyle(
-                  color: CAColor.c1A1A1A,
+                  color: CColor.c1A1A1A,
                   fontSize: 32.sp,
                   fontWeight: FontWeight.w500,
                   decoration: TextDecoration.none, // 去掉下划线

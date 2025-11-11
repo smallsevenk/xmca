@@ -125,14 +125,14 @@ class _DocPreviewPageState extends State<DocPreviewUtil> {
           child: Container(
             alignment: Alignment.center,
             margin: EdgeInsets.only(left: 30.w, right: 24.w),
-            child: CAImage('back', color: CAColor.c1A1A1A),
+            child: XImage('back', color: CColor.c1A1A1A),
           ),
         ),
         titleSpacing: 0,
         centerTitle: true,
         title: Text(
           widget.fileName ?? '文档预览',
-          style: TextStyle(color: CAColor.c1A1A1A, fontSize: 36.sp, fontWeight: FontWeight.w500),
+          style: TextStyle(color: CColor.c1A1A1A, fontSize: 36.sp, fontWeight: FontWeight.w500),
           overflow: TextOverflow.ellipsis,
         ),
       ),

@@ -60,7 +60,7 @@ class ChatRoomService {
   }
 
   /// 消息对齐接口
-  Future<List<CASRVMessage>> getHistoryMessage({required ChatRoomResp room}) async {
+  Future<List<SRVMessage>> getHistoryMessage({required ChatRoomResp room}) async {
     const path = '/room/getHistoryMessage';
     const mockUrl =
         'https://mock.apipost.net/mock/41fae66ff8e0000/user/messageList?apipost_id=1fbd36067b905f';
@@ -73,7 +73,7 @@ class ChatRoomService {
       mockUrl: mockUrl,
       showLoading: false,
       params: params,
-      (resp) => CASRVMessageList.fromJson(resp.data),
+      (resp) => SRVMessageList.fromJson(resp.data),
     );
     return resp?.list ?? [];
   }

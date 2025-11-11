@@ -12,11 +12,11 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:xkit/helper/x_logger.dart';
 
-class CADBManager {
+class DBManager {
   // 单例模式
-  static final CADBManager _instance = CADBManager._internal();
-  factory CADBManager() => _instance;
-  CADBManager._internal();
+  static final DBManager _instance = DBManager._internal();
+  factory DBManager() => _instance;
+  DBManager._internal();
 
   static Database? _database;
   final String _dbName = 'xmca.db';

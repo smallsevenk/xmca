@@ -66,7 +66,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
     final isLeft = !_item.isSender;
     final tempText = _item.text.isNotEmpty ? _item.text : '';
 
-    final bgColor = isLeft ? CAColor.cWhite : CAColor.cC4D3FA;
+    final bgColor = isLeft ? CColor.cWhite : CColor.cC4D3FA;
     final contentBorderRadius = BorderRadius.only(
       topLeft: Radius.circular(isLeft ? 2.w : _cornerRadius),
       topRight: Radius.circular(isLeft ? _cornerRadius : 2.w),
@@ -98,7 +98,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
   Widget _buildReSendButton() {
     return GestureDetector(
       onTap: () => widget.onResend?.call(widget.item),
-      child: CAImage('resend', width: 48.w),
+      child: XImage('resend', width: 48.w),
     );
   }
 
@@ -118,7 +118,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
             child: Text(
               text,
               style: TextStyle(
-                color: CAColor.c1A1A1A,
+                color: CColor.c1A1A1A,
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w400,
                 height: 44.sp / 28.sp, // 行高
@@ -136,7 +136,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CAMarkdown(
+          XMarkdown(
             text,
             stopPlay: widget.stopPlay,
             humanCsTap: () {
@@ -146,7 +146,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
           if (isLast) ...[
             // 底部工具栏
             Gap(24.w),
-            Divider(height: 1.w, color: CAColor.cEDEDED),
+            Divider(height: 1.w, color: CColor.cEDEDED),
             Gap(16.w),
             _buildBottomToolBar(),
           ],
@@ -164,7 +164,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
           GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: widget.onCopy,
-            child: CAImage('copy', width: 64.w),
+            child: XImage('copy', width: 64.w),
           ),
           Gap(24.w),
           GestureDetector(
@@ -180,7 +180,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
                         width: 64.w,
                         height: 64.w,
                       )
-                    : CAImage('play', width: 64.w);
+                    : XImage('play', width: 64.w);
               },
             ),
           ),
@@ -210,7 +210,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
           },
           child: Text(
             v ?? '',
-            style: TextStyle(color: CAColor.c1A1A1A, fontSize: 28.sp, fontWeight: FontWeight.w400),
+            style: TextStyle(color: CColor.c1A1A1A, fontSize: 28.sp, fontWeight: FontWeight.w400),
           ),
         ),
       );
@@ -222,7 +222,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
         Gap(24.w),
         Text(
           suggestTipStr,
-          style: TextStyle(color: CAColor.c51565F, fontSize: 28.sp),
+          style: TextStyle(color: CColor.c51565F, fontSize: 28.sp),
         ),
         ...texts,
       ],
@@ -230,7 +230,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
   }
 
   // _pushLoglist() {
-  //   Navigator.push(context, MaterialPageRoute(builder: (context) => const CALogListPage()));
+  //   Navigator.push(context, MaterialPageRoute(builder: (context) => const LogListPage()));
   // }
 
   @override

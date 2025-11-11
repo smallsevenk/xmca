@@ -9,7 +9,7 @@
 
 import 'package:flutter/widgets.dart';
 
-class CAImage extends StatelessWidget {
+class XImage extends StatelessWidget {
   final String assetName;
   final double? width;
   final double? height;
@@ -17,7 +17,7 @@ class CAImage extends StatelessWidget {
   final Color? color;
   final String? path;
 
-  const CAImage(
+  const XImage(
     this.assetName, {
     super.key,
     this.width,

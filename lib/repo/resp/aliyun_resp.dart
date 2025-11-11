@@ -7,11 +7,11 @@
  * 功能描述:  
  */
 
-class CAALiyunResp {
+class ALiyunResp {
   int? expire;
   String? token;
 
-  CAALiyunResp.fromJson(Map<String, dynamic> json) {
+  ALiyunResp.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     expire = (json['expire'] ?? 0) * 1000;
   }

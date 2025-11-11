@@ -12,19 +12,19 @@ import 'package:xkit/helper/x_logger.dart';
 import 'package:xmca/helper/db_manager.dart';
 import 'package:xmca/repo/resp/room_resp.dart';
 
-class CARoomPart {
+class RoomPart {
   final String key;
   final dynamic value;
 
-  CARoomPart(this.key, this.value);
+  RoomPart(this.key, this.value);
 }
 
-class CARoomDataProvider {
+class RoomDataProvider {
   static Future<ChatRoomResp> getRoom(
     ChatRoomResp room, {
     int? userId, // 用户 ID（可选）
   }) async {
-    Database conn = await CADBManager().database;
+    Database conn = await DBManager().database;
     var userCondition = userId == null ? ' AND user_id IS NULL' : ' AND user_id = $userId';
 
     // 根据房间idc查询房间数据
@@ -52,7 +52,7 @@ class CARoomDataProvider {
 
   // 更新房间的最后更新时间
   static Future<void> updateLastUpdateTime(int roomId, {int? userId}) async {
-    Database conn = await CADBManager().database;
+    Database conn = await DBManager().database;
     var userCondition = userId == null ? ' AND user_id IS NULL' : ' AND user_id = $userId';
     var lastUpdateTime = DateTime.now().millisecondsSinceEpoch;
     xdp('lastUpdateTime:$lastUpdateTime');

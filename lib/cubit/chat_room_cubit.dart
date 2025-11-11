@@ -59,7 +59,7 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
         var roomId = room?.roomId;
         if (room != null && roomId != null) {
           // 获取或创建本地房间数据
-          room = await CARoomDataProvider.getRoom(room, userId: UserManager.userId);
+          room = await RoomDataProvider.getRoom(room, userId: UserManager.userId);
           if (!isClosed) emit(LoadRoomState(room: room));
           // 修复消息状态
           await MessageDataProvider.fixMessageStatus(roomId);
@@ -216,7 +216,7 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
               sendMessage.status = 1;
               reciveMessage.status = 1;
             } else {
-              CAAIMessage aiAnswerMessageResp = CAAIMessage.fromJson(resp.data);
+              AIMessage aiAnswerMessageResp = AIMessage.fromJson(resp.data);
 
               // 更新发送消息服务器ID
               if (aiAnswerMessageResp.userMessageId != null) {

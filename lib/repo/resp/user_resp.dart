@@ -9,16 +9,16 @@
 
 import 'package:xkit/extension/x_map_ext.dart';
 
-class CAUserResp {
+class UserResp {
   int? userId;
   String? token;
   String? refreshToken;
   String? avatar;
   late String nickname;
   bool needRefresh = false;
-  CAUserResp({this.userId, this.token, this.refreshToken, this.avatar, this.nickname = ''});
+  UserResp({this.userId, this.token, this.refreshToken, this.avatar, this.nickname = ''});
 
-  CAUserResp.fromJson(Map<String, dynamic> json) {
+  UserResp.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
     token = json['token'];
     refreshToken = json['refreshToken'];
@@ -38,7 +38,7 @@ class CAUserResp {
     return data;
   }
 
-  CAUserResp fromJson(Map<String, dynamic> json) {
-    return CAUserResp.fromJson(json);
+  UserResp fromJson(Map<String, dynamic> json) {
+    return UserResp.fromJson(json);
   }
 }

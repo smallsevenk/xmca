@@ -69,7 +69,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
     _listenController();
     context.read<ChatRoomCubit>().initRoomInfo(null);
     // 获取字幕聊天数据
-    // CAAvUtil.syncChatMessagesOnCallFinished(() {
+    // AvUtil.syncChatMessagesOnCallFinished(() {
     //   context.read<ChatRoomCubit>().onSyncCallEndMessageCallback(_room.roomId, _room);
     // });
 
@@ -84,7 +84,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: CAColor.cF4F5FA,
+      backgroundColor: CColor.cF4F5FA,
       appBar: _buildAppBar(),
       body: BlocConsumer<ChatRoomCubit, ChatRoomState>(
         listener: _onChatRoomStateChanged,
@@ -93,7 +93,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
             return Center(
               child: Text(
                 '客服助手已失联,\n请点击屏幕唤醒我哦',
-                style: TextStyle(fontSize: 32.w, color: CAColor.c4F7EFF),
+                style: TextStyle(fontSize: 32.w, color: CColor.c4F7EFF),
                 textAlign: TextAlign.center,
               ),
             ).onTap(() {
@@ -132,7 +132,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
   }
 
   _pushLoglist() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const CALogListPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const LogListPage()));
   }
 
   /// 构建AppBar
@@ -157,7 +157,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
         showToast('自动播放已${autoPlaySwitchIsOpen ? '开启' : '关闭'}');
       },
       onClearTap: () {
-        CAAlert.show(
+        Alert.show(
           context: () => context,
           content: '确认清空对话记录吗？',
           onConfirm: () {
@@ -182,16 +182,16 @@ class _ChatRoomPageState extends State<ChatRoomPage>
       cancelSend: _cancelSend,
       onHumanCs: () async {
         // 测试流式语音播放拦截测试代码
-        // await CANuiUtil.startStreamInputTts(
+        // await NuiUtil.startStreamInputTts(
         //   voice: _room.aiRole?.voice,
         //   autoPlay: true,
         //   context: () => context,
         // );
-        // CANuiUtil.autoPlay('👉人工客服](', isPlaying: _isPlaying, mounted: mounted);
-        // CANuiUtil.autoPlay('http://xxx.xmca', isPlaying: _isPlaying, mounted: mounted);
-        // CANuiUtil.autoPlay(')', isPlaying: _isPlaying, mounted: mounted);
+        // NuiUtil.autoPlay('👉人工客服](', isPlaying: _isPlaying, mounted: mounted);
+        // NuiUtil.autoPlay('http://xxx.xmca', isPlaying: _isPlaying, mounted: mounted);
+        // NuiUtil.autoPlay(')', isPlaying: _isPlaying, mounted: mounted);
         // Future.delayed(Duration(microseconds: 1000)).then((e) {
-        //   CANuiUtil.stopStreamTts(mounted);
+        //   NuiUtil.stopStreamTts(mounted);
         // });
         csHumanCustomerService?.call([]);
       },
@@ -210,7 +210,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
         }
       },
       onCallAgentType: (isVoice) {
-        // CAAvUtil.startAvCall(_room, isVoice);
+        // AvUtil.startAvCall(_room, isVoice);
       },
     );
   }
@@ -233,7 +233,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
             if (_showScrollToBottom)
               Padding(
                 padding: EdgeInsets.all(24.w),
-                child: CAImage('scroll', width: 112.w),
+                child: XImage('scroll', width: 112.w),
               ).onTap(() {
                 myButtonKey.currentState?.handleTap();
               }),
@@ -256,7 +256,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
       stopPlay: () => _stopPlay(),
       onLongPressStart: (details) => _handleLongPressStart(details, index),
       onResend: (DBMessage message) async {
-        CAAlert.show(
+        Alert.show(
           context: () => context,
           title: '重发该条消息？',
           onConfirm: () async {
@@ -306,7 +306,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
   void _handleLongPressStart(LongPressStartDetails details, int index) {
     final msg = _messages[index];
 
-    CAMessageItemMenu.showMenuWithActions(
+    MessageItemMenu.showMenuWithActions(
       inputGlobalKey: _igKey,
       context: context,
       globalPosition: details.globalPosition,
@@ -340,7 +340,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
     }
     if (mounted) {
       titleFocusNode.requestFocus();
-      CAAlert.show(
+      Alert.show(
         context: () => context,
         content: '确认删除该条对话记录吗？',
         onConfirm: () async {

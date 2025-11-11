@@ -15,8 +15,8 @@ class ChatRoomResp {
   String? name;
   String? prologue;
   String? icon;
-  CARoleResp? userRole;
-  CARoleResp? aiRole;
+  RoleResp? userRole;
+  RoleResp? aiRole;
   int lastUpdateTime = 0;
 
   ChatRoomResp({
@@ -37,8 +37,8 @@ class ChatRoomResp {
     name = json.getString('name');
     prologue = json.getString('prologue');
     icon = json.getString('icon');
-    userRole = CARoleResp.fromJson(json['userRole']);
-    aiRole = CARoleResp.fromJson(json['aiRole']);
+    userRole = RoleResp.fromJson(json['userRole']);
+    aiRole = RoleResp.fromJson(json['aiRole']);
     lastUpdateTime = json.getInt('lastUpdateTime');
   }
 

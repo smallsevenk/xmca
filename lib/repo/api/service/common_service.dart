@@ -10,20 +10,20 @@
 import 'package:xmca/repo/api/service/api_service.dart';
 import 'package:xmca/repo/resp/aliyun_resp.dart';
 
-class CACommonService {
+class CommonService {
   // 私有静态实例
-  static final CACommonService _instance = CACommonService._internal();
+  static final CommonService _instance = CommonService._internal();
 
   // 工厂构造函数
-  factory CACommonService() {
+  factory CommonService() {
     return _instance;
   }
 
   // getter方法获取实例（可选，如果喜欢 instance 访问方式）
-  static CACommonService get instance => _instance;
+  static CommonService get instance => _instance;
 
   // 私有构造函数
-  CACommonService._internal() {
+  CommonService._internal() {
     // 初始化代码（如果有的话）
   }
 
@@ -31,7 +31,7 @@ class CACommonService {
   final Service _api = Service.instance;
 
   /// 获取阿里token
-  Future<CAALiyunResp?> getAliToken() async {
+  Future<ALiyunResp?> getAliToken() async {
     const path = '/public/getAliToken';
     const mockUrl = '';
     try {
@@ -40,7 +40,7 @@ class CACommonService {
         mock: false,
         mockUrl: mockUrl,
         showLoading: false,
-        (resp) => CAALiyunResp.fromJson(resp.data),
+        (resp) => ALiyunResp.fromJson(resp.data),
       );
     } catch (e) {
       throw Exception('请求失败: $e');

@@ -116,14 +116,14 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           child: Container(
             alignment: Alignment.center,
             margin: EdgeInsets.only(left: 30.w, right: 24.w),
-            child: CAImage('cs_close', color: CAColor.c1A1A1A),
+            child: XImage('cs_close', color: CColor.c1A1A1A),
           ),
         ),
         titleSpacing: 0,
         centerTitle: true,
         title: Text(
           widget.videoName ?? '视频预览',
-          style: TextStyle(color: CAColor.c1A1A1A, fontSize: 36.sp, fontWeight: FontWeight.w500),
+          style: TextStyle(color: CColor.c1A1A1A, fontSize: 36.sp, fontWeight: FontWeight.w500),
           overflow: TextOverflow.ellipsis,
         ),
       ),

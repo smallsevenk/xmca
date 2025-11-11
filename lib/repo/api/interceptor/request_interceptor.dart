@@ -13,7 +13,7 @@ import 'package:xmca/helper/user_manager.dart';
 import 'package:xmca/xmca.dart';
 import 'package:flutter/services.dart';
 
-class CARequestInterceptor extends InterceptorsWrapper {
+class RequestInterceptor extends InterceptorsWrapper {
   String? pemCache;
 
   @override

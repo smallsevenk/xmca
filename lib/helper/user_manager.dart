@@ -23,7 +23,7 @@ class UserManager {
   Map<String, dynamic>? threeLoginData;
 
   // 保存用户信息
-  Future<void> saveUserInfo(CAUserResp user) async {
+  Future<void> saveUserInfo(UserResp user) async {
     if (user.userId == null || user.token == null) {
       debugPrint('用户信息不正确');
       return;
@@ -32,8 +32,8 @@ class UserManager {
     await XSpUtil.prefs.setString(userInfokey, jsonStr);
   }
 
-  void saveNewToken(CAUserResp userResp) {
-    CAUserResp user = userInfo;
+  void saveNewToken(UserResp userResp) {
+    UserResp user = userInfo;
     user.token = userResp.token;
     user.needRefresh = false;
     user.refreshToken = userResp.refreshToken;
@@ -46,9 +46,9 @@ class UserManager {
   }
 
   // 获取用户信息
-  CAUserResp get userInfo {
+  UserResp get userInfo {
     final userInfoJson = XSpUtil.prefs.getString(userInfokey) ?? '{}';
-    return CAUserResp.fromJson(jsonDecode(userInfoJson));
+    return UserResp.fromJson(jsonDecode(userInfoJson));
   }
 
   // 判断登录状态

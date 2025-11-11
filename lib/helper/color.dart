@@ -9,7 +9,7 @@
 
 import 'package:flutter/material.dart';
 
-class CAColor {
+class CColor {
   static const Color cWhite = Colors.white;
   static const Color cBlack = Colors.black;
   static const Color c191919 = Color(0xFF191919);

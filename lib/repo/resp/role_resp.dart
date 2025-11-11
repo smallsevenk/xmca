@@ -9,21 +9,21 @@
 
 import 'package:xmca/repo/resp/voice_resp.dart';
 
-class CARoleListResp {
-  List<CARoleResp>? list;
-  CARoleListResp({list});
+class RoleListResp {
+  List<RoleResp>? list;
+  RoleListResp({list});
 
-  CARoleListResp.fromJson(Map<String, dynamic> json) {
+  RoleListResp.fromJson(Map<String, dynamic> json) {
     if (json['list'] != null) {
-      list = <CARoleResp>[];
+      list = <RoleResp>[];
       json['list'].forEach((v) {
-        list!.add(CARoleResp.fromJson(v));
+        list!.add(RoleResp.fromJson(v));
       });
     }
   }
 }
 
-class CARoleResp {
+class RoleResp {
   int? id;
   String? role;
   String? name;
@@ -45,7 +45,7 @@ class CARoleResp {
   // int? likesNum;
   // int? roomId;
 
-  CARoleResp({
+  RoleResp({
     id,
     role,
     name,
@@ -68,7 +68,7 @@ class CARoleResp {
     roomId,
   });
 
-  CARoleResp.fromJson(Map<String, dynamic> json) {
+  RoleResp.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     role = json['role'];
     name = json['name'];

@@ -10,23 +10,23 @@ import 'package:xmca/pages/chat/util/doc_preview_util.dart';
 import 'package:xmca/pages/chat/util/image_preview.dart';
 import 'package:xmca/pages/chat/widget/web_view.dart';
 
-class CAMarkdown extends StatefulWidget {
+class XMarkdown extends StatefulWidget {
   final String data;
   final VoidCallback? stopPlay;
   final Function()? humanCsTap;
-  const CAMarkdown(this.data, {super.key, this.stopPlay, this.humanCsTap});
+  const XMarkdown(this.data, {super.key, this.stopPlay, this.humanCsTap});
 
   @override
-  State<CAMarkdown> createState() => _CsMarkdownState();
+  State<XMarkdown> createState() => _CsMarkdownState();
 }
 
-class _CsMarkdownState extends State<CAMarkdown> {
+class _CsMarkdownState extends State<XMarkdown> {
   final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     var text = widget.data;
     TextStyle textStyle = TextStyle(
-      color: CAColor.c1A1A1A,
+      color: CColor.c1A1A1A,
       fontSize: 32.sp,
       fontWeight: FontWeight.w400,
       height: 44.sp / 28.sp,
@@ -55,7 +55,7 @@ class _CsMarkdownState extends State<CAMarkdown> {
     text = text.replaceUnderscoreInLinks;
     text = text.xmImgsTag;
 
-    var border = BorderSide(color: CAColor.cEDEDED.withValues(alpha: .93), width: 1.w);
+    var border = BorderSide(color: CColor.cEDEDED.withValues(alpha: .93), width: 1.w);
 
     return Markdown(
       shrinkWrap: true,
@@ -64,7 +64,7 @@ class _CsMarkdownState extends State<CAMarkdown> {
       styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
         p: textStyle,
         listBullet: textStyle,
-        a: textStyle.copyWith(color: CAColor.c4F7EFF),
+        a: textStyle.copyWith(color: CColor.c4F7EFF),
         tableHead: TextStyle(
           fontWeight: FontWeight.w600,
           color: Color(0xff1A1A1A),
@@ -73,7 +73,7 @@ class _CsMarkdownState extends State<CAMarkdown> {
         ),
 
         tableBody: TextStyle(color: Color(0xff1A1A1A), fontSize: 30.sp, height: 48 / 28),
-        tableHeadDecoration: BoxDecoration(color: CAColor.cF6F6F6),
+        tableHeadDecoration: BoxDecoration(color: CColor.cF6F6F6),
         tableHeadAlign: TextAlign.left,
         tableCellsPadding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.w),
         tableCellConstraints: BoxConstraints(maxWidth: 200),
@@ -104,18 +104,18 @@ class _CsMarkdownState extends State<CAMarkdown> {
           showToast('未知链接：$href');
         }
       },
-      sizedImageBuilder: (config) => CAMDImageBuilder(widget: widget, config: config),
-      builders: {'a': CAATagBuilder(stopPlay: widget.stopPlay)},
+      sizedImageBuilder: (config) => MDImageBuilder(widget: widget, config: config),
+      builders: {'a': ATagBuilder(stopPlay: widget.stopPlay)},
       padding: EdgeInsets.zero,
       tableBuilder: (scrollBuilder, tb) {
-        return CAMDTableContanier(table: tb, markdownData: text, child: scrollBuilder);
+        return MDTableContanier(table: tb, markdownData: text, child: scrollBuilder);
       },
     );
   }
 
   // 打开图片预览（淡入淡出模态动画）
   _showImagePreview(String url, {String? title}) {
-    CAImagePreview.show(
+    ImagePreview.show(
       context: context,
       imageUrls: [url],
       initialIndex: 0,

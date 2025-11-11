@@ -34,7 +34,7 @@ class Service extends XApiService {
     // xdio.options.baseUrl = 'http://172.16.19.220:9991/v2';
     xdio.options.baseUrl = 'https://aiservicetest.sharexm.com/v2';
     // 添加拦截器（如果需要）
-    xdio.interceptors.add(CARequestInterceptor());
+    xdio.interceptors.add(RequestInterceptor());
     setProxy();
   }
 }

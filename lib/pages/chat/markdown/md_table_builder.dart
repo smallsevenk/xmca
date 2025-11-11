@@ -9,11 +9,11 @@ import 'package:xkit/x_kit.dart';
 import 'package:xmca/helper/color.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';
 
-class CAMDTableContanier extends StatelessWidget {
+class MDTableContanier extends StatelessWidget {
   final String markdownData = '';
   final Widget child;
   final Table table;
-  const CAMDTableContanier({
+  const MDTableContanier({
     super.key,
     required String markdownData,
     required this.table,
@@ -24,7 +24,7 @@ class CAMDTableContanier extends StatelessWidget {
   Widget build(BuildContext context) {
     var container = Container(
       decoration: BoxDecoration(
-        border: Border.all(color: CAColor.cEDEDED.withValues(alpha: 0.93), width: 1.w),
+        border: Border.all(color: CColor.cEDEDED.withValues(alpha: 0.93), width: 1.w),
         borderRadius: BorderRadius.circular(16.w),
       ),
       child: Column(
@@ -33,7 +33,7 @@ class CAMDTableContanier extends StatelessWidget {
             width: double.infinity,
             height: 72.w,
             decoration: BoxDecoration(
-              color: CAColor.cEDEDED,
+              color: CColor.cEDEDED,
               borderRadius: BorderRadius.vertical(top: Radius.circular(16.w)), // 只设置顶部圆角
             ),
             padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 4.w),
@@ -41,16 +41,16 @@ class CAMDTableContanier extends StatelessWidget {
               children: [
                 Text(
                   '表格',
-                  style: TextStyle(fontSize: 28.sp, color: CAColor.c51565F),
+                  style: TextStyle(fontSize: 28.sp, color: CColor.c51565F),
                 ),
                 Spacer(),
-                CAImage('cs_table_copy', width: 48.w).onTap(() {
+                XImage('cs_table_copy', width: 48.w).onTap(() {
                   // 复制表格内容到剪贴板
                   Clipboard.setData(ClipboardData(text: markdownData));
                   showToast('复制完成');
                 }),
                 Gap(24.w),
-                CAImage('cs_full_screen', width: 48.w).onTap(() {
+                XImage('cs_full_screen', width: 48.w).onTap(() {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -138,13 +138,13 @@ class MDFullTable extends StatelessWidget {
           },
         ),
         actions: [
-          CAImage('cs_table_copy', width: 48.w).onTap(() {
+          XImage('cs_table_copy', width: 48.w).onTap(() {
             // 复制表格内容到剪贴板
             Clipboard.setData(ClipboardData(text: markdownData));
             showToast('复制完成');
           }),
           Gap(50.w),
-          CAImage('cs_download', width: 48.w, color: Colors.red).onTap(() {
+          XImage('cs_download', width: 48.w, color: Colors.red).onTap(() {
             _saveTableAsImage(context);
           }),
         ],

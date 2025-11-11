@@ -12,10 +12,10 @@ class InputToolbarItem {
   InputToolbarItem({required this.title, required this.icon});
 }
 
-class CAInputToolbar extends StatelessWidget {
+class InputToolbar extends StatelessWidget {
   final List<InputToolbarItem> items;
   final Function()? humanCsTap;
-  const CAInputToolbar({super.key, required this.items, this.humanCsTap});
+  const InputToolbar({super.key, required this.items, this.humanCsTap});
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +33,15 @@ class CAInputToolbar extends StatelessWidget {
             width: 198.w,
             margin: EdgeInsets.only(left: 24.w),
             decoration: BoxDecoration(
-              color: CAColor.cWhite,
+              color: CColor.cWhite,
               borderRadius: BorderRadius.circular(32.w),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CAImage('tool_${item.icon}', width: 32.w),
+                XImage('tool_${item.icon}', width: 32.w),
                 Gap(6.w),
-                Text(item.title, style: TextStyle(color: CAColor.c51565F)),
+                Text(item.title, style: TextStyle(color: CColor.c51565F)),
               ],
             ),
           ).onDbTap(humanCsTap);

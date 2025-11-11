@@ -87,7 +87,7 @@ class ChatInput extends StatelessWidget {
           decoration: BoxDecoration(),
           child: Text(
             cancel ? '松手取消' : '松手发送 上滑取消',
-            style: TextStyle(color: cancel ? CAColor.cFF6335 : CAColor.c51565F, fontSize: 28.sp),
+            style: TextStyle(color: cancel ? CColor.cFF6335 : CColor.c51565F, fontSize: 28.sp),
           ),
         );
       },
@@ -114,9 +114,9 @@ class ChatInput extends StatelessWidget {
         decoration: BoxDecoration(
           color: chatInputMode.isSpeaking
               ? cancelSend.value
-                    ? CAColor.cFF6335
-                    : CAColor.c4F7EFF
-              : CAColor.cWhite,
+                    ? CColor.cFF6335
+                    : CColor.c4F7EFF
+              : CColor.cWhite,
           borderRadius: BorderRadius.circular(24.w),
           boxShadow: [
             BoxShadow(
@@ -185,7 +185,7 @@ class ChatInput extends StatelessWidget {
               chatInputMode.value = ChatInputMode.textSend;
             }
           },
-          child: CAImage(isVoiceMode ? 'keyborad' : 'input_mic', width: 56.w),
+          child: XImage(isVoiceMode ? 'keyborad' : 'input_mic', width: 56.w),
         ),
       );
     }
@@ -203,7 +203,7 @@ class ChatInput extends StatelessWidget {
               ? ValueListenableBuilder(
                   valueListenable: amplitudes,
                   builder: (context, amplitudes, child) {
-                    return CAVoiceWave(
+                    return VoiceWave(
                       amplitudes: amplitudes,
                       borderRadius: 16.w,
                       backgroundColor: Colors.transparent,
@@ -214,7 +214,7 @@ class ChatInput extends StatelessWidget {
                   child: Text(
                     '长按说话',
                     style: TextStyle(
-                      color: CAColor.c1A1A1A,
+                      color: CColor.c1A1A1A,
                       fontSize: 32.sp,
                       fontWeight: FontWeight.w600,
                     ),
@@ -242,7 +242,7 @@ class ChatInput extends StatelessWidget {
               chatInputMode.value = ChatInputMode.textSend;
             }
           },
-          style: TextStyle(color: CAColor.c1A1A1A, fontSize: 32.sp),
+          style: TextStyle(color: CColor.c1A1A1A, fontSize: 32.sp),
           maxLines: null,
           maxLength: 300,
           buildCounter:
@@ -251,7 +251,7 @@ class ChatInput extends StatelessWidget {
               },
           decoration: InputDecoration(
             hintText: '请输入...',
-            hintStyle: TextStyle(color: CAColor.c969DA7, fontSize: 32.sp),
+            hintStyle: TextStyle(color: CColor.c969DA7, fontSize: 32.sp),
             border: InputBorder.none,
           ),
         ),
@@ -273,7 +273,7 @@ class ChatInput extends StatelessWidget {
       Padding(
         padding: EdgeInsets.only(right: 20.w, left: 30.w, top: 20.w, bottom: 20.w),
         child: XDebounceGestureDetector(
-          child: isSend ? CAImage(imageName, width: 56.w) : CAImage(imageName, width: 56.w),
+          child: isSend ? XImage(imageName, width: 56.w) : XImage(imageName, width: 56.w),
           onTap: () {
             if (isSend) {
               onSendMessage.call(textController.text.trim());
@@ -305,11 +305,11 @@ class ChatInput extends StatelessWidget {
         ),
         children: [
           _buildFunctionButton('语音通话', 'call_voice', () {
-            // CAAvUtil.getMediaPermissions(context: () => context);
+            // AvUtil.getMediaPermissions(context: () => context);
             onCallAgentType?.call(true);
           }),
           _buildFunctionButton('视频通话', 'call_video', () {
-            // CAAvUtil.getMediaPermissions(context: () => context);
+            // AvUtil.getMediaPermissions(context: () => context);
             onCallAgentType?.call(false);
           }),
         ],
@@ -325,11 +325,11 @@ class ChatInput extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       child: Column(
         children: [
-          CAImage('func_$funcIcon', width: 120.w),
+          XImage('func_$funcIcon', width: 120.w),
           Spacer(),
           Text(
             title,
-            style: TextStyle(color: CAColor.c51565F, fontSize: 26.sp, height: 1),
+            style: TextStyle(color: CColor.c51565F, fontSize: 26.sp, height: 1),
           ),
         ],
       ),
@@ -338,9 +338,9 @@ class ChatInput extends StatelessWidget {
 
   void _handleFunctionTap() {
     // if (!chatInputMode.isFuncShowing) {
-    //   chatInputMode.value = CAChatInputMode.functionShow;
+    //   chatInputMode.value = ChatInputMode.functionShow;
     // } else {
-    //   chatInputMode.value = CAChatInputMode.functionHide;
+    //   chatInputMode.value = ChatInputMode.functionHide;
     // }
     // xmKeyboradHide();
   }

@@ -14,11 +14,11 @@ import 'package:xmca/pages/chat/data/chat_room_data.dart';
 import 'package:xmca/repo/resp/message_resp.dart';
 import 'package:xmca/repo/resp/room_resp.dart';
 
-class CAMessagePart {
+class MessagePart {
   final String key;
   final dynamic value;
 
-  CAMessagePart(this.key, this.value);
+  MessagePart(this.key, this.value);
 }
 
 class MessageDataProvider {
@@ -28,7 +28,7 @@ class MessageDataProvider {
     // 房间 ID（可选）
     int? page, // 页码（可选）
   }) async {
-    Database conn = await CADBManager().database;
+    Database conn = await DBManager().database;
     var userCondition = userId == null ? ' AND user_id IS NULL' : ' AND user_id = $userId';
 
     // 如果未传入页码，查询全部数据
@@ -60,7 +60,7 @@ class MessageDataProvider {
 
   /// 获取最后一条用户发送的消息（不含机器人/系统消息）
   static Future<DBMessage?> getLastUserMessage(int roomId, {int? userId}) async {
-    Database conn = await CADBManager().database;
+    Database conn = await DBManager().database;
     // 假设 user_id 不为 null 且不为 0 的为用户消息，可根据实际业务调整
     final userCondition = userId != null
         ? 'user_id = $userId'
@@ -80,7 +80,7 @@ class MessageDataProvider {
 
   /// 根据 refId 查消息
   static Future<DBMessage?> getMessageByRefMsgId(int refId) async {
-    Database conn = await CADBManager().database;
+    Database conn = await DBManager().database;
     List<Map<String, Object?>> messages = await conn.query('chat_message', where: 'id =  $refId');
     if (messages.isNotEmpty) {
       return DBMessage.fromMap(messages.first);
@@ -90,13 +90,13 @@ class MessageDataProvider {
 
   // 发送消息
   static Future<int> sendMessage(DBMessage message) async {
-    Database conn = await CADBManager().database;
+    Database conn = await DBManager().database;
     return conn.insert('chat_message', message.toMap());
   }
 
   // 聊天历史记录中，所有发送状态为 pending 状态的消息，全部设置为失败
   static Future<void> fixMessageStatus(int roomId) async {
-    Database conn = await CADBManager().database;
+    Database conn = await DBManager().database;
     return conn.transaction((txn) async {
       await txn.update(
         'chat_message',
@@ -111,7 +111,7 @@ class MessageDataProvider {
   static Future<void> updateMessages(List<DBMessage> messages) async {
     if (messages.isEmpty) return; // 如果列表为空，直接返回
 
-    Database conn = await CADBManager().database;
+    Database conn = await DBManager().database;
     return conn.transaction((txn) async {
       for (var message in messages) {
         await txn.update('chat_message', message.toMap(), where: 'id = ?', whereArgs: [message.id]);
@@ -122,7 +122,7 @@ class MessageDataProvider {
   // 删除消息
   static Future<bool> deleteMessages(int roomId, List<int> ids) async {
     try {
-      Database conn = await CADBManager().database;
+      Database conn = await DBManager().database;
       String where = 'room_id = ? AND id in (${ids.join(',')})';
       await conn.delete('chat_message', where: where, whereArgs: [roomId]);
       return true;
@@ -134,7 +134,7 @@ class MessageDataProvider {
   // 清除房间消息，仅保留第一条（id最小）
   static Future<bool> clearMessages(int roomId) async {
     try {
-      Database conn = await CADBManager().database;
+      Database conn = await DBManager().database;
       // // 查询该房间id最小的消息
       // List<Map<String, Object?>> firstMsgList = await conn.query(
       //   'chat_message',
@@ -165,7 +165,7 @@ class MessageDataProvider {
 
   // 清除发送中/发送失败且消息为空的消息
   static Future<void> deleteInvalidMessage(int roomId) async {
-    Database conn = await CADBManager().database;
+    Database conn = await DBManager().database;
     return conn.transaction((txn) async {
       await txn.delete(
         'chat_message',
@@ -178,11 +178,11 @@ class MessageDataProvider {
 
   /// 同步服务端消息和本地消息
   static Future<bool> syncServerAndLocalMessages(
-    List<CASRVMessage> srvMsgs,
+    List<SRVMessage> srvMsgs,
     ChatRoomResp room,
   ) async {
     try {
-      Database conn = await CADBManager().database;
+      Database conn = await DBManager().database;
 
       // 1. 获取本地最后一次同步时间之后的所有消息
       List<Map<String, Object?>> localMsgMaps = await conn.query(
@@ -208,7 +208,7 @@ class MessageDataProvider {
       //     }).toList();
 
       // 4. 找出服务端有但本地没有的消息（需要插入）
-      List<CASRVMessage> toInsert = srvMsgs
+      List<SRVMessage> toInsert = srvMsgs
           .where((msg) => !localMap.containsKey(msg.messageId.toString()))
           .toList();
 
@@ -238,7 +238,7 @@ class MessageDataProvider {
       //   }
       // }
 
-      CARoomDataProvider.updateLastUpdateTime(room.roomId);
+      RoomDataProvider.updateLastUpdateTime(room.roomId);
       return true;
     } catch (e) {
       xdp('同步消息失败: $e');

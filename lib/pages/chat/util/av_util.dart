@@ -9,7 +9,7 @@
 // import 'package:xmca/repo/api/service/chat_room_service.dart';
 // import 'package:xmca/repo/resp/room_resp.dart';
 
-// class CAAvUtil {
+// class AvUtil {
 //   /// 在通话结束后同步聊天消息
 //   static syncChatMessagesOnCallFinished(Function() syncMessages) {
 //     AliyunAvPlugin.asynSubtitleUpdate(() {

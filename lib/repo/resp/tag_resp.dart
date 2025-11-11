@@ -7,15 +7,15 @@
  * 功能描述:  
  */
 
-class CATagResp {
+class TagResp {
   String? name;
   int? tagId;
   String? url;
   bool selected = false;
 
-  CATagResp({this.name, this.tagId, this.url, this.selected = false});
+  TagResp({this.name, this.tagId, this.url, this.selected = false});
 
-  CATagResp.fromJson(Map<String, dynamic> json) {
+  TagResp.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     tagId = json['tagId'];
     url = json['url'];

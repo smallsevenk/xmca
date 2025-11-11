@@ -7,7 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:xkit/x_kit.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';
 
-class CAImagePreview {
+class ImagePreview {
   /// 全屏图片预览
   static void show({
     required BuildContext context,
@@ -77,9 +77,7 @@ class _ImagePreviewPageState extends State<_ImagePreviewPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Center(
-          child: CAImage('cs_close', width: 48.w),
-        ).onTap(() => Navigator.pop(context)),
+        leading: Center(child: XImage('cs_close', width: 48.w)).onTap(() => Navigator.pop(context)),
         title: Text(
           '${_currentIndex + 1}/${widget.imageUrls.length}',
           style: TextStyle(color: Colors.white, fontSize: 36.sp, fontWeight: FontWeight.w600),
@@ -115,7 +113,7 @@ class _ImagePreviewPageState extends State<_ImagePreviewPage> {
         maxScale: PhotoViewComputedScale.covered * 3,
         // heroAttributes:
         //     widget.heroTag != null ? PhotoViewHeroAttributes(tag: widget.heroTag!) : null,
-        errorBuilder: (_, _, _) => CAImage('cs_img_error'),
+        errorBuilder: (_, _, _) => XImage('cs_img_error'),
       );
     } else {
       // 非 http/https 链接，显示占位或错误提示
@@ -154,7 +152,7 @@ class _ImagePreviewPageState extends State<_ImagePreviewPage> {
   }
 
   Widget _buildFooterIcon({String? icon, Function? onTap}) {
-    return CAImage(icon ?? '', width: 88.w).onTap(() => onTap?.call());
+    return XImage(icon ?? '', width: 88.w).onTap(() => onTap?.call());
   }
 
   Future<void> _saveImage(String url) async {

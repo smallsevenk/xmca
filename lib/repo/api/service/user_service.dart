@@ -49,7 +49,7 @@ class UserService {
     );
     // 如果请求成功，保存用户信息
     if (resp != null && resp.success) {
-      var user = CAUserResp.fromJson(resp.data);
+      var user = UserResp.fromJson(resp.data);
       await UserManager().saveUserInfo(user);
       return true;
     } else {

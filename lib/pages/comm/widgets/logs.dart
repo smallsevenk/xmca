@@ -12,14 +12,14 @@
 import 'package:flutter/material.dart';
 import 'package:xkit/x_kit.dart';
 
-class CALogListPage extends StatefulWidget {
-  const CALogListPage({super.key});
+class LogListPage extends StatefulWidget {
+  const LogListPage({super.key});
 
   @override
-  State<CALogListPage> createState() => _CSLogListPageState();
+  State<LogListPage> createState() => _CSLogListPageState();
 }
 
-class _CSLogListPageState extends State<CALogListPage> {
+class _CSLogListPageState extends State<LogListPage> {
   bool _reverse = false;
   String _startTimeStr = '';
   String _endTimeStr = '';
@@ -180,7 +180,7 @@ class _CSLogListPageState extends State<CALogListPage> {
     // 跳转到环境切换页面
     // Navigator.push(
     //   context,
-    //   MaterialPageRoute(builder: (context) => const CAEnvironmentSwitchPage()),
+    //   MaterialPageRoute(builder: (context) => const EnvironmentSwitchPage()),
     // );
   }
 
