@@ -7,6 +7,7 @@
  * 功能描述:  
  */
 
+import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:xkit/api/x_base_resp.dart';
@@ -25,6 +26,30 @@ import 'package:xmca/repo/resp/voice_resp.dart';
 @immutable
 abstract class ChatRoomState {
   get error => null;
+}
+
+// 内部用于逐字显示的任务结构
+class _TypingTask {
+  String target = '';
+  int displayed = 0;
+  Timer? delayTimer;
+  Timer? charTimer;
+  GlobalKey? messageKey;
+  Completer<void>? completer;
+
+  _TypingTask({this.messageKey});
+
+  void cancel() {
+    try {
+      delayTimer?.cancel();
+    } catch (_) {}
+    try {
+      charTimer?.cancel();
+    } catch (_) {}
+    try {
+      if (completer != null && !completer!.isCompleted) completer!.complete();
+    } catch (_) {}
+  }
 }
 
 class ChatRoomInitial extends ChatRoomState {}
@@ -48,6 +73,9 @@ class ChatHistoryState extends ChatRoomState {
 // Cubit实现
 class ChatRoomCubit extends Cubit<ChatRoomState> {
   ChatRoomCubit() : super(ChatRoomInitial());
+
+  // typing tasks keyed by message id (or hash fallback)
+  final Map<int, _TypingTask> _typingTasks = {};
 
   /// 加载房间信息
   void initRoomInfo(int? id) async {
@@ -240,9 +268,17 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
                 var lastAiAnswer = lastMessage.call();
                 // 打字机效果刷新最后一条Ai回复消息内容
                 if (!lastAiAnswer.isSender && lastAiAnswer.status == 0) {
-                  lastAiAnswer.messageItemKey.currentState?.updateContent(reciveMessage.text);
-
-                  onScrollList.call();
+                  // 使用缓冲+延迟+逐字刷新机制：
+                  // 1）将流返回的内容追加到内存（reciveMessage.text 已包含最新内容）
+                  // 2）延迟 1s 后开始以 100ms/字 的频率逐字展示
+                  // 使用 message id 作为 key，如果不存在则使用 hashCode 作为回退
+                  final key = lastAiAnswer.id ?? lastAiAnswer.hashCode;
+                  _enqueueTyping(
+                    key,
+                    reciveMessage.text,
+                    lastAiAnswer.messageItemKey,
+                    onScrollList,
+                  );
                 }
 
                 NuiUtil.autoPlay(
@@ -281,6 +317,10 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
       onDone: () async {
         if (mounted) {
           NuiUtil.stopStreamTts(mounted);
+          // 等待逐字打印任务完成（如果存在）再继续 onDone 的后续操作
+          final key = reciveMessage.id ?? reciveMessage.hashCode;
+          await _waitTypingComplete(key);
+
           if (reciveMessage.status != 1) {
             MessageDataProvider.deleteMessages(reciveMessage.roomId ?? 0, [reciveMessage.id!]);
           }
@@ -323,5 +363,79 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
     } catch (e) {
       showToast('清除聊天记录失败: ${e.toString()}');
     }
+  }
+
+  /// 将收到的流内容加入缓冲，并以延迟+逐字频率展示
+  void _enqueueTyping(int key, String fullText, GlobalKey? messageKey, Function() onScrollList) {
+    final task = _typingTasks.putIfAbsent(key, () => _TypingTask(messageKey: messageKey));
+    // 更新目标文本
+    task.target = fullText;
+    // 保留 messageKey
+    task.messageKey ??= messageKey;
+    // ensure completer exists so waiters can await
+    task.completer ??= Completer<void>();
+
+    // 如果已经在逐字播放中，直接返回（新的内容已写入 target，播放会继续）
+    if (task.charTimer != null) return;
+
+    // 否则，如果延迟定时器已存在，等待其触发；如果不存在则启动 500ms 延迟
+    task.delayTimer ??= Timer(const Duration(milliseconds: 500), () {
+      task.delayTimer = null;
+      // 每 100ms 增加一个字符并刷新视图
+      task.charTimer = Timer.periodic(const Duration(milliseconds: 25), (t) {
+        if (isClosed) {
+          task.cancel();
+          if (task.completer != null && !task.completer!.isCompleted) task.completer!.complete();
+          _typingTasks.remove(key);
+          return;
+        }
+        if (task.displayed < task.target.length) {
+          task.displayed++;
+          _updateTaskContent(task, onScrollList);
+        } else {
+          // 当前已展示全部字符，停止定时器并移除任务
+          task.charTimer?.cancel();
+          task.charTimer = null;
+          if (task.completer != null && !task.completer!.isCompleted) task.completer!.complete();
+          _typingTasks.remove(key);
+        }
+      });
+    });
+  }
+
+  Future<void> _waitTypingComplete(int key) async {
+    final task = _typingTasks[key];
+    if (task == null) return;
+    task.completer ??= Completer<void>();
+    try {
+      await task.completer!.future;
+    } catch (_) {}
+  }
+
+  void _updateTaskContent(_TypingTask task, Function() onScrollList) {
+    try {
+      final len = task.displayed.clamp(0, task.target.length);
+      final text = task.target.substring(0, len);
+      if (task.messageKey != null) {
+        final state = task.messageKey!.currentState;
+        try {
+          // dynamic 调用 updateContent
+          if (state != null) (state as dynamic).updateContent(text);
+        } catch (_) {}
+      }
+      try {
+        onScrollList.call();
+      } catch (_) {}
+    } catch (_) {}
+  }
+
+  @override
+  Future<void> close() {
+    // 取消所有 typing 任务
+    for (var t in _typingTasks.values) {
+      t.cancel();
+    }
+    _typingTasks.clear();
+    return super.close();
   }
 }
