@@ -62,10 +62,25 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
             onTitleTap!();
           }
         },
-        icon: Text(
-          title,
-          style: TextStyle(color: CColor.c1A1A1A, fontSize: 36.sp, fontWeight: FontWeight.w500),
-          overflow: TextOverflow.ellipsis,
+        icon: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: title,
+                style: TextStyle(
+                  color: CColor.c1A1A1A,
+                  fontSize: 36.sp,
+                  fontWeight: FontWeight.w500,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              TextSpan(
+                text: title.isNotEmpty ? '\n内容由AI生成' : '',
+                style: TextStyle(color: CColor.c969DA7, fontSize: 20.sp, letterSpacing: 1.w),
+              ),
+            ],
+          ),
         ),
       ),
 
