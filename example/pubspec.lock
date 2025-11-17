@@ -346,8 +346,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "0.1.1"
-      resolved-ref: "55b81235c6bb103e0e8435538403abf67b15ef78"
+      ref: "0.1.2"
+      resolved-ref: b03b198216fdc1d0ae5d8ff65792aa04db2fe3ad
       url: "https://github.com/smallsevenk/FlutterAliyunNui.git"
     source: git
     version: "0.1.1"
