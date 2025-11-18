@@ -26,7 +26,7 @@ class ChatInput extends StatelessWidget {
   final void Function(bool isVoice)? onCallAgentType;
   final void Function()? onStopRecognition;
   final void Function()? onHumanCs;
-  final void Function() onScrollListToHead;
+  final void Function() onScrollToListBottom;
   final ValueNotifier<List<double>> amplitudes;
   final ValueNotifier<bool> cancelSend;
 
@@ -38,7 +38,7 @@ class ChatInput extends StatelessWidget {
     required this.igKey,
     required this.reloadMessageList,
     required this.onSendMessage,
-    required this.onScrollListToHead,
+    required this.onScrollToListBottom,
     required this.amplitudes,
     required this.cancelSend,
     this.onStartRecognition,
@@ -236,7 +236,7 @@ class ChatInput extends StatelessWidget {
           controller: textController,
           onTap: () {
             Future.delayed(Duration(milliseconds: 500), () {
-              onScrollListToHead.call();
+              onScrollToListBottom.call();
             });
             if (chatInputMode.value != ChatInputMode.textSend) {
               chatInputMode.value = ChatInputMode.textSend;

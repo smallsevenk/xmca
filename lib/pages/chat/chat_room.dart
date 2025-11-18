@@ -15,7 +15,6 @@ import 'package:xmca/helper/color.dart';
 import 'package:xmca/helper/global.dart';
 import 'package:xmca/pages/chat/widget/chat_app_bar.dart';
 import 'package:xmca/pages/chat/widget/chat_input.dart';
-import 'package:xmca/pages/chat/widget/scroll_buttom.dart';
 import 'package:xmca/pages/chat/util/chat_input_enum.dart';
 import 'package:xmca/pages/chat/widget/chat_message_item.dart';
 import 'package:xmca/pages/chat/widget/chat_message_menu.dart';
@@ -59,7 +58,6 @@ class _ChatRoomPageState extends State<ChatRoomPage>
   // 音频振幅
   final ValueNotifier<List<double>> _amplitudes = ValueNotifier(List.filled(44, 0.4));
 
-  GlobalKey<ScrollButtonState> myButtonKey = GlobalKey();
   @override
   void initState() {
     super.initState();
@@ -83,7 +81,6 @@ class _ChatRoomPageState extends State<ChatRoomPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
       backgroundColor: CColor.cF4F5FA,
       appBar: _buildAppBar(),
       body: BlocConsumer<ChatRoomCubit, ChatRoomState>(
@@ -101,33 +98,27 @@ class _ChatRoomPageState extends State<ChatRoomPage>
             });
           }
           if (state is ChatHistoryState) {
-            return Column(
-              children: [
-                SizedBox(
-                  width: 1,
-                  height: 1,
-                  child: ScrollButton(
-                    key: myButtonKey,
-                    onTap: () {
-                      if (_scrollController.hasClients) {
-                        var maxScroll = _scrollController.position.maxScrollExtent;
-                        _scrollController.jumpTo(maxScroll);
-                      }
-                    },
-                  ),
-                ),
-                _buildMessageList(),
-                ValueListenableBuilder(
-                  valueListenable: _chatInputMode,
-                  builder: (BuildContext context, dynamic value, Widget? child) =>
-                      _buildChatInput(context),
-                ),
-              ],
-            );
+            return _buildMessageList();
           }
           return const SizedBox.shrink();
         },
       ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: ValueListenableBuilder(
+          valueListenable: _chatInputMode,
+          builder: (BuildContext context, dynamic value, Widget? child) => _buildChatInput(context),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: _showScrollToBottom
+          ? Padding(
+              padding: EdgeInsets.only(bottom: 0.w),
+              child: XImage('scroll', width: 112.w),
+            ).onTap(() {
+              _scrollToListBottom();
+            })
+          : null,
     );
   }
 
@@ -177,9 +168,9 @@ class _ChatRoomPageState extends State<ChatRoomPage>
       chatInputMode: _chatInputMode,
       context: context,
       onSendMessage: _sendMessage,
-      onScrollListToHead: _scrollListToHead,
       amplitudes: _amplitudes,
       cancelSend: _cancelSend,
+      onScrollToListBottom: () => _scrollToListBottom(),
       onHumanCs: () async {
         // 测试流式语音播放拦截测试代码
         // await NuiUtil.startStreamInputTts(
@@ -217,29 +208,17 @@ class _ChatRoomPageState extends State<ChatRoomPage>
 
   // 在 _buildMessageList 里
   Widget _buildMessageList() {
-    return Flexible(
-      child: Scrollbar(
+    return Scrollbar(
+      controller: _scrollController,
+      child: SingleChildScrollView(
         controller: _scrollController,
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            ListView(
-              padding: EdgeInsets.only(bottom: 30),
-              controller: _scrollController,
-              physics: const AlwaysScrollableScrollPhysics(),
-              children: List.generate(_messages.length, (index) => _buildMessageItem(index: index)),
-            ),
-            // 悬浮“滚动到底部”按钮
-            if (_showScrollToBottom)
-              Padding(
-                padding: EdgeInsets.all(24.w),
-                child: XImage('scroll', width: 112.w),
-              ).onTap(() {
-                myButtonKey.currentState?.handleTap();
-              }),
-          ],
-        ).onTap(_blankOnTap),
-      ),
+        reverse: true,
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: List.generate(_messages.length, (index) => _buildMessageItem(index: index)),
+        ),
+      ).onTap(_blankOnTap),
     );
   }
 
@@ -298,7 +277,6 @@ class _ChatRoomPageState extends State<ChatRoomPage>
       }
     } else if (state is ChatHistoryState) {
       _messages = state.messageList ?? [];
-      _scrollListToHead();
     }
   }
 
@@ -368,7 +346,6 @@ class _ChatRoomPageState extends State<ChatRoomPage>
         isPlaying: _isPlaying,
         mounted: mounted,
         lastMessage: () => _messages.last,
-        onScrollList: () => _scrollListToHead(),
         onRefreshState: () => setState(() {}),
       );
     }
@@ -402,10 +379,8 @@ class _ChatRoomPageState extends State<ChatRoomPage>
     // 监听滚动，控制悬浮按钮显示
     _scrollController.addListener(() {
       if (!_scrollController.hasClients) return;
-      final max = _scrollController.position.maxScrollExtent;
       final offset = _scrollController.offset;
-
-      final show = max - offset > 100; // 距底部100像素内不显示按钮
+      final show = offset > 500;
       if (_showScrollToBottom != show) {
         setState(() {
           _showScrollToBottom = show;
@@ -434,14 +409,11 @@ class _ChatRoomPageState extends State<ChatRoomPage>
   }
 
   // 滚动到顶部
-  void _scrollListToHead() {
+  void _scrollToListBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_scrollController.hasClients && _scrollController.position.maxScrollExtent > 0) {
-        var maxScroll = _scrollController.position.maxScrollExtent;
-        _scrollController.jumpTo(maxScroll);
-        Future.delayed(Duration(milliseconds: 300), () {
-          myButtonKey.currentState?.handleTap();
-        });
+      if (_scrollController.hasClients) {
+        var minScroll = _scrollController.position.minScrollExtent;
+        _scrollController.jumpTo(minScroll);
       }
     });
   }

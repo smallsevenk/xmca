@@ -192,7 +192,6 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
     required bool mounted,
     required Function() onRefreshState,
     required DBMessage Function() lastMessage,
-    required Function() onScrollList,
   }) async {
     DBMessage sendMessage = DBMessage(
       Role.sender,
@@ -273,12 +272,7 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
                   // 2）延迟 1s 后开始以 100ms/字 的频率逐字展示
                   // 使用 message id 作为 key，如果不存在则使用 hashCode 作为回退
                   final key = lastAiAnswer.id ?? lastAiAnswer.hashCode;
-                  _enqueueTyping(
-                    key,
-                    reciveMessage.text,
-                    lastAiAnswer.messageItemKey,
-                    onScrollList,
-                  );
+                  _enqueueTyping(key, reciveMessage.text, lastAiAnswer.messageItemKey);
                 }
 
                 NuiUtil.autoPlay(
@@ -366,7 +360,7 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
   }
 
   /// 将收到的流内容加入缓冲，并以延迟+逐字频率展示
-  void _enqueueTyping(int key, String fullText, GlobalKey? messageKey, Function() onScrollList) {
+  void _enqueueTyping(int key, String fullText, GlobalKey? messageKey) {
     final task = _typingTasks.putIfAbsent(key, () => _TypingTask(messageKey: messageKey));
     // 更新目标文本
     task.target = fullText;
@@ -391,7 +385,7 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
         }
         if (task.displayed < task.target.length) {
           task.displayed++;
-          _updateTaskContent(task, onScrollList);
+          _updateTaskContent(task);
         } else {
           // 当前已展示全部字符，停止定时器并移除任务
           task.charTimer?.cancel();
@@ -412,7 +406,7 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
     } catch (_) {}
   }
 
-  void _updateTaskContent(_TypingTask task, Function() onScrollList) {
+  void _updateTaskContent(_TypingTask task) {
     try {
       final len = task.displayed.clamp(0, task.target.length);
       final text = task.target.substring(0, len);
@@ -423,9 +417,6 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
           if (state != null) (state as dynamic).updateContent(text);
         } catch (_) {}
       }
-      try {
-        onScrollList.call();
-      } catch (_) {}
     } catch (_) {}
   }
 
