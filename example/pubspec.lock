@@ -1224,7 +1224,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "43fbe8aa29dacce30f6d360b58c40a69f04b97d3"
+      resolved-ref: dadff1dc8160a636ce2ea0593d631d3db025ef54
       url: "https://github.com/smallsevenk/xkit.git"
     source: git
     version: "0.0.1"

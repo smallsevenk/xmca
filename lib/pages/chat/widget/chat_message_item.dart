@@ -84,6 +84,12 @@ class ChatMessageItemState extends State<ChatMessageItem> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gap(40.w),
+          if (_item.displayTime != null && _item.displayTime!.isNotEmpty) ...[
+            Center(
+              child: Text(_item.displayTime ?? '', style: TextStyle(color: CColor.c969DA7)),
+            ),
+            Gap(10),
+          ],
           GestureDetector(
             onLongPressStart: widget.onLongPressStart,
             child: _buildMessageBubble(tempText, bgColor, contentBorderRadius),

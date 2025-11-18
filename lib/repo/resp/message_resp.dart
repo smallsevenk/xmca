@@ -72,6 +72,9 @@ class DBMessage {
   // 父消息 id
   int? pid;
 
+  // 展示时间
+  String? displayTime;
+
   GlobalKey<ChatMessageItemState> messageItemKey = GlobalKey();
 
   DBMessage(
@@ -239,6 +242,22 @@ class DBMessage {
       file = json.getString('file'),
       statisticsType = json.getInt('statistics_type'),
       pid = json.getInt('pid');
+
+  DBMessage setDisplayTime(DBMessage? preMessage) {
+    if (ts != null) {
+      if (preMessage?.ts != null) {
+        var diff = ts!.difference(preMessage!.ts!).inMinutes;
+        // 计算时间差，超过 5 分钟则显示自身时间，否则显示前一条消息时间
+        if (diff >= 5) {
+          displayTime = ts?.toAiDateStr();
+        }
+      } else {
+        displayTime = ts?.toAiDateStr();
+      }
+    }
+
+    return this;
+  }
 }
 
 enum Role {

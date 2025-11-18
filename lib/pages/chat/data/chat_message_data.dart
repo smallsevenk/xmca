@@ -39,7 +39,19 @@ class MessageDataProvider {
         whereArgs: [roomId],
         orderBy: 'ts asc',
       );
-      return messages.map((e) => DBMessage.fromMap(e)).toList();
+      final result = messages.map((e) => DBMessage.fromMap(e)).toList();
+      // 总结时间 消息间隔不超过5分钟的，显示一次时间,当天只展示时间，非当天展示完整时间
+      List<DBMessage> data = [];
+      for (int i = 0; i < result.length; i++) {
+        if (i == 0) {
+          data.add(result.first);
+        } else if (i == 1) {
+          data.add(result[i].setDisplayTime(null));
+        } else {
+          data.add(result[i].setDisplayTime(result[i - 1]));
+        }
+      }
+      return data;
     }
 
     // 如果传入页码，按分页查询
