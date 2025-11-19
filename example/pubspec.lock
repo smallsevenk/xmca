@@ -1166,19 +1166,18 @@ packages:
   webview_flutter:
     dependency: transitive
     description:
-      name: webview_flutter
-      sha256: "889a0a678e7c793c308c68739996227c9661590605e70b1f6cf6b9a6634f7aec"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
+      path: "H:\\flutter_plugin\\webview_flutter_4.10.0"
+      relative: false
+    source: path
     version: "4.10.0"
   webview_flutter_android:
     dependency: transitive
     description:
       name: webview_flutter_android
-      sha256: f754fec262c5bf826615e8c7f035da1c536ba6ad9b1181936fad900d297cb687
+      sha256: e5201c620eb2637dca88a756961fae4a7191bb30b4f2271e08b746405ffdf3fd
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.10.6"
+    version: "4.10.5"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
