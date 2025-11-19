@@ -71,7 +71,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 style: TextStyle(
                   color: CColor.c1A1A1A,
                   fontSize: 36.sp,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

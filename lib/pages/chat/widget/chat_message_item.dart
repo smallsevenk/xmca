@@ -78,18 +78,22 @@ class ChatMessageItemState extends State<ChatMessageItem> {
       return Row(children: [ThinkingView()]);
     }
 
+    var showTime = _item.displayTime != null && _item.displayTime!.isNotEmpty;
+    var headerViews = showTime
+        ? [
+            Gap(40.w),
+            Center(
+              child: Text(_item.displayTime ?? '', style: TextStyle(color: CColor.c969DA7)),
+            ),
+            Gap(24.w),
+          ]
+        : [Gap(40.w)];
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Gap(40.w),
-          if (_item.displayTime != null && _item.displayTime!.isNotEmpty) ...[
-            Center(
-              child: Text(_item.displayTime ?? '', style: TextStyle(color: CColor.c969DA7)),
-            ),
-            Gap(10),
-          ],
+          ...headerViews,
           GestureDetector(
             onLongPressStart: widget.onLongPressStart,
             child: _buildMessageBubble(tempText, bgColor, contentBorderRadius),

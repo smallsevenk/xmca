@@ -249,10 +249,10 @@ class DBMessage {
         var diff = ts!.difference(preMessage!.ts!).inMinutes;
         // 计算时间差，超过 5 分钟则显示自身时间，否则显示前一条消息时间
         if (diff >= 5) {
-          displayTime = ts?.toAiDateStr();
+          displayTime = ts?.imRoomDisplayTime;
         }
       } else {
-        displayTime = ts?.toAiDateStr();
+        displayTime = ts?.imRoomDisplayTime;
       }
     }
 
