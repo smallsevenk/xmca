@@ -1171,7 +1171,7 @@ packages:
       resolved-ref: "78e267b58b8eb5a79b46755acc1dad7629c1f19e"
       url: "https://gitlab.yofoto.cn/xm/client/ai/webview_flutter_4.10.0.git"
     source: git
-    version: "4.10.5"
+    version: "4.10.0"
   webview_flutter_android:
     dependency: transitive
     description:
@@ -1223,11 +1223,9 @@ packages:
   xkit:
     dependency: transitive
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "25434dd5fddf2b47a333a7fe143e3507844304f5"
-      url: "https://github.com/smallsevenk/xkit.git"
-    source: git
+      path: "../../xkit"
+      relative: true
+    source: path
     version: "0.0.1"
   xmca:
     dependency: "direct main"

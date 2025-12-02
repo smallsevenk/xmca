@@ -6,6 +6,7 @@
  * 创作版权: Copyright (c) 2025 XianHua Zhao (andy)
  * 功能描述: 聊天室
  */
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,7 @@ import 'package:xmca/pages/chat/util/nui_util.dart';
 import 'package:xmca/pages/chat/data/chat_message_data.dart';
 import 'package:xmca/pages/comm/widgets/alert.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';
-import 'package:xmca/pages/comm/widgets/logs.dart';
+import 'package:xmca/repo/api/service/api_service.dart';
 import 'package:xmca/repo/api/service/chat_room_service.dart';
 import 'package:xmca/repo/resp/message_resp.dart';
 import 'package:xmca/repo/resp/room_resp.dart';
@@ -123,7 +124,13 @@ class _ChatRoomPageState extends State<ChatRoomPage>
   }
 
   _pushLoglist() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const LogListPage()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            XDeveloperPage(envs: Service.instance.envs, baseUrlKey: Service.instance.baseUrlKey),
+      ),
+    );
   }
 
   /// 构建AppBar

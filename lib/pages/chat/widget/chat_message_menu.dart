@@ -8,7 +8,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:xkit/x_kit.dart';
 import 'package:xmca/helper/color.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';

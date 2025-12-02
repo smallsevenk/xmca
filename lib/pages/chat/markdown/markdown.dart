@@ -83,7 +83,7 @@ class _CsMarkdownState extends State<XMarkdown> {
       onTapLink: (text, href, title) {
         widget.stopPlay?.call();
         var url = href ?? '';
-        if (url.endsWith('.xmca')) {
+        if (url.endsWith('.xmcs')) {
           // xmca标签
           widget.humanCsTap?.call();
         } else if (url.contains(RegExp(r'\.(png|jpg|jpeg|gif|bmp)$', caseSensitive: false))) {

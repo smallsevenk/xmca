@@ -8,6 +8,8 @@
  */
 
 import 'package:xkit/api/x_api_service.dart';
+import 'package:xkit/helper/x_developer.dart';
+import 'package:xkit/helper/x_sp.dart';
 import 'package:xmca/repo/api/interceptor/request_interceptor.dart';
 
 class Service extends XApiService {
@@ -27,12 +29,24 @@ class Service extends XApiService {
     init();
   }
 
+  final List<XEnvironment> envs = [
+    XEnvironment('生产', 'https://aiservice.sharexm.com/v2'),
+    XEnvironment('测试', 'https://aiservicetest.sharexm.com/v2'),
+  ];
+
+  final String baseUrlKey = 'XMCABaseUrl';
+
   @override
   init() {
     super.init();
+    var baseUrl = XSpUtil.prefs.getString(baseUrlKey);
+    if (baseUrl == null) {
+      baseUrl = envs.first.url;
+      XSpUtil.prefs.setString(baseUrlKey, baseUrl);
+    }
     // 初始化配置
     // xdio.options.baseUrl = 'http://172.16.19.220:9991/v2';
-    xdio.options.baseUrl = 'https://aiservice.sharexm.com/v2';
+    xdio.options.baseUrl = baseUrl;
     // 添加拦截器（如果需要）
     xdio.interceptors.add(RequestInterceptor());
     setProxy();
