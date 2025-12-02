@@ -1223,9 +1223,11 @@ packages:
   xkit:
     dependency: transitive
     description:
-      path: "../../xkit"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: fbbcfb01a7bc0a1f678dce288864ee3be3184f13
+      url: "https://github.com/smallsevenk/xkit.git"
+    source: git
     version: "0.0.1"
   xmca:
     dependency: "direct main"
