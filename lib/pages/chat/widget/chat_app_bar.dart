@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:xkit/x_kit.dart';
 import 'package:xmca/helper/color.dart';
 import 'package:xmca/helper/global.dart';
+import 'package:xmca/helper/three_params.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';
 
 // 为了解决 showMenu 点击菜单后会自动聚焦页面文本框问题
@@ -48,8 +49,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
         onTap: onBack,
         child: Container(
           alignment: Alignment.center,
-          margin: EdgeInsets.only(left: 30.w, right: 24.w),
-          child: XImage('back', color: CColor.c1A1A1A),
+          child: XImage('back', width: (64 * ThreeAppParams.style.iconScaler).w),
         ),
       ),
       titleSpacing: 0,
@@ -64,13 +64,14 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
         icon: RichText(
           textAlign: TextAlign.center,
+          textScaler: TextScaler.linear(ThreeAppParams.style.titleScaler),
           text: TextSpan(
             children: [
               TextSpan(
                 text: title,
                 style: TextStyle(
                   color: CColor.c1A1A1A,
-                  fontSize: 36.sp,
+                  fontSize: 34.sp,
                   fontWeight: FontWeight.w500,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -117,7 +118,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
             padding: EdgeInsets.only(left: 20.w),
             height: double.infinity,
             margin: EdgeInsets.only(right: 30.w),
-            child: XImage('drawer', width: 48.w),
+            child: XImage('drawer', width: (64 * ThreeAppParams.style.iconScaler).w),
           ),
         ),
       ],

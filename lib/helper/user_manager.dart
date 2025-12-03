@@ -20,7 +20,6 @@ class UserManager {
   // 单例模式构造函数
   factory UserManager() => _instance;
   UserManager._internal();
-  Map<String, dynamic>? threeLoginData;
 
   // 保存用户信息
   Future<void> saveUserInfo(UserResp user) async {

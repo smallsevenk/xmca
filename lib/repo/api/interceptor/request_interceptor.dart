@@ -10,6 +10,7 @@
 import 'dart:convert';
 import 'package:xkit/api/x_api_sign.dart';
 import 'package:xmca/helper/user_manager.dart';
+import 'package:xmca/helper/three_params.dart';
 import 'package:xmca/xmca.dart';
 import 'package:flutter/services.dart';
 
@@ -42,7 +43,7 @@ class RequestInterceptor extends InterceptorsWrapper {
 
   String get authorization => UserManager.instance.userInfo.token ?? '';
 
-  Map get appParam => UserManager.instance.threeLoginData ?? {};
+  Map get appParam => ThreeAppParams.appParams;
 
   Future<String> get pem async {
     pemCache ??= await rootBundle.loadString('packages/xmca/assets/secret/public.pem');

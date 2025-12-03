@@ -40,6 +40,7 @@ appInit() async {
         "communityTopId": "1",
         "communityId": "1",
         "baseUrl": "sss",
+        // "style": {"textScaler": '1', "iconScaler": "1", "titleScaler": "1"},
       },
     );
   }
@@ -101,9 +102,7 @@ class _CsAppState extends State<CsApp> {
                   FocusManager.instance.primaryFocus?.unfocus();
                 },
                 child: MediaQuery(
-                  data: MediaQuery.of(
-                    context,
-                  ).copyWith(textScaler: TextScaler.linear(XPlatform.isDesktop() ? 0.95 : 1)),
+                  data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1)),
                   child: BotToastInit()(context, child),
                 ),
               );
