@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:xmca/cubit/chat_room_cubit.dart';
-import 'package:xmca/helper/native_global.dart';
+import 'package:xmca/helper/native_util.dart';
 import 'package:xmca/pages/chat/chat_room.dart';
 export 'package:xkit/x_kit.dart';
 
@@ -10,9 +10,8 @@ class Xmca {
     Function()? backToNative,
     Function(dynamic args)? humanCustomerService,
   }) {
-    NativeGlobal.appParams = params;
-    NativeGlobal.backToNative = backToNative;
-    NativeGlobal.humanCustomerService = humanCustomerService;
+    NativeUtil.backToNative = backToNative;
+    NativeUtil.humanCustomerService = humanCustomerService;
   }
 
   static get chatRoomPage {
