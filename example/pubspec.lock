@@ -397,7 +397,7 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: HEAD
+      ref: "0.0.1"
       resolved-ref: "90bbd5fc60a2465aa7a6598dd83eddb545e16e35"
       url: "https://github.com/smallsevenk/xm_flutter_markdown.git"
     source: git
@@ -1167,7 +1167,7 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: HEAD
+      ref: "4.10.0"
       resolved-ref: "78e267b58b8eb5a79b46755acc1dad7629c1f19e"
       url: "https://gitlab.yofoto.cn/xm/client/ai/webview_flutter_4.10.0.git"
     source: git
