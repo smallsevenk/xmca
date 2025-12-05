@@ -32,16 +32,10 @@ dependencies:
   video_thumbnail: 0.5.6
   image_gallery_saver_plus: 4.0.1 
   markdown: 7.3.0
-
   webview_flutter:  
     git:
       url: https://gitlab.yofoto.cn/xm/client/ai/webview_flutter_4.10.0.git
       ref: 4.10.0
-
-  flutter_aliyun_nui:
-    git:
-      url: https://github.com/smallsevenk/FlutterAliyunNui.git
-      ref: 0.1.2
 
   flutter_markdown:
     git:

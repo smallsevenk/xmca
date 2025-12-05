@@ -345,11 +345,9 @@ packages:
   flutter_aliyun_nui:
     dependency: transitive
     description:
-      path: "."
-      ref: "0.1.2"
-      resolved-ref: "22b6479dd6dcc2167de63f6f22b0e3c86c6ea5c5"
-      url: "https://github.com/smallsevenk/FlutterAliyunNui.git"
-    source: git
+      path: "../../flutter_aliyun_nui"
+      relative: true
+    source: path
     version: "0.1.2"
   flutter_bloc:
     dependency: transitive
