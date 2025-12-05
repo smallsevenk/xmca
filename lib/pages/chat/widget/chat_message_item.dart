@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:xkit/x_kit.dart';
 import 'package:xmca/helper/color.dart';
-import 'package:xmca/helper/global.dart';
+import 'package:xmca/helper/native_global.dart';
 import 'package:xmca/pages/chat/markdown/markdown.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';
 import 'package:xmca/repo/resp/message_resp.dart';
@@ -149,7 +149,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
             text,
             stopPlay: widget.stopPlay,
             humanCsTap: () {
-              csHumanCustomerService?.call([]);
+              NativeGlobal.humanCustomerService?.call([]);
             },
           ),
           if (isLast) ...[

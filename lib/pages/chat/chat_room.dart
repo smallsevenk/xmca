@@ -14,7 +14,7 @@ import 'package:xkit/x_kit.dart';
 import 'package:xmca/cubit/chat_room_cubit.dart';
 import 'package:xmca/helper/color.dart';
 import 'package:xmca/helper/global.dart';
-import 'package:xmca/helper/three_params.dart';
+import 'package:xmca/helper/native_global.dart';
 import 'package:xmca/pages/chat/widget/chat_app_bar.dart';
 import 'package:xmca/pages/chat/widget/chat_input.dart';
 import 'package:xmca/pages/chat/util/chat_input_enum.dart';
@@ -85,7 +85,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
     return MediaQuery(
       data: MediaQuery.of(
         context,
-      ).copyWith(textScaler: TextScaler.linear(ThreeAppParams.style.textScaler)),
+      ).copyWith(textScaler: TextScaler.linear(NativeGlobal.style.textScaler)),
       child: Scaffold(
         backgroundColor: CColor.cF4F5FA,
         appBar: _buildAppBar(),
@@ -95,7 +95,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
             if (state is LoadRoomState && state.error != null) {
               return Center(
                 child: Text(
-                  '客服助手已失联,\n请点击屏幕唤醒我哦',
+                  '已失联,\n请点击屏幕唤醒我哦',
                   style: TextStyle(fontSize: 32.w, color: CColor.c4F7EFF),
                   textAlign: TextAlign.center,
                 ),
@@ -149,8 +149,8 @@ class _ChatRoomPageState extends State<ChatRoomPage>
       },
       autoPlay: autoPlaySwitchIsOpen,
       onBack: () {
-        if (csBackToNative != null) {
-          csBackToNative?.call();
+        if (NativeGlobal.backToNative != null) {
+          NativeGlobal.backToNative?.call();
         } else {
           Navigator.pop(context);
         }
@@ -198,7 +198,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
         // Future.delayed(Duration(microseconds: 1000)).then((e) {
         //   NuiUtil.stopStreamTts(mounted);
         // });
-        csHumanCustomerService?.call([]);
+        NativeGlobal.humanCustomerService?.call([]);
       },
       onStartRecognition: (details) {
         NuiUtil.startVoiceRecognition(

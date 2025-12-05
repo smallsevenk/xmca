@@ -40,7 +40,7 @@ appInit() async {
         "communityTopId": "1",
         "communityId": "1",
         "baseUrl": "sss",
-        // "style": {"textScaler": '1', "iconScaler": "1", "titleScaler": "1"},
+        "style": {"textScaler": '1', "iconScaler": "1", "titleScaler": "1"},
       },
     );
   }
