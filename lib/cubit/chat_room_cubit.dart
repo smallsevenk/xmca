@@ -10,7 +10,6 @@
 import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:xkit/api/x_base_resp.dart';
 import 'package:xkit/x_kit.dart';
 import 'package:xmca/helper/global.dart';
 import 'package:xmca/helper/user_manager.dart';

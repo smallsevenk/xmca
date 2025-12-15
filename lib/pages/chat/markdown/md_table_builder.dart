@@ -43,13 +43,13 @@ class MDTableContanier extends StatelessWidget {
                   style: TextStyle(fontSize: 28.sp, color: CColor.c51565F),
                 ),
                 Spacer(),
-                XImage('cs_table_copy', width: 48.w).onTap(() {
+                caImage('cs_table_copy', width: 48.w).onTap(() {
                   // 复制表格内容到剪贴板
                   Clipboard.setData(ClipboardData(text: markdownData));
                   showToast('复制完成');
                 }),
                 Gap(24.w),
-                XImage('cs_full_screen', width: 48.w).onTap(() {
+                caImage('cs_full_screen', width: 48.w).onTap(() {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -137,13 +137,13 @@ class MDFullTable extends StatelessWidget {
           },
         ),
         actions: [
-          XImage('cs_table_copy', width: 48.w).onTap(() {
+          caImage('cs_table_copy', width: 48.w).onTap(() {
             // 复制表格内容到剪贴板
             Clipboard.setData(ClipboardData(text: markdownData));
             showToast('复制完成');
           }),
           Gap(50.w),
-          XImage('cs_download', width: 48.w, color: Colors.red).onTap(() {
+          caImage('cs_download', width: 48.w, color: Colors.red).onTap(() {
             _saveTableAsImage(context);
           }),
         ],

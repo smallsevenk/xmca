@@ -32,7 +32,7 @@ dependencies:
   video_thumbnail: 0.5.6
   image_gallery_saver_plus: 4.0.1 
   markdown: 7.3.0
-  webview_flutter:  
+  webview_flutter: 
     git:
       url: https://gitlab.yofoto.cn/xm/client/ai/webview_flutter_4.10.0.git
       ref: 4.10.0
@@ -40,13 +40,11 @@ dependencies:
   flutter_markdown:
     git:
       url: https://github.com/smallsevenk/xm_flutter_markdown.git
-      ref: 0.0.1
 
-  xkit: 
-    path: ../xkit
-    # git:
-    #   url: https://github.com/smallsevenk/xkit.git
-
+  xkit:
+    # path: ../xkit
+    git:
+      url: https://github.com/smallsevenk/xkit.git
 
 dev_dependencies:
   flutter_test:
@@ -123,7 +121,6 @@ flutter:
     - assets/chat/cs_full_screen.png
     - assets/chat/cs_table_copy.png
     - assets/chat/cs_video_placeholder.png
-    - assets/empty/empty.png
     - assets/secret/public.pem
     
   # For details regarding assets in packages, see

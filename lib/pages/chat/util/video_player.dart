@@ -116,7 +116,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           child: Container(
             alignment: Alignment.center,
             margin: EdgeInsets.only(left: 30.w, right: 24.w),
-            child: XImage('cs_close', color: CColor.c1A1A1A),
+            child: caImage('cs_close', color: CColor.c1A1A1A),
           ),
         ),
         titleSpacing: 0,

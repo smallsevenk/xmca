@@ -184,7 +184,7 @@ class ChatInput extends StatelessWidget {
               chatInputMode.value = ChatInputMode.textSend;
             }
           },
-          child: XImage(isVoiceMode ? 'keyborad' : 'input_mic', width: 56.w),
+          child: caImage(isVoiceMode ? 'keyborad' : 'input_mic', width: 56.w),
         ),
       );
     }
@@ -272,7 +272,7 @@ class ChatInput extends StatelessWidget {
       Padding(
         padding: EdgeInsets.only(right: 20.w, left: 30.w, top: 20.w, bottom: 20.w),
         child: XDebounceGestureDetector(
-          child: isSend ? XImage(imageName, width: 56.w) : XImage(imageName, width: 56.w),
+          child: isSend ? caImage(imageName, width: 56.w) : caImage(imageName, width: 56.w),
           onTap: () {
             if (isSend) {
               onSendMessage.call(textController.text.trim());
@@ -324,7 +324,7 @@ class ChatInput extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       child: Column(
         children: [
-          XImage('func_$funcIcon', width: 120.w),
+          caImage('func_$funcIcon', width: 120.w),
           Spacer(),
           Text(
             title,

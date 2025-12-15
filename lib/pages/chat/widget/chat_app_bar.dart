@@ -48,7 +48,8 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
         onTap: onBack,
         child: Container(
           alignment: Alignment.center,
-          child: XImage('back', width: (64 * XNativeUtil.style.iconScaler).w),
+          margin: EdgeInsets.only(left: 30.w, right: 24.w),
+          child: caImage('back', color: CColor.c1A1A1A),
         ),
       ),
       titleSpacing: 0,
@@ -117,7 +118,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
             padding: EdgeInsets.only(left: 20.w),
             height: double.infinity,
             margin: EdgeInsets.only(right: 30.w),
-            child: XImage('drawer', width: (64 * XNativeUtil.style.iconScaler).w),
+            child: caImage('drawer', width: (64 * XNativeUtil.style.iconScaler).w),
           ),
         ),
       ],
@@ -134,7 +135,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
       onTap: onTap,
       child: Row(
         children: [
-          XImage(icon, width: 40.w),
+          caImage(icon, width: 40.w),
           SizedBox(width: 8.w),
 
           Text(

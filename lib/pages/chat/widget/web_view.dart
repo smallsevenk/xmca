@@ -98,7 +98,7 @@ class _WebviewPageState extends State<WebviewPage> {
                       width: 60.w,
                       height: 60.w,
                       margin: EdgeInsets.only(left: 25.w, top: 10.w),
-                      child: XImage('back', width: 60.w, color: CColor.c1A1A1A),
+                      child: caImage('back', width: 60.w, color: CColor.c1A1A1A),
                     ),
                   ),
                   Center(

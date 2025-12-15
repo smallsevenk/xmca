@@ -116,7 +116,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
       floatingActionButton: _showScrollToBottom
           ? Padding(
               padding: EdgeInsets.only(bottom: 0.w),
-              child: XImage('scroll', width: 112.w),
+              child: caImage('scroll', width: 112.w),
             ).onTap(() {
               _scrollToListBottom();
             })

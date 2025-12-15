@@ -38,7 +38,7 @@ class InputToolbar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                XImage('tool_${item.icon}', width: 32.w),
+                caImage('tool_${item.icon}', width: 32.w),
                 Gap(6.w),
                 Text(item.title, style: TextStyle(color: CColor.c51565F)),
               ],

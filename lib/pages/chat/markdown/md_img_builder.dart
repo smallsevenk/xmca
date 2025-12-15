@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:xkit/x_kit.dart';
@@ -53,13 +52,13 @@ class _MDImageBuilderState extends State<MDImageBuilder> {
             placeholder: (context, url) => Container(
               color: CColor.cF4F5FA,
               alignment: Alignment.center,
-              child: XImage('', path: 'assets/chat/cs_img_loading.gif', width: 64.w),
+              child: caImage('', path: 'assets/chat/cs_img_loading.gif', width: 64.w),
             ),
             errorWidget: (context, url, error) =>
                 Container(
                   color: CColor.cF4F5FA,
                   alignment: Alignment.center,
-                  child: XImage('cs_img_error'),
+                  child: caImage('cs_img_error'),
                 ).onTap(() {
                   showToast('无效图片资源,无法预览');
                 }),

@@ -6,7 +6,6 @@ import 'package:flutter_markdown/flutter_markdown.dart' show MarkdownElementBuil
 import 'package:markdown/markdown.dart' show Element;
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/pages/chat/util/video_player.dart';
 import 'package:xmca/pages/chat/widget/web_view.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';
 
@@ -53,14 +52,21 @@ class ATagBuilder extends MarkdownElementBuilder {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => XPlatform.isAndroid()
-            // ? VideoPlayerWebview(videoUrl: url)
-            ? WebviewPage(
-                title: title ?? uri.pathSegments.last,
-                initialUrl: url,
-                isShowAppBar: true,
-              )
-            : VideoPlayerPage(videoUrl: url, videoName: title ?? uri.pathSegments.last),
+        builder: (_) {
+          return WebviewPage(
+            title: title ?? uri.pathSegments.last,
+            initialUrl: url,
+            isShowAppBar: true,
+          );
+          // return XPlatform.isAndroid()
+          //     // ? VideoPlayerWebview(videoUrl: url)
+          //     ? WebviewPage(
+          //       title: title ?? uri.pathSegments.last,
+          //       initialUrl: url,
+          //       isShowAppBar: true,
+          //     )
+          //     : VideoPlayerPage(videoUrl: url, videoName: title ?? uri.pathSegments.last);
+        },
       ),
     );
   }
@@ -184,7 +190,7 @@ class _VideoThumbState extends State<_VideoThumb> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(5),
-                  child: XImage('cs_video_placeholder', width: 220, height: 140),
+                  child: caImage('cs_video_placeholder', width: 220, height: 140),
                 ),
                 Icon(Icons.play_circle_fill, size: 48, color: Colors.white),
               ],
