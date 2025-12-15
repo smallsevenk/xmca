@@ -9,7 +9,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_aliyun_nui/flutter_aliyun_nui.dart';
 import 'package:xkit/x_kit.dart';
 import 'package:xmca/helper/global.dart';
 import 'package:xmca/pages/chat/util/chat_input_enum.dart';

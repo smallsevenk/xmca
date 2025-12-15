@@ -8,7 +8,6 @@
  */
 
 import 'package:flutter/widgets.dart';
-import 'package:xkit/widgets/x_image.dart';
 
 caImage(
   String assetName, {
@@ -18,5 +17,12 @@ caImage(
   Color? color,
   String? path,
 }) {
-  return XImage(path ?? 'assets/chat/$assetName.png', width: width, height: height ?? width);
+  return Image.asset(
+    path ?? 'assets/chat/$assetName.png',
+    package: 'xmca',
+    width: width,
+    height: height ?? width,
+    fit: fit,
+    color: color,
+  );
 }

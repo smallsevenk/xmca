@@ -7,8 +7,8 @@
 * 功能描述:  
 */
 
+import 'package:xkit/api/resp/x_base_resp.dart';
 import 'package:xmca/repo/api/service/api_service.dart';
-import 'package:xkit/api/x_base_resp.dart';
 import 'package:xmca/repo/resp/user_resp.dart';
 import 'package:xmca/helper/user_manager.dart';
 
