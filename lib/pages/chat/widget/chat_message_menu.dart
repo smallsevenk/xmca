@@ -140,7 +140,7 @@ class MessageItemMenu {
           child: Row(
             children: [
               Gap(24.w),
-              XImage('menu_$icon', width: 40.w),
+              caImage('menu_$icon', width: 40.w),
               Gap(12.w),
               Text(
                 text,

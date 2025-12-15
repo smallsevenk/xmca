@@ -107,7 +107,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
   Widget _buildReSendButton() {
     return GestureDetector(
       onTap: () => widget.onResend?.call(widget.item),
-      child: XImage('resend', width: 48.w),
+      child: caImage('resend', width: 48.w),
     );
   }
 
@@ -173,7 +173,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
           GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: widget.onCopy,
-            child: XImage('copy', width: 64.w),
+            child: caImage('copy', width: 64.w),
           ),
           Gap(24.w),
           GestureDetector(
@@ -189,7 +189,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
                         width: 64.w,
                         height: 64.w,
                       )
-                    : XImage('play', width: 64.w);
+                    : caImage('play', width: 64.w);
               },
             ),
           ),

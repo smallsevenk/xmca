@@ -76,7 +76,9 @@ class _ImagePreviewPageState extends State<_ImagePreviewPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Center(child: XImage('cs_close', width: 48.w)).onTap(() => Navigator.pop(context)),
+        leading: Center(
+          child: caImage('cs_close', width: 48.w),
+        ).onTap(() => Navigator.pop(context)),
         title: Text(
           '${_currentIndex + 1}/${widget.imageUrls.length}',
           style: TextStyle(color: Colors.white, fontSize: 36.sp, fontWeight: FontWeight.w600),
@@ -112,7 +114,7 @@ class _ImagePreviewPageState extends State<_ImagePreviewPage> {
         maxScale: PhotoViewComputedScale.covered * 3,
         // heroAttributes:
         //     widget.heroTag != null ? PhotoViewHeroAttributes(tag: widget.heroTag!) : null,
-        errorBuilder: (_, _, _) => XImage('cs_img_error'),
+        errorBuilder: (_, _, _) => caImage('cs_img_error'),
       );
     } else {
       // 非 http/https 链接，显示占位或错误提示
@@ -151,7 +153,7 @@ class _ImagePreviewPageState extends State<_ImagePreviewPage> {
   }
 
   Widget _buildFooterIcon({String? icon, Function? onTap}) {
-    return XImage(icon ?? '', width: 88.w).onTap(() => onTap?.call());
+    return caImage(icon ?? '', width: 88.w).onTap(() => onTap?.call());
   }
 
   Future<void> _saveImage(String url) async {

@@ -190,7 +190,7 @@ class _VideoThumbState extends State<_VideoThumb> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(5),
-                  child: XImage('cs_video_placeholder', width: 220, height: 140),
+                  child: caImage('cs_video_placeholder', width: 220, height: 140),
                 ),
                 Icon(Icons.play_circle_fill, size: 48, color: Colors.white),
               ],
