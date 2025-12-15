@@ -46,13 +46,23 @@ class NativeBridge {
         }
         if (threeInfo != null) {
           xlog('Main ==> Received params is Map<String, dynamic>: $threeInfo');
-          Xmca.config(
-            params: threeInfo,
-            backToNative: returnToNative,
-            humanCustomerService: (args) {
-              humanCustomerService.call(args);
-            },
-          );
+          if (method == 'openXmcs') {
+            Xmca.config(
+              params: threeInfo,
+              backToNative: returnToNative,
+              humanCustomerService: (args) {
+                humanCustomerService.call(args);
+              },
+            );
+          } else if (method == 'openXmca') {
+            Xmca.config(
+              params: threeInfo,
+              backToNative: returnToNative,
+              humanCustomerService: (args) {
+                humanCustomerService.call(args);
+              },
+            );
+          }
         } else {
           xlog('Main ==> Received params is ${params.runtimeType}, not a <String, dynamic>');
         }
@@ -64,11 +74,15 @@ class NativeBridge {
 
   // 点击回退
   Future<void> returnToNative() async {
-    await invokeNativeMethod('backToNative');
+    await Future.delayed(Duration(milliseconds: 200), () {
+      invokeNativeMethod('backToNative');
+    });
   }
 
   // 点击人工客服
   Future<void> humanCustomerService(dynamic args) async {
-    await invokeNativeMethod('HumanCustomerService', args);
+    await Future.delayed(Duration(milliseconds: 200), () async {
+      await invokeNativeMethod('HumanCustomerService', args);
+    });
   }
 }
