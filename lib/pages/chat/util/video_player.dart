@@ -70,7 +70,10 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         await _videoController!.dispose();
         _videoController = null;
       }
-    } catch (_) {}
+    } catch (_) {
+    } finally {
+      xdp('停止播放并释放资源');
+    }
   }
 
   void _releaseVideoSync() {
@@ -91,39 +94,48 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white.withValues(alpha: 0.001),
-        foregroundColor: Colors.white,
-        surfaceTintColor: Colors.transparent,
-        elevation: 0,
-        leading: GestureDetector(
-          onTap: () async {
-            await _releaseVideo();
-            if (mounted) {
-              // ignore: use_build_context_synchronously
-              Navigator.of(context).pop();
-            }
-          },
-          child: Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.only(left: 30.w, right: 24.w),
-            child: caImage('cs_close', color: CColor.c1A1A1A),
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) async {
+        await _releaseVideo();
+        if (mounted) {
+          // ignore: use_build_context_synchronously
+          Navigator.of(context).pop();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white.withValues(alpha: 0.001),
+          foregroundColor: Colors.white,
+          surfaceTintColor: Colors.transparent,
+          elevation: 0,
+          leading: GestureDetector(
+            onTap: () async {
+              await _releaseVideo();
+              if (mounted) {
+                // ignore: use_build_context_synchronously
+                Navigator.of(context).pop();
+              }
+            },
+            child: Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(left: 30.w, right: 24.w),
+              child: caImage('cs_close', color: CColor.c1A1A1A),
+            ),
+          ),
+          titleSpacing: 0,
+          centerTitle: true,
+          title: Text(
+            widget.videoName ?? '视频预览',
+            style: TextStyle(color: CColor.c1A1A1A, fontSize: 36.sp, fontWeight: FontWeight.w500),
+            overflow: TextOverflow.ellipsis,
           ),
         ),
-        titleSpacing: 0,
-        centerTitle: true,
-        title: Text(
-          widget.videoName ?? '视频预览',
-          style: TextStyle(color: CColor.c1A1A1A, fontSize: 36.sp, fontWeight: FontWeight.w500),
-          overflow: TextOverflow.ellipsis,
-        ),
+        body: _loading
+            ? const Center(child: CircularProgressIndicator())
+            : _error
+            ? const Center(child: Text('视频加载失败'))
+            : SafeArea(child: Chewie(controller: _chewieController!)),
       ),
-      body: _loading
-          ? const Center(child: CircularProgressIndicator())
-          : _error
-          ? const Center(child: Text('视频加载失败'))
-          : SafeArea(child: Chewie(controller: _chewieController!)),
     );
   }
 }
