@@ -4,9 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart' hide Element;
 import 'package:flutter_markdown/flutter_markdown.dart' show MarkdownElementBuilder;
 import 'package:markdown/markdown.dart' show Element;
-import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:xkit/x_kit.dart';
-import 'package:xmca/pages/chat/util/video_player.dart';
 import 'package:xmca/pages/chat/widget/web_view.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';
 
@@ -54,13 +52,11 @@ class ATagBuilder extends MarkdownElementBuilder {
       context,
       MaterialPageRoute(
         builder: (_) {
-          return XPlatform.isAndroid()
-              ? WebviewPage(
-                  title: title ?? uri.pathSegments.last,
-                  initialUrl: url,
-                  isShowAppBar: true,
-                )
-              : VideoPlayerPage(videoUrl: url, videoName: title ?? uri.pathSegments.last);
+          return WebviewPage(
+            title: title ?? uri.pathSegments.last,
+            initialUrl: url,
+            isShowAppBar: true,
+          );
         },
       ),
     );

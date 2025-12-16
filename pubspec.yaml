@@ -25,11 +25,7 @@ dependencies:
   uri: 1.0.0
   loading_more_list: 5.0.3
   photo_view: 0.15.0
-  video_player: 2.10.0
-  chewie: 1.12.1
-  cached_video_player_plus: 4.0.4
-  audioplayers: 6.5.0
-  video_thumbnail: 0.5.6
+  audioplayers: 6.5.0 
   image_gallery_saver_plus: 4.0.1 
   markdown: 7.3.0
   webview_flutter: 
@@ -42,9 +38,9 @@ dependencies:
       url: https://github.com/smallsevenk/xm_flutter_markdown.git
 
   xkit:
-    # path: ../xkit
-    git:
-      url: https://github.com/smallsevenk/xkit.git
+    path: ../xkit
+    # git:
+    #   url: https://github.com/smallsevenk/xkit.git
 
 dev_dependencies:
   flutter_test:
