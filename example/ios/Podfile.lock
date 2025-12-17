@@ -1,5 +1,7 @@
 PODS:
   - AliyunIOSNuiSDK (0.0.2)
+  - audio_session (0.0.1):
+    - Flutter
   - audioplayers_darwin (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -13,7 +15,13 @@ PODS:
     - Flutter
   - flutter_pdfview (1.0.2):
     - Flutter
+  - flutter_sound (9.28.0):
+    - Flutter
+    - flutter_sound_core (= 9.28.0)
+  - flutter_sound_core (9.28.0)
   - image_gallery_saver_plus (0.0.1):
+    - Flutter
+  - image_picker_ios (0.0.1):
     - Flutter
   - integration_test (0.0.1):
     - Flutter
@@ -53,13 +61,16 @@ PODS:
 
 DEPENDENCIES:
   - AliyunIOSNuiSDK (from `/Users/andy/zwork/code/AliyunIOSNuiSDK`)
+  - audio_session (from `.symlinks/plugins/audio_session/ios`)
   - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/darwin`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
   - flutter_aliyun_nui (from `.symlinks/plugins/flutter_aliyun_nui/ios`)
   - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
+  - flutter_sound (from `.symlinks/plugins/flutter_sound/ios`)
   - image_gallery_saver_plus (from `.symlinks/plugins/image_gallery_saver_plus/ios`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -72,11 +83,14 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - flutter_sound_core
     - libwebp
 
 EXTERNAL SOURCES:
   AliyunIOSNuiSDK:
     :git: "/Users/andy/zwork/code/AliyunIOSNuiSDK"
+  audio_session:
+    :path: ".symlinks/plugins/audio_session/ios"
   audioplayers_darwin:
     :path: ".symlinks/plugins/audioplayers_darwin/darwin"
   connectivity_plus:
@@ -89,8 +103,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_aliyun_nui/ios"
   flutter_pdfview:
     :path: ".symlinks/plugins/flutter_pdfview/ios"
+  flutter_sound:
+    :path: ".symlinks/plugins/flutter_sound/ios"
   image_gallery_saver_plus:
     :path: ".symlinks/plugins/image_gallery_saver_plus/ios"
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
   package_info_plus:
@@ -117,13 +135,17 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AliyunIOSNuiSDK: 6ad1ae35e8e45c2236becbdb00ea573c7065ee77
+  audio_session: 9bb7f6c970f21241b19f5a3658097ae459681ba0
   audioplayers_darwin: 4f9ca89d92d3d21cec7ec580e78ca888e5fb68bd
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
   device_info_plus: 21fcca2080fbcd348be798aa36c3e5ed849eefbe
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   flutter_aliyun_nui: c084de04786705376b781c59aa974db9bbd36ebf
   flutter_pdfview: 32bf27bda6fd85b9dd2c09628a824df5081246cf
+  flutter_sound: b9236a5875299aaa4cef1690afd2f01d52a3f890
+  flutter_sound_core: 427465f72d07ab8c3edbe8ffdde709ddacd3763c
   image_gallery_saver_plus: e597bf65a7846979417a3eae0763b71b6dfec6c3
+  image_picker_ios: e0ece4aa2a75771a7de3fa735d26d90817041326
   integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499

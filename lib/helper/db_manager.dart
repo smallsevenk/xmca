@@ -7,6 +7,7 @@
  * 功能描述:  
  */
 
+import 'package:path/path.dart';
 import 'package:xkit/x_kit.dart';
 
 class DBManager {

@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart' hide Element;
-import 'package:flutter_markdown/flutter_markdown.dart' show MarkdownElementBuilder;
-import 'package:markdown/markdown.dart' show Element;
+import 'package:flutter_markdown/flutter_markdown.dart' show MarkdownElementBuilder, Element;
 import 'package:xkit/x_kit.dart';
 import 'package:xmca/pages/chat/widget/web_view.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';

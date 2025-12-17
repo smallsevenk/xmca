@@ -413,8 +413,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.1"
-      resolved-ref: "90bbd5fc60a2465aa7a6598dd83eddb545e16e35"
+      ref: "0.7.7"
+      resolved-ref: "8255425d9869e83b1a158aed950bada0753d7019"
       url: "https://github.com/smallsevenk/xm_flutter_markdown.git"
     source: git
     version: "0.7.7+1"
