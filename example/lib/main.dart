@@ -1,49 +1,18 @@
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:xmca/xmca.dart';
-import 'package:xmca_example/native_bridge.dart';
+import 'package:xmcp_base/xmcp_base.dart';
 
-bool get fromOtherApp => 'com.xmai.xmca'.fromOtherApp;
-
-String initialRoute = '';
-
-Widget get homePage {
-  return initialRoute.isEmpty
-      ? HomePage()
-      : initialRoute == '/xmcs'
-      ? HomePage()
-      : Xmca.chatRoomPage;
-}
-
+/// 非第三方App入口函数
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await appInit();
-  runApp(CsApp());
+  appInit(() => xlog('Main ==> FlutterApp 启动'));
 }
 
-appInit() async {
+void appInit(Function() setting) async {
+  WidgetsFlutterBinding.ensureInitialized();
   await XGlobal.init();
   XLoading.init();
-  if (fromOtherApp) {
-    xlog('Main ==> 来自第三方App: ${XAppDeviceInfo.instance.packageName}');
-    initialRoute = ui.PlatformDispatcher.instance.defaultRouteName;
-    // 设置原生调用的回调
-    NativeBridge.instance.setMethodCall();
-  } else {
-    xlog('Main ==> 来自xmcaExample App');
-    Xmca.config(
-      params: {
-        "openToken": "sds",
-        "appKey": "GrA3gEpJZNJB6__-mnMtUg==",
-        "companyId": "1",
-        "communityTopId": "1",
-        "communityId": "1",
-        "baseUrl": "sss",
-        "style": {"textScaler": '1', "iconScaler": "1", "titleScaler": "1"},
-      },
-    );
-  }
+  setting.call();
+  runApp(CsApp());
 }
 
 showToast(String? content, {int? animationTime, Object? stackTrace}) {
@@ -65,58 +34,53 @@ class CsApp extends StatefulWidget {
 
 class _CsAppState extends State<CsApp> {
   @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  Future<void> initPlatformState() async {}
-
-  @override
-  @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(750, 1624),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp(
-          color: Colors.white,
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: [
-            const Locale('zh', 'CN'), // 中文
-            const Locale('en', 'US'), // 英文
-          ],
-          locale: const Locale('zh', 'CN'), // 默认语言设置为中文
-          builder: EasyLoading.init(
-            builder: (context, child) {
-              return GestureDetector(
-                behavior: HitTestBehavior.translucent, // 关键属性，允许穿透点击‌
-                onTap: () {
-                  // 关闭所有焦点键盘
-                  FocusManager.instance.primaryFocus?.unfocus();
+    xdp('_CsAppState');
+    return ChangeNotifierProvider(
+      create: (context) => AppTheme.get()..mode = AppTheme.themeModeFormString('system'),
+      builder: (context, _) {
+        final appTheme = context.watch<AppTheme>();
+        return ScreenUtilInit(
+          designSize: const Size(750, 1624),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, child) {
+            return MaterialApp(
+              themeMode: appTheme.mode,
+              theme: createLightThemeData(context),
+              darkTheme: createDarkThemeData(),
+              debugShowCheckedModeBanner: false,
+
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: [
+                const Locale('zh', 'CN'), // 中文
+                const Locale('en', 'US'), // 英文
+              ],
+              locale: const Locale('zh', 'CN'), // 默认语言设置为中文
+              builder: EasyLoading.init(
+                builder: (context, child) {
+                  return GestureDetector(
+                    behavior: HitTestBehavior.translucent, // 关键属性，允许穿透点击‌
+                    onTap: () {
+                      // 关闭所有焦点键盘
+                      FocusManager.instance.primaryFocus?.unfocus();
+                    },
+                    child: MediaQuery(
+                      data: MediaQuery.of(
+                        context,
+                      ).copyWith(textScaler: TextScaler.linear(XNativeUtil.style.textScaler)),
+                      child: BotToastInit()(context, child),
+                    ),
+                  );
                 },
-                child: MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1)),
-                  child: BotToastInit()(context, child),
-                ),
-              );
-            },
-            // 这里设置了全局字体固定大小，不随系统设置变更
-          ),
-          home: GestureDetector(
-            behavior: HitTestBehavior.translucent, // 关键属性，允许穿透点击‌
-            onTap: () {
-              // 关闭所有焦点键盘
-              FocusManager.instance.primaryFocus?.unfocus();
-            },
-            child: homePage,
-          ),
+              ),
+              home: HomePage(),
+            );
+          },
         );
       },
     );
@@ -148,6 +112,19 @@ class _HomePageState extends State<HomePage> {
             ),
             child: const Text('进入聊天室(CA)', style: TextStyle(color: Colors.white)),
             onPressed: () {
+              var params = {
+                "appParams": {
+                  "openToken": "sds",
+                  "appKey": "GrA3gEpJZNJB7__-mnMtUg==",
+                  "companyId": "1",
+                  "communityTopId": "1",
+                  "communityId": "1",
+                  "baseUrl": "sss",
+                },
+                "appStyle": {"textScaler": '1', "iconScaler": "1", "titleScaler": "1"},
+              };
+              Xmca.config(params: params);
+              XNativeUtil.appParams = params;
               Navigator.push(
                 context,
                 MaterialPageRoute(
