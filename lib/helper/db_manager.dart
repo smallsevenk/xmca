@@ -7,10 +7,7 @@
  * 功能描述:  
  */
 
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:xkit/helper/x_logger.dart';
+import 'package:xkit/x_kit.dart';
 
 class DBManager {
   // 单例模式

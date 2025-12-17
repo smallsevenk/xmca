@@ -5,37 +5,23 @@ publish_to: none
 
 environment:
   sdk: ^3.9.0
-  flutter: '>=3.3.0'
+  flutter: ">=3.3.0"
 
 dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
-  cached_network_image: 3.3.1
-  connectivity_plus: 6.1.4
-  device_info_plus: 11.3.0
-  flutter_bloc: 8.1.2
-  gap: 3.0.1 
-  loading_animation_widget: 1.2.0+4
-  sqflite: 2.4.1
-  path: 1.9.1
-  path_provider: 2.1.5
   pdf: 3.11.3
   flutter_pdfview: 1.4.1+1
   uri: 1.0.0
   loading_more_list: 5.0.3
   photo_view: 0.15.0
-  audioplayers: 6.5.0 
-  image_gallery_saver_plus: 4.0.1 
-  markdown: 7.3.0
-  webview_flutter: 
-    git:
-      url: https://gitlab.yofoto.cn/xm/client/ai/webview_flutter_4.10.0.git
-      ref: 4.10.0
-
-  flutter_markdown:
+  audioplayers: 6.5.0
+  image_gallery_saver_plus: 4.0.1
+  flutter_markdown: # markdown插件
     git:
       url: https://github.com/smallsevenk/xm_flutter_markdown.git
+      ref: 0.7.7
 
   xkit:
     path: ../xkit
@@ -46,7 +32,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -65,18 +50,18 @@ flutter:
   # adding or updating assets for this project.
   plugin:
     platforms:
-    # This plugin project was generated without specifying any
-    # platforms with the `--platform` argument. If you see the `some_platform` map below, remove it and
-    # then add platforms following the instruction here:
-    # https://flutter.dev/to/pubspec-plugin-platforms
-    # -------------------
+      # This plugin project was generated without specifying any
+      # platforms with the `--platform` argument. If you see the `some_platform` map below, remove it and
+      # then add platforms following the instruction here:
+      # https://flutter.dev/to/pubspec-plugin-platforms
+      # -------------------
       some_platform:
         pluginClass: somePluginClass
     # -------------------
 
   # To add assets to your plugin package, add an assets section, like this:
   assets:
-    - assets/chat/back.png 
+    - assets/chat/back.png
     - assets/chat/input_mic.png
     - assets/chat/drawer.png
     - assets/chat/keyborad.png
@@ -118,7 +103,7 @@ flutter:
     - assets/chat/cs_table_copy.png
     - assets/chat/cs_video_placeholder.png
     - assets/secret/public.pem
-    
+
   # For details regarding assets in packages, see
   # https://flutter.dev/to/asset-from-package
   #
