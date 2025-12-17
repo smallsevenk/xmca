@@ -82,45 +82,49 @@ class _ChatRoomPageState extends State<ChatRoomPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: CColor.cF4F5FA,
-      appBar: _buildAppBar(),
-      body: BlocConsumer<ChatRoomCubit, ChatRoomState>(
-        listener: _onChatRoomStateChanged,
-        builder: (context, state) {
-          if (state is LoadRoomState && state.error != null) {
-            return Center(
-              child: Text(
-                '已失联,\n请点击屏幕唤醒我哦',
-                style: TextStyle(fontSize: 32.w, color: CColor.c4F7EFF),
-                textAlign: TextAlign.center,
-              ),
-            ).onTap(() {
-              context.read<ChatRoomCubit>().initRoomInfo(null);
-            });
-          }
-          if (state is ChatHistoryState) {
-            return _buildMessageList();
-          }
-          return const SizedBox.shrink();
-        },
-      ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: ValueListenableBuilder(
-          valueListenable: _chatInputMode,
-          builder: (BuildContext context, dynamic value, Widget? child) => _buildChatInput(context),
+    return PopScope(
+      canPop: NativeUtil.backToNative == null,
+      child: Scaffold(
+        backgroundColor: CColor.cF4F5FA,
+        appBar: _buildAppBar(),
+        body: BlocConsumer<ChatRoomCubit, ChatRoomState>(
+          listener: _onChatRoomStateChanged,
+          builder: (context, state) {
+            if (state is LoadRoomState && state.error != null) {
+              return Center(
+                child: Text(
+                  '客服助手已失联,\n请点击屏幕唤醒我哦',
+                  style: TextStyle(fontSize: 32.w, color: CColor.c4F7EFF),
+                  textAlign: TextAlign.center,
+                ),
+              ).onTap(() {
+                context.read<ChatRoomCubit>().initRoomInfo(null);
+              });
+            }
+            if (state is ChatHistoryState) {
+              return _buildMessageList();
+            }
+            return const SizedBox.shrink();
+          },
         ),
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: ValueListenableBuilder(
+            valueListenable: _chatInputMode,
+            builder: (BuildContext context, dynamic value, Widget? child) =>
+                _buildChatInput(context),
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: _showScrollToBottom
+            ? Padding(
+                padding: EdgeInsets.only(bottom: 0.w),
+                child: caImage('scroll', width: 112.w),
+              ).onTap(() {
+                _scrollToListBottom();
+              })
+            : null,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: _showScrollToBottom
-          ? Padding(
-              padding: EdgeInsets.only(bottom: 0.w),
-              child: caImage('scroll', width: 112.w),
-            ).onTap(() {
-              _scrollToListBottom();
-            })
-          : null,
     );
   }
 
