@@ -1123,6 +1123,15 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  xm_video_player:
+    dependency: transitive
+    description:
+      path: "."
+      ref: "0.0.1"
+      resolved-ref: "1679a2c53f91fe5eb28d694dcf499ca8b568b569"
+      url: "https://github.com/smallsevenk/xm_video_player.git"
+    source: git
+    version: "0.0.1"
   xmca:
     dependency: "direct main"
     description:

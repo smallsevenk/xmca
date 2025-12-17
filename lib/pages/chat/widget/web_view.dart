@@ -98,7 +98,7 @@ class _WebviewPageState extends State<WebviewPage> {
                       width: 60.w,
                       height: 60.w,
                       margin: EdgeInsets.only(left: 25.w, top: 10.w),
-                      child: caImage('back', width: 60.w, color: CColor.c1A1A1A),
+                      child: caImage('back', width: 44.w, color: CColor.c1A1A1A),
                     ),
                   ),
                   Center(
@@ -107,7 +107,8 @@ class _WebviewPageState extends State<WebviewPage> {
                       style: TextStyle(
                         color: CColor.c1A1A1A,
                         fontSize: 36.sp,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w500,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -121,7 +122,7 @@ class _WebviewPageState extends State<WebviewPage> {
                       },
                       child: Container(
                         alignment: Alignment.center,
-                        child: Icon(Icons.refresh, color: CColor.c1A1A1A, size: 48.w),
+                        child: Icon(Icons.refresh, color: CColor.c1A1A1A, size: 44.w),
                       ),
                     ),
                   ),

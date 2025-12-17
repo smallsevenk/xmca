@@ -5,12 +5,14 @@ import 'package:flutter/material.dart' hide Element;
 import 'package:flutter_markdown/flutter_markdown.dart' show MarkdownElementBuilder;
 import 'package:markdown/markdown.dart' show Element;
 import 'package:xkit/x_kit.dart';
+import 'package:xm_video_player/xm_video_player.dart';
 import 'package:xmca/pages/chat/widget/web_view.dart';
 import 'package:xmca/pages/comm/widgets/image.dart';
 
 const String videoThumbnailCacheKey = 'video_thumbnail_cache_key';
 
 class ATagBuilder extends MarkdownElementBuilder {
+  final _xmVideoPlayer = XmVideoPlayer();
   final VoidCallback? stopPlay;
   ATagBuilder({this.stopPlay});
 
@@ -48,18 +50,21 @@ class ATagBuilder extends MarkdownElementBuilder {
       xKeyboradHide(context: context);
     }
     Uri uri = Uri.parse(url);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) {
-          return WebviewPage(
+
+    if (XPlatform.isAndroid()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => WebviewPage(
             title: title ?? uri.pathSegments.last,
             initialUrl: url,
             isShowAppBar: true,
-          );
-        },
-      ),
-    );
+          ),
+        ),
+      );
+    } else {
+      _xmVideoPlayer.play(VideoResp(title: title ?? uri.pathSegments.last, url: url));
+    }
   }
 
   Future<Uint8List?> getVideoFirstFrame(String url) async {
