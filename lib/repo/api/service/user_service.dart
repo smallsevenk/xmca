@@ -34,7 +34,7 @@ class UserService {
 
   /// 同步用户信息
   Future<bool> syncUserInfo() async {
-    const path = '/auth/login';
+    const path = 'v2/auth/login';
     const mockUrl =
         'https://mock.apipost.net/mock/41fae66ff8e0000/auth/signByPhone?apipost_id=1faea0107b9002';
 

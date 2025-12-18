@@ -7,9 +7,7 @@
  * 功能描述:  
  */
 
-import 'package:xkit/api/x_api_service.dart';
-import 'package:xkit/helper/x_developer.dart';
-import 'package:xkit/helper/x_sp.dart';
+import 'package:xkit/x_kit.dart';
 import 'package:xmca/repo/api/interceptor/request_interceptor.dart';
 
 class Service extends XApiService {
@@ -28,24 +26,27 @@ class Service extends XApiService {
   Service._internal() {
     init();
   }
-
-  final List<XEnvironment> envs = [
-    XEnvironment('生产', 'https://aiservice.sharexm.com/v2'),
-    XEnvironment('测试', 'https://aiservicetest.sharexm.com/v2'),
-  ];
+  final String apiVersion = 'v3';
+  late List<XEnvironment> envs = [];
 
   final String baseUrlKey = 'XMCABaseUrl';
 
   @override
   init() {
     super.init();
+
+    envs = [
+      XEnvironment('生产', 'https://aiservice.sharexm.com/', apiVersion),
+      XEnvironment('测试', 'https://aiservicetest.sharexm.com/', apiVersion),
+      XEnvironment('开发', 'http://172.16.19.117:9991/', apiVersion),
+    ];
+
     var baseUrl = XSpUtil.prefs.getString(baseUrlKey);
     if (baseUrl == null) {
       baseUrl = envs.first.url;
       XSpUtil.prefs.setString(baseUrlKey, baseUrl);
     }
     // 初始化配置
-    // xdio.options.baseUrl = 'http://172.16.19.220:9991/v2';
     xdio.options.baseUrl = baseUrl;
     // 添加拦截器（如果需要）
     xdio.interceptors.add(RequestInterceptor());

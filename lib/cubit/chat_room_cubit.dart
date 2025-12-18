@@ -230,7 +230,7 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
 
     // 发起请求
     ChatRoomService.instance.fetchStreamData(
-      '/room/sendMessage',
+      'v3/room/sendMessage',
       params: {"roomId": room.roomId, "message": sendMessage.text, "imgList": [], "fileList": []},
       showData: true,
       onRespone: (resp) {
@@ -278,6 +278,10 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
                   isPlaying: isPlaying,
                   mounted: mounted,
                 );
+              }
+
+              if (aiAnswerMessageResp.references != null) {
+                reciveMessage.references = aiAnswerMessageResp.references;
               }
             }
             MessageDataProvider.updateMessages([sendMessage, reciveMessage]);

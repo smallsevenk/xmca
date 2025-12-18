@@ -9,8 +9,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:xkit/extension/x_datetime_ext.dart';
-import 'package:xkit/extension/x_map_ext.dart';
+import 'package:xkit/x_kit.dart';
 import 'package:xmca/helper/user_manager.dart';
 import 'package:xmca/pages/chat/widget/chat_message_item.dart';
 
@@ -64,6 +63,12 @@ class DBMessage {
   /// 推荐问题
   List<String>? suggestions;
 
+  /// 引用内容
+  List<Map>? references;
+
+  /// 是否展开引用内容
+  bool isExpandReferences = false;
+
   String? agentId;
 
   // 统计类型(0=未解决，1=已解决, 2=未操作)
@@ -93,93 +98,11 @@ class DBMessage {
     this.images,
     this.file,
     this.suggestions,
+    this.references,
     this.agentId,
     this.statisticsType,
     this.pid,
   });
-
-  /// 设置消息附加信息
-  void setExtra(dynamic data) {
-    extra = jsonEncode(data);
-  }
-
-  /// 更新消息附加信息
-  void updateExtra(dynamic data) {
-    // 需要将 data merge 到 extra 中
-    final extraData = decodeExtra();
-    if (extraData != null) {
-      data = <String, dynamic>{...extraData, ...data};
-    }
-
-    extra = jsonEncode(data);
-  }
-
-  /// 将值添加到附加信息的某个数组键中
-  void pushExtra(String key, dynamic value) {
-    var extraData = decodeExtra();
-    extraData ??= <String, dynamic>{};
-
-    if (!extraData.containsKey(key)) {
-      extraData[key] = [];
-    }
-
-    extraData[key]!.add(value);
-    extra = jsonEncode(extraData);
-  }
-
-  /// 从附加信息的某个数组键中删除最后一个值
-  void popExtra(String key) {
-    var extraData = decodeExtra();
-    extraData ??= <String, dynamic>{};
-    extraData[key]!.removeLast();
-    extra = jsonEncode(extraData);
-  }
-
-  /// 获取消息附加信息
-  decodeExtra() {
-    if (extra == null) {
-      return null;
-    }
-
-    return jsonDecode(extra!);
-  }
-
-  /// 是否是系统消息，包括时间线
-  bool isSystem() {
-    return type == MessageType.system ||
-        type == MessageType.timeline ||
-        type == MessageType.contextBreak;
-  }
-
-  /// 是否是初始消息
-  bool isInitMessage() {
-    return type == MessageType.initMessage;
-  }
-
-  /// 是否是时间线
-  bool isTimeline() {
-    return type == MessageType.timeline;
-  }
-
-  /// 格式化时间
-  String friendlyTime() {
-    return ts?.toFriendlyString() ?? '';
-  }
-
-  /// 是否已失败
-  bool statusIsFailed() {
-    return status == 2;
-  }
-
-  /// 是否已成功
-  bool statusIsSucceed() {
-    return status == 1;
-  }
-
-  /// 是否等待应答
-  bool statusPending() {
-    return status == 0;
-  }
 
   /// 是否为发送者
   bool get isSender {
@@ -212,6 +135,7 @@ class DBMessage {
       'images': images != null ? jsonEncode(images) : null,
       'file': file,
       'suggestions': suggestions != null ? jsonEncode(suggestions) : null,
+      'referencess': references != null ? jsonEncode(references) : null,
       'agent_id': agentId,
       'statistics_type': statisticsType,
       'pid': pid,
@@ -219,29 +143,41 @@ class DBMessage {
   }
 
   DBMessage.fromMap(Map<String, Object?> json)
-    : id = json.getInt('id'),
-      userId = json.getInt('user_id'),
-      role = Role.getRoleFromText(json.getString('role')),
+    : role = Role.getRoleFromText(json.getString('role')),
       text = json.getString('text'),
-      extra = json.getString('extra'),
       type = MessageType.getTypeFromText(json.getString('type')),
-      roleName = json.getString('role_name'),
-      agentId = json.getString('agentId'),
-      refId = json.getInt('ref_id'),
-      srvMsgId = json.getInt('srv_msgid'),
-      status = json.getInt('status'),
-      ts = json['ts'] == null ? null : DateTime.fromMillisecondsSinceEpoch(json['ts'] as int),
-      roomId = json.getInt('room_id'),
+      extra = json.getString('extra'),
+      status = json.getInt('status') {
+    try {
+      id = json.getInt('id');
+      userId = json.getInt('user_id');
+      roleName = json.getString('role_name');
+      agentId = json.getString('agentId');
+      refId = json.getInt('ref_id');
+      srvMsgId = json.getInt('srv_msgid');
+      ts = json['ts'] == null ? null : DateTime.fromMillisecondsSinceEpoch(json['ts'] as int);
+      roomId = json.getInt('room_id');
       suggestions = json['suggestions'] == null
           ? null
-          : (jsonDecode(json.getString('suggestions')) as List<dynamic>).cast<String>(),
-      images = json['images'] == null
-          ? null
-          : (jsonDecode(json.getString('images')) as List<dynamic>).cast<String>(),
+          : (jsonDecode(json.getString('suggestions')) as List<dynamic>).cast<String>();
 
-      file = json.getString('file'),
-      statisticsType = json.getInt('statistics_type'),
+      file = json.getString('file');
+      statisticsType = json.getInt('statistics_type');
       pid = json.getInt('pid');
+
+      var imgs = json.getString('images');
+      if (imgs.isNotEmpty) {
+        images = (jsonDecode(imgs) as List<dynamic>).cast<String>();
+      }
+
+      var ref = json.getString('referencess');
+      if (ref.isNotEmpty) {
+        references = (jsonDecode(ref) as List<dynamic>).cast<Map<String, dynamic>>();
+      }
+    } catch (e) {
+      xdp('DBMessage.fromMap error: $e');
+    }
+  }
 
   DBMessage setDisplayTime(DBMessage? preMessage) {
     if (ts != null) {
@@ -372,7 +308,8 @@ class AIMessage {
   String? object;
   int? created;
   String? model;
-  List<Choices>? choices;
+  List<Choices>? choices; // 回复选项
+  List<Map<String, dynamic>>? references; // 引用列表
   String? type;
 
   AIMessage({
@@ -402,22 +339,7 @@ class AIMessage {
       });
     }
     type = json['type'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['userMessageId'] = userMessageId;
-    data['aiMessageId'] = aiMessageId;
-    data['roomId'] = roomId;
-    data['object'] = object;
-    data['created'] = created;
-    data['model'] = model;
-    if (choices != null) {
-      data['choices'] = choices!.map((v) => v.toJson()).toList();
-    }
-    data['type'] = type;
-    return data;
+    references = json.getList('references');
   }
 
   String get content {
@@ -438,15 +360,6 @@ class Choices {
     index = json['index'];
     delta = json['delta'] != null ? Delta.fromJson(json['delta']) : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['index'] = index;
-    if (delta != null) {
-      data['delta'] = delta!.toJson();
-    }
-    return data;
-  }
 }
 
 class Delta {
@@ -458,13 +371,6 @@ class Delta {
   Delta.fromJson(Map<String, dynamic> json) {
     content = json['content'];
     role = json['role'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['content'] = content;
-    data['role'] = role;
-    return data;
   }
 }
 
@@ -483,6 +389,7 @@ class SRVMessageList {
   }
 }
 
+/// 服务端历史消息对象
 class SRVMessage {
   int? messageId;
   String? role;

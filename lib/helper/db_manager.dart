@@ -18,7 +18,7 @@ class DBManager {
 
   static Database? _database;
   final String _dbName = 'xmca.db';
-  final int _dbVersion = 1;
+  final int _dbVersion = 2;
 
   // 获取数据库实例
   Future<Database> get database async {
@@ -50,7 +50,7 @@ class DBManager {
   role 角色 、 role_name 角色名称、 text 消息内容 、extra 扩展字段、 
   ref_id 引用消息id 、 srv_msgid 消息id 、 status(0等待回复 1成功 2失败 3待重发) 消息状态、  images 图片、 
   file 文件、 ts 时间戳 、agent_id 智能体消息ID 、suggestions 推荐问题 statistics_type 统计类型(0=未解决，1=已解决, 2=未操作)
-  pid 父消息id
+  referencess 引用的消息内容 json字符串, pid 父消息id
    */
   Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
@@ -80,6 +80,7 @@ class DBManager {
           agent_id TEXT NULL,
           suggestions TEXT NULL,
           statistics_type INTEGER DEFAULT 2,
+          referencess TEXT NULL,
           pid INTEGER
         )
       ''');
@@ -87,8 +88,17 @@ class DBManager {
 
   // 数据库升级（可被子类重写）
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    xlog('db ==> _onUpgrade');
     if (oldVersion < 2) {
-      // 添加升级逻辑
+      xlog('db ==> oldVersion < 2');
+      // 在这里添加升级到版本2的代码
+      // chat_message 表添加 reference 字段存放 json字符串
+      try {
+        await db.execute('ALTER TABLE chat_message ADD COLUMN referencess TEXT NULL');
+        xlog('db ==>chat_message ADD COLUMN referencess');
+      } catch (e) {
+        xdp('Failed to add column "referencess": $e');
+      }
     }
   }
 

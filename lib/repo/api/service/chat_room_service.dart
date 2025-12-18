@@ -43,7 +43,7 @@ class ChatRoomService {
 
   /// 房间详情接口
   Future<ChatRoomResp?> getRoomInfo(int? id) async {
-    const path = '/room/info';
+    const path = 'v2/room/info';
     const mockUrl =
         'https://mock.apipost.net/mock/41fae66ff8e0000/room/info?apipost_id=1b282ec3b12002';
     var params = {"id": id ?? 0};
@@ -60,7 +60,7 @@ class ChatRoomService {
 
   /// 消息对齐接口
   Future<List<SRVMessage>> getHistoryMessage({required ChatRoomResp room}) async {
-    const path = '/room/getHistoryMessage';
+    const path = 'v2/room/getHistoryMessage';
     const mockUrl =
         'https://mock.apipost.net/mock/41fae66ff8e0000/user/messageList?apipost_id=1fbd36067b905f';
 
@@ -81,7 +81,7 @@ class ChatRoomService {
   Future<bool> messageDelete({int? roomId, int? srvMsgId}) async {
     // 如果房间 ID 或消息 ID 为空，说明是一条本地未发送成功的消息,无需调用接口 直接返回 true
     if (roomId == null || srvMsgId == null) return true;
-    const path = '/room/messageDelete';
+    const path = 'v2/room/messageDelete';
     const mockUrl =
         'https://mock.apipost.net/mock/41fae66ff8e0000/user/messageDelete?apipost_id=1fbd7bd6fb9062';
     var params = {"roomId": roomId, 'messageId': srvMsgId};
@@ -99,7 +99,7 @@ class ChatRoomService {
   /// 清空历史记录
   Future<bool> clear({int? roomId}) async {
     if (roomId == null) return false;
-    const path = '/room/messageClear';
+    const path = 'v2/room/messageClear';
     const mockUrl =
         'https://mock.apipost.net/mock/41fae66ff8e0000/user/messageDelete?apipost_id=1fbd7bd6fb9062';
     var params = {"roomId": roomId};
@@ -132,7 +132,7 @@ class ChatRoomService {
   Future<List<String>> getSuggestionAnswer(int id, int? messageId) async {
     const mockUrl =
         'https://mock.apipost.net/mock/41fae66ff8e0000/room/getSuggestionAnswer?apipost_id=1142f562712002';
-    const path = '/room/getSuggestionAnswer';
+    const path = 'v2/room/getSuggestionAnswer';
     var params = {"roomId": id, "messageId": messageId ?? 0};
     try {
       List resp = await _api.doGet(
@@ -151,7 +151,7 @@ class ChatRoomService {
 
   /// 客服反馈 0=未解决，1=已解决
   Future<bool> replyStatistics({required int messageId, required int type}) async {
-    const path = '/room/messageReplyStatistics';
+    const path = 'v2/room/messageReplyStatistics';
     var params = {"messageId": messageId, 'statisticsType': type};
     final resp = await _api.doPost(path, showLoading: false, params: params, (resp) => resp);
     return resp?.success ?? false;
@@ -159,7 +159,7 @@ class ChatRoomService {
 
   /// 客服反馈 0=未解决，1=已解决
   Future<dynamic> getParentMessage({required int messageId}) async {
-    const path = '/room/getParentMessage';
+    const path = 'v2/room/getParentMessage';
     var params = {"messageId": messageId};
     final resp = await _api.doGet(path, showLoading: false, params: params, (resp) => resp);
     return (resp?.data ?? {})['message'];

@@ -32,7 +32,7 @@ class CommonService {
 
   /// 获取阿里token
   Future<ALiyunResp?> getAliToken() async {
-    const path = '/public/getAliToken';
+    const path = 'v2/public/getAliToken';
     const mockUrl = '';
     try {
       return _api.doGet(

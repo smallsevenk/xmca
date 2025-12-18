@@ -138,13 +138,51 @@ class ChatMessageItemState extends State<ChatMessageItem> {
       );
     }
     var isLast = widget.isLast.call();
-
+    bool showRef = widget.item.isExpandReferences;
+    bool refIsNotEmpty = widget.item.references != null && widget.item.references!.isNotEmpty;
     return Container(
       decoration: decoration,
       padding: padding.copyWith(bottom: isLast ? 16.w : 24.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if (refIsNotEmpty) ...[
+            Row(
+              children: [
+                Text(
+                  '查阅了${widget.item.references!.length}篇参考资料',
+                  style: TextStyle(color: CColor.c969DA7, fontSize: 28.sp, height: xfH40),
+                ),
+                Gap(4),
+                caImage('arrow_${showRef ? 'down' : 'right'}', width: 40.w),
+              ],
+            ).onTap(() {
+              setState(() {
+                widget.item.isExpandReferences = !showRef;
+              });
+            }),
+            Gap16,
+            Column(
+              children: [
+                if (showRef)
+                  ...widget.item.references!.map((ref) {
+                    int idx = widget.item.references!.indexOf(ref) + 1;
+                    String title = ref['title'] ?? '';
+                    title = title.isNotEmpty ? '$idx. $title' : '';
+                    return SizedBox(
+                      height: 48.w,
+                      child: Text(
+                        title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(color: CColor.c4F7EFF, fontSize: 28.sp, height: xfH48),
+                      ),
+                    );
+                  }),
+              ],
+            ),
+            Gap24,
+          ],
           XMarkdown(
             text,
             stopPlay: widget.stopPlay,
