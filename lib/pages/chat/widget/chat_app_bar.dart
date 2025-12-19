@@ -45,7 +45,9 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       leading: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: onBack,
+
         child: Container(
           alignment: Alignment.center,
           margin: EdgeInsets.only(left: 30.w, right: 24.w),

@@ -1,4 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:xkit/x_kit.dart';
 import 'package:xmca/cubit/chat_room_cubit.dart';
 import 'package:xmca/helper/global.dart';
 import 'package:xmca/helper/user_manager.dart';

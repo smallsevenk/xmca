@@ -1,4 +1,4 @@
-import 'package:markdown/markdown.dart' as md;
+import 'package:flutter_markdown/flutter_markdown.dart' as md;
 
 class ImgsTagSyntax extends md.BlockSyntax {
   static final _pattern = RegExp(r'<img-group([^>]*)>([\s\S]*?)<\/img-group>', multiLine: true);
