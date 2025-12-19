@@ -36,9 +36,9 @@ class Service extends XApiService {
     super.init();
 
     envs = [
-      XEnvironment('生产', 'https://aiservice.sharexm.com/', apiVersion),
-      XEnvironment('测试', 'https://aiservicetest.sharexm.com/', apiVersion),
-      XEnvironment('开发', 'http://172.16.19.117:9991/', apiVersion),
+      XEnvironment('生产', 'https://aiservice.sharexm.com/'),
+      XEnvironment('测试', 'https://aiservicetest.sharexm.com/'),
+      XEnvironment('开发', 'http://172.16.19.117:9991/'),
     ];
 
     var baseUrl = XSpUtil.prefs.getString(baseUrlKey);
@@ -46,6 +46,7 @@ class Service extends XApiService {
       baseUrl = envs.first.url;
       XSpUtil.prefs.setString(baseUrlKey, baseUrl);
     }
+    baseUrl = baseUrl.replaceAll('v2', '');
     // 初始化配置
     xdio.options.baseUrl = baseUrl;
     // 添加拦截器（如果需要）
