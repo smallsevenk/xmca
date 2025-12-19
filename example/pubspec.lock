@@ -365,7 +365,7 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: HEAD
+      ref: "0.7.7"
       resolved-ref: "8255425d9869e83b1a158aed950bada0753d7019"
       url: "https://github.com/smallsevenk/xm_flutter_markdown.git"
     source: git
@@ -1113,7 +1113,7 @@ packages:
       path: "../../xm_video_player"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.3"
   xmca:
     dependency: "direct main"
     description:
