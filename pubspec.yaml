@@ -11,22 +11,23 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
+  loading_animation_widget: 1.2.0+4
+  path: 1.9.1
   pdf: 3.11.3
   flutter_pdfview: 1.4.1+1
   uri: 1.0.0
   photo_view: 0.15.0
   audioplayers: 6.5.0
   image_gallery_saver_plus: 4.0.1
-  path: 1.9.1 # 地址拼接
   flutter_markdown:
     git:
       url: https://github.com/smallsevenk/xm_flutter_markdown.git
       ref: 0.7.7
-
   xkit:
-    path: ../xkit
-    # git:
-    #   url: https://github.com/smallsevenk/xkit.git
+    # path: ../xkit
+    git:
+      url: https://github.com/smallsevenk/xkit.git
+      ref: 0.0.3
 
 dev_dependencies:
   flutter_test:
@@ -101,8 +102,6 @@ flutter:
     - assets/chat/cs_img_loading.gif
     - assets/chat/cs_full_screen.png
     - assets/chat/cs_table_copy.png
-    - assets/chat/arrow_right.png
-    - assets/chat/arrow_down.png
     - assets/chat/cs_video_placeholder.png
     - assets/secret/public.pem
 

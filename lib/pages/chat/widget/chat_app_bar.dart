@@ -47,6 +47,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onBack,
+
         child: Container(
           alignment: Alignment.center,
           child: caImage('back', width: (64 * XNativeUtil.style.iconScaler).w),
