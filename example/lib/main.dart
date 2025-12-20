@@ -116,23 +116,16 @@ class _HomePageState extends State<HomePage> {
                 "appParams": {
                   "openToken": "sds",
                   "appKey": "GrA3gEpJZNJB7__-mnMtUg==",
+                  "baseUrl": "sss",
                   "companyId": "1",
                   "communityTopId": "1",
                   "communityId": "1",
-                  "baseUrl": "sss",
                 },
                 "appStyle": {"textScaler": '1', "iconScaler": "1", "titleScaler": "1"},
               };
-              Xmca.config(params: params);
+
               XNativeUtil.appParams = params;
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Xmca.chatRoomPage;
-                  },
-                ),
-              );
+              context.push(grpXmca);
             },
           ),
           SizedBox(height: 20),

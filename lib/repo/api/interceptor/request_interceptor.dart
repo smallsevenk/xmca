@@ -8,8 +8,8 @@
  */
 
 import 'dart:convert';
+import 'package:xkit/x_kit.dart';
 import 'package:xmca/helper/user_manager.dart';
-import 'package:xmca/xmca.dart';
 import 'package:flutter/services.dart';
 
 class RequestInterceptor extends InterceptorsWrapper {

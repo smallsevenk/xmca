@@ -103,6 +103,8 @@ flutter:
     - assets/chat/cs_full_screen.png
     - assets/chat/cs_table_copy.png
     - assets/chat/cs_video_placeholder.png
+    - assets/chat/arrow_right.png
+    - assets/chat/arrow_down.png
     - assets/secret/public.pem
 
   # For details regarding assets in packages, see
