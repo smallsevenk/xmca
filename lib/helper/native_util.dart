@@ -1,9 +1,7 @@
-import 'dart:ui';
-
 import 'package:xkit/x_kit.dart';
 
 class NativeUtil {
-  static VoidCallback? backToNative; // 回退
-  static AiInvokeNativeCallBack? humanCustomerService; // 人工客服
-  static AiInvokeNativeCallBack? xmcaReferenceDetail; // 社群引用详情
+  static OnInvokeNativeCallBack? backToNative; // 回退
+  static OnInvokeNativeWithArgsCallBack? humanCustomerService; // 人工客服
+  static OnInvokeNativeWithArgsCallBack? xmcaReferenceDetail; // 社群引用详情
 }

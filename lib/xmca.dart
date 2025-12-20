@@ -4,7 +4,10 @@ import 'package:xmca/helper/native_util.dart';
 import 'package:xmca/pages/chat/chat_room.dart';
 
 class Xmca {
-  static void config({Function()? backToNative, Function(dynamic args)? humanCustomerService}) {
+  static void config({
+    OnInvokeNativeCallBack? backToNative,
+    OnInvokeNativeWithArgsCallBack? humanCustomerService,
+  }) {
     NativeUtil.backToNative = backToNative;
     NativeUtil.humanCustomerService = humanCustomerService;
   }
