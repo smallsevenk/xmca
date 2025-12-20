@@ -51,9 +51,13 @@ class ChatMessageItemState extends State<ChatMessageItem> {
   }
 
   void updateContent(String content) {
-    setState(() {
-      widget.item.text = content;
-    });
+    widget.item.text = content;
+    reload();
+  }
+
+  void updateReferences(List<Map<String, dynamic>>? refs) {
+    widget.item.references = refs;
+    reload();
   }
 
   void reload() {
@@ -177,11 +181,13 @@ class ChatMessageItemState extends State<ChatMessageItem> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(color: CColor.c4F7EFF, fontSize: 28.sp, height: xfH48),
                       ),
-                    );
+                    ).onTap(() {
+                      NativeUtil.xmcaReferenceDetail?.call(ref);
+                    });
                   }),
+                ...[Gap24],
               ],
             ),
-            Gap24,
           ],
           XMarkdown(
             text,

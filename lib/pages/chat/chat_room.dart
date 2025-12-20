@@ -246,20 +246,20 @@ class _ChatRoomPageState extends State<ChatRoomPage>
       stopPlay: () => _stopPlay(),
       onLongPressStart: (details) => _handleLongPressStart(details, index),
       onResend: (DBMessage message) async {
-        Alert.show(
-          context: () => context,
-          title: '重发该条消息？',
-          onConfirm: () async {
-            try {
-              // 处理重发逻辑
-              debugPrint('重发消息: ${message.text}');
-              await MessageDataProvider.deleteMessages(_room.roomId, [message.id!]);
-              _sendMessage(message.text);
-            } catch (e) {
-              showToast('重发失败');
-            }
-          },
-        );
+        // Alert.show(
+        //   context: () => context,
+        //   title: '重发该条消息？',
+        //   onConfirm: () async {
+        try {
+          // 处理重发逻辑
+          debugPrint('重发消息: ${message.text}');
+          await MessageDataProvider.deleteMessages(_room.roomId, [message.id!]);
+          _sendMessage(message.text);
+        } catch (e) {
+          showToast('重发失败');
+        }
+        //   },
+        // );
       },
       onPlay: () async {
         if (_isPlaying.value) {

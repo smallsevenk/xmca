@@ -60,6 +60,7 @@ class _MDImageBuilderState extends State<MDImageBuilder> {
                   alignment: Alignment.center,
                   child: caImage('cs_img_error'),
                 ).onTap(() {
+                  xdp(url);
                   showToast('无效图片资源,无法预览');
                 }),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xmca/xmca.dart';
+import 'package:xmca_example/router.dart';
 import 'package:xmcp_base/xmcp_base.dart';
 
 /// 非第三方App入口函数
@@ -34,6 +35,12 @@ class CsApp extends StatefulWidget {
 
 class _CsAppState extends State<CsApp> {
   @override
+  void initState() {
+    registRouters();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     xdp('_CsAppState');
     return ChangeNotifierProvider(
@@ -45,7 +52,7 @@ class _CsAppState extends State<CsApp> {
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (context, child) {
-            return MaterialApp(
+            return MaterialApp.router(
               themeMode: appTheme.mode,
               theme: createLightThemeData(context),
               darkTheme: createDarkThemeData(),
@@ -78,7 +85,7 @@ class _CsAppState extends State<CsApp> {
                   );
                 },
               ),
-              home: HomePage(),
+              routerConfig: XRouter.instance.getRouter(),
             );
           },
         );

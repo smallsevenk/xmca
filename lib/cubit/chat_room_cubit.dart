@@ -280,8 +280,11 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
                 );
               }
 
-              if (aiAnswerMessageResp.references != null) {
+              if (aiAnswerMessageResp.references != null && reciveMessage.references == null) {
                 reciveMessage.references = aiAnswerMessageResp.references;
+                lastMessage.call().messageItemKey.currentState?.updateReferences(
+                  aiAnswerMessageResp.references,
+                );
               }
             }
             MessageDataProvider.updateMessages([sendMessage, reciveMessage]);
