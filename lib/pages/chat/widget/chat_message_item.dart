@@ -166,9 +166,9 @@ class ChatMessageItemState extends State<ChatMessageItem> {
               });
             }),
             Gap16,
-            Column(
-              children: [
-                if (showRef)
+            if (showRef)
+              Column(
+                children: [
                   ...widget.item.references!.map((ref) {
                     int idx = widget.item.references!.indexOf(ref) + 1;
                     String title = ref['title'] ?? '';
@@ -189,9 +189,9 @@ class ChatMessageItemState extends State<ChatMessageItem> {
                       }
                     });
                   }),
-                ...[Gap24],
-              ],
-            ),
+                  ...[Gap24],
+                ],
+              ),
           ],
           XMarkdown(
             text,
