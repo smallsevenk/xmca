@@ -397,7 +397,7 @@ class SRVMessage {
   int? messageHash;
   int? statisticsType;
   int? pid;
-  List<Map>? references;
+  List<Map<String, dynamic>>? references;
 
   SRVMessage({
     this.messageId,
@@ -436,7 +436,7 @@ class SRVMessage {
       'file': null,
       'statistics_type': statisticsType ?? 2,
       'pid': pid,
-      'referencess': references,
+      'referencess': references != null ? jsonEncode(references) : null,
     };
   }
 
