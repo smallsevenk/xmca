@@ -7,9 +7,11 @@ class Xmca {
   static void config({
     OnInvokeNativeCallBack? backToNative,
     OnInvokeNativeWithArgsCallBack? humanCustomerService,
+    OnInvokeNativeWithArgsCallBack? xmcaReferenceDetail,
   }) {
     NativeUtil.backToNative = backToNative;
     NativeUtil.humanCustomerService = humanCustomerService;
+    NativeUtil.xmcaReferenceDetail = xmcaReferenceDetail;
   }
 }
 

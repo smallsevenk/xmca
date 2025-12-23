@@ -182,7 +182,11 @@ class ChatMessageItemState extends State<ChatMessageItem> {
                         style: TextStyle(color: CColor.c4F7EFF, fontSize: 28.sp, height: xfH48),
                       ),
                     ).onTap(() {
-                      NativeUtil.xmcaReferenceDetail?.call(ref);
+                      if (NativeUtil.xmcaReferenceDetail != null) {
+                        NativeUtil.xmcaReferenceDetail!.call(ref);
+                      } else {
+                        showToast(' NativeUtil.xmcaReferenceDetail.call${ref.toString()}');
+                      }
                     });
                   }),
                 ...[Gap24],

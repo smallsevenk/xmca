@@ -397,8 +397,16 @@ class SRVMessage {
   int? messageHash;
   int? statisticsType;
   int? pid;
+  List<Map>? references;
 
-  SRVMessage({this.messageId, this.role, this.message, this.messageHash, this.statisticsType});
+  SRVMessage({
+    this.messageId,
+    this.role,
+    this.message,
+    this.messageHash,
+    this.statisticsType,
+    this.references,
+  });
 
   SRVMessage.fromJson(Map<String, dynamic> json) {
     messageId = json['messageId'];
@@ -407,6 +415,7 @@ class SRVMessage {
     messageHash = json['messageHash'];
     statisticsType = json['statisticsType'] ?? 2;
     pid = json['pid'];
+    references = json.getList('references');
   }
 
   Map<String, dynamic> toJson(int roomId) {
@@ -427,6 +436,7 @@ class SRVMessage {
       'file': null,
       'statistics_type': statisticsType ?? 2,
       'pid': pid,
+      'referencess': references,
     };
   }
 
