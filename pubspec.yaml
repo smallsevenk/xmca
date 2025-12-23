@@ -24,7 +24,8 @@ dependencies:
       url: https://github.com/smallsevenk/xm_flutter_markdown.git
       ref: 0.7.7
   xkit:
-    path: ../xkit
+    # path: ../xkit
+    path: ./../../flutter_xmcp/xkit
     # git:
     #   url: https://github.com/smallsevenk/xkit.git
     #   ref: 0.0.3
