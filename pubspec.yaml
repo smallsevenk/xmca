@@ -24,9 +24,9 @@ dependencies:
       url: https://github.com/smallsevenk/xm_flutter_markdown.git
       ref: 0.7.7
   xkit:
-    # path: ../xkit
-    git:
-      url: https://github.com/smallsevenk/xkit.git
+    path: ../xkit
+    # git:
+    #   url: https://github.com/smallsevenk/xkit.git
 
 dev_dependencies:
   flutter_test:
