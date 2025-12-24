@@ -540,19 +540,20 @@ packages:
   image_picker:
     dependency: transitive
     description:
-      name: image_picker
-      sha256: "736eb56a911cf24d1859315ad09ddec0b66104bc41a7f8c5b96b4e2620cf5041"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: b5723e40def556c3bb0e31a6622a922d47045149
+      url: "https://gitlab.yofoto.cn/xm/client/ai/image_picker_1.2.0.git"
+    source: git
     version: "1.2.0"
   image_picker_android:
     dependency: transitive
     description:
       name: image_picker_android
-      sha256: "5e9bf126c37c117cf8094215373c6d561117a3cfb50ebc5add1a61dc6e224677"
+      sha256: e83b2b05141469c5e19d77e1dfa11096b6b1567d09065b2265d7c6904560050c
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.8.13+10"
+    version: "0.8.13"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -1255,7 +1256,7 @@ packages:
   xkit:
     dependency: transitive
     description:
-      path: "../../../flutter_xmcp/xkit"
+      path: "../../xkit"
       relative: true
     source: path
     version: "0.0.3"
@@ -1278,7 +1279,7 @@ packages:
   xmcp_base:
     dependency: "direct main"
     description:
-      path: "../../../flutter_xmcp/xmcp_base"
+      path: "../../xmcp_base"
       relative: true
     source: path
     version: "0.0.1"
