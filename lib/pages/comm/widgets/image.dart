@@ -9,7 +9,7 @@
 
 import 'package:flutter/widgets.dart';
 
-caImage(
+Image caImage(
   String assetName, {
   double? width,
   double? height,

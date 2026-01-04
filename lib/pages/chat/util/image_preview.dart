@@ -72,18 +72,18 @@ class _ImagePreviewPageState extends State<_ImagePreviewPage> {
     return Scaffold(
       backgroundColor: widget.backgroundColor,
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Center(
-          child: caImage('cs_close', width: 48.w),
-        ).onTap(() => Navigator.pop(context)),
-        title: Text(
-          '${_currentIndex + 1}/${widget.imageUrls.length}',
-          style: TextStyle(color: Colors.white, fontSize: 36.sp, fontWeight: FontWeight.w600),
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   leading: Center(
+      //     child: caImage('cs_close', width: 48.w),
+      //   ).onTap(() => Navigator.pop(context)),
+      //   title: Text(
+      //     '${_currentIndex + 1}/${widget.imageUrls.length}',
+      //     style: TextStyle(color: Colors.white, fontSize: 36.sp, fontWeight: FontWeight.w600),
+      //     overflow: TextOverflow.ellipsis,
+      //   ),
+      // ),
       body: Stack(
         children: [
           Positioned.fill(
@@ -122,17 +122,17 @@ class _ImagePreviewPageState extends State<_ImagePreviewPage> {
   }
 
   Widget _buildPageFooter() {
-    var titles = widget.titles ?? [];
+    // var titles = widget.titles ?? [];
     var url = widget.imageUrls[_currentIndex];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          titles[_currentIndex],
-          style: TextStyle(color: widget.indicatorColor, fontSize: 32.sp),
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-        ),
+        // Text(
+        //   titles[_currentIndex],
+        //   style: TextStyle(color: widget.indicatorColor, fontSize: 32.sp),
+        //   overflow: TextOverflow.ellipsis,
+        //   maxLines: 1,
+        // ),
         Gap(36.w),
         Row(
           children: [

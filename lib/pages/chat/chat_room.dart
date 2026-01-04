@@ -92,7 +92,7 @@ class _ChatRoomPageState extends State<ChatRoomPage>
             if (state is LoadRoomState && state.error != null) {
               return Center(
                 child: Text(
-                  '客服助手已失联,\n请点击屏幕唤醒我哦',
+                  '社群助手已失联,\n请点击屏幕唤醒我哦',
                   style: TextStyle(fontSize: 32.w, color: CColor.c4F7EFF),
                   textAlign: TextAlign.center,
                 ),

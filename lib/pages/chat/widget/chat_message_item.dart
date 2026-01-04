@@ -168,6 +168,7 @@ class ChatMessageItemState extends State<ChatMessageItem> {
             Gap16,
             if (showRef)
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ...widget.item.references!.map((ref) {
                     int idx = widget.item.references!.indexOf(ref) + 1;
