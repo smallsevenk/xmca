@@ -1104,34 +1104,34 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.4"
-      resolved-ref: "72b20ec2e2d078ec43a5484335b4b370eecd0ebd"
+      ref: "0.0.5"
+      resolved-ref: d2dcfc8dce2d95247485f7f8ae296cfe3020a0d9
       url: "https://github.com/smallsevenk/xkit.git"
     source: git
-    version: "0.0.4"
+    version: "0.0.5"
   xm_video_player:
     dependency: transitive
     description:
       path: "."
-      ref: "0.0.3"
-      resolved-ref: "678d29a325b677520645a37e4b2a060c366caf5c"
+      ref: "0.0.5"
+      resolved-ref: d98d61a5f207209e6270960cec7536ebefb0730c
       url: "https://github.com/smallsevenk/xm_video_player.git"
     source: git
-    version: "0.0.3"
+    version: "0.0.5"
   xmca:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.4"
   xmcp_base:
     dependency: "direct main"
     description:
       path: "../../xmcp_base"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.2"
   xml:
     dependency: transitive
     description:

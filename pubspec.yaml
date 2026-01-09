@@ -1,6 +1,6 @@
 name: xmca
 description: "A new Flutter plugin project."
-version: 0.0.4
+version: 0.0.5
 publish_to: none
 
 environment:
@@ -27,7 +27,7 @@ dependencies:
     # path: ../xkit
     git:
       url: https://github.com/smallsevenk/xkit.git
-      ref: 0.0.4
+      ref: 0.0.5
 
 dev_dependencies:
   flutter_test:
