@@ -145,11 +145,14 @@ class _ChatRoomPageState extends State<ChatRoomPage>
         _pushLoglist();
       },
       autoPlay: autoPlaySwitchIsOpen,
-      onBack: () {
+      onBack: () async {
+        await NuiUtil.release();
         if (NativeUtil.backToNative != null) {
           NativeUtil.backToNative?.call();
         } else {
-          Navigator.pop(context);
+          if (mounted) {
+            context.pop();
+          }
         }
       },
       onAutoPlayTap: () {
